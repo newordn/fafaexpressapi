@@ -1,0 +1,113 @@
+const {GraphQLUpload} = require('graphql-upload')
+const typeDefs = `
+scalar Upload
+type Query{
+    info: String!
+    platesByUser(user:ID!): [UsersOnPlates!]!
+    housesByUser(user:ID!): [UsersOnHouses!]!
+    steedsByUser(user:ID!): [UsersOnSteeds!]!
+    productsByUser(User:ID!): [UsersOnProducts!]!
+}
+type Mutation{
+    signUp(name:String!,phone:String!,email:String!,password:String!,illustration:Upload!,role:String!):User!
+    signIn(phone:String!,password:String!):User!
+    plat(name:String!,illustration:Upload!,description:String!,price:Float!): Plat!
+    house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
+    steed(pointA:String!,pointB:String!,description:String!): Steed!
+    product(name:String!,description:String!,illustration:Upload!,price:Float!): Product!
+    activatePlat(user:ID!,plat:ID!): Plat!
+    activateHouse(user:ID!,house:ID!): House!
+    activateSteed(user:ID!,steed:ID!): Steed!
+    activateProduct(user:ID!,product:ID!): Product!
+}
+type User{
+    id: ID! 
+    name: String!
+    phone: String!
+    email: String!
+    password: String!
+    illustration: String!
+    role : String!
+    date : String!
+    plates : [UsersOnPlates!]
+    houses : [UsersOnHouses!]
+    steeds : [UsersOnSteeds!]
+    products : [UsersOnProducts!]
+}
+type UsersOnPlates{
+    id : ID! 
+    user: User!
+    userId: Int!
+    plat : Plat!
+    platId: Int
+    localisation: String!
+    date: String!
+    active: Boolean!
+}
+type Plat{
+    id: ID!
+    name: String!
+    illustration: String!
+    description: String!
+    price: Float!
+    date : String!
+    users : [UsersOnPlates!]
+}
+type UsersOnHouses{
+    id : ID! 
+    user: User!
+    userId: Int!
+    house : House!
+    houseId: Int
+    date: String!
+    active: Boolean!
+}
+type House{
+    id: ID!
+    illustration: String!
+    description: String
+    localisation: String!
+    price : Float!
+    date : String!
+    users : [UsersOnHouses!]
+}
+type UsersOnSteeds{
+    id : ID! 
+    user: User!
+    userId: Int!
+    steed : Steed!
+    steedId: Int
+    date: String!
+    active: Boolean!
+}
+type Steed{
+    id : ID!
+    pointA : String!
+    pointB : String!
+    description: String!
+    date : String!
+    users : [UsersOnSteeds!]
+}
+type UsersOnProducts{
+    id : ID! 
+    user: User!
+    userId: Int!
+    product : Product!
+    productId: Int
+    localisation: String!
+    date: String!
+    active: Boolean!
+}
+type Product{
+    id: ID!
+    name : String!
+    description: String!
+    illustration: String!
+    price: Float!
+    date : String!
+    users : [UsersOnProducts!]
+}
+`
+module.exports={
+    typeDefs
+}

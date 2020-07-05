@@ -1,0 +1,54 @@
+type User{
+    id: ID! @id
+    name: String!
+    phone: String! @unique
+    email: String! @unique
+    illustration: String!
+    password: String!
+    role : String!
+    date : DateTime @createdAt
+    plates : [UsersOnPlates!]
+}
+type UsersOnPlates{
+    id : ID! @id
+    user: User! @relation(fields:[userId],references:[id])
+    userId: Int!
+    plat : Plat! @relation(fields:[categoryId],references:[id])
+    platId: Int
+    localisation: String!
+    active: Boolean!
+    date: DateTime @createdAt
+}
+type Plat{
+    id: ID! @id
+    name: String!
+    illustration: String!
+    description: String!
+    price: Float!
+    date : DateTime @createdAt
+    users : [UsersOnPlates!]
+}
+type House{
+    id: ID! @id
+    illustration: String!
+    description: String
+    localisation: String!
+    price : Float!
+    date : DateTime @createdAt
+}
+type Steed{
+    id : ID! @id
+    pointA : String!
+    pointB : String!
+    description: String!
+    date : DateTime @createdAt
+}
+type Product{
+    id: ID! @id
+    name : String!
+    description: String!
+    illustration: String!
+    price: Float!
+    date : DateTime @createdAt
+
+}
