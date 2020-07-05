@@ -38,7 +38,7 @@ const house = async (parent,args,context,info)=>{
 }
 const steed = async (parent,args,context,info)=>{
     console.log('steed mutation')
-    const steed = await context.prisma.createSteed({...args})
+    const steed = await context.prisma.createSteed({...args,user:{connect:{id:args.user}},ordered:false})
     return steed
 }
 const product = async (parent,args,context,info)=>{

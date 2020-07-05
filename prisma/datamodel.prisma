@@ -8,6 +8,7 @@ type User{
     role : String!
     date : DateTime @createdAt
     plates : [UsersOnPlates!]
+    steeds: [Steed!] @relation(name:"UserSteeds")
 }
 type UsersOnPlates{
     id : ID! @id
@@ -42,6 +43,8 @@ type Steed{
     pointB : String!
     description: String!
     date : DateTime @createdAt
+    ordered: Boolean!
+    user : User!  @relation(name:"UserSteeds")
 }
 type Product{
     id: ID! @id

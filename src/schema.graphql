@@ -3,9 +3,10 @@ const typeDefs = `
 scalar Upload
 type Query{
     info: String!
+    users: [User!]!
     platesByUser(user:ID!): [UsersOnPlates!]!
     housesByUser(user:ID!): [UsersOnHouses!]!
-    steedsByUser(user:ID!): [UsersOnSteeds!]!
+    steedsByUser(user:ID!): [Steed!]!
     productsByUser(User:ID!): [UsersOnProducts!]!
 }
 type Mutation{
@@ -13,12 +14,11 @@ type Mutation{
     signIn(phone:String!,password:String!):User!
     plat(name:String!,illustration:Upload!,description:String!,price:Float!): Plat!
     house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
-    steed(pointA:String!,pointB:String!,description:String!): Steed!
+    steed(pointA:String!,pointB:String!,description:String!,user:ID!): Steed!
     product(name:String!,description:String!,illustration:Upload!,price:Float!): Product!
-    activatePlat(user:ID!,plat:ID!): Plat!
-    activateHouse(user:ID!,house:ID!): House!
-    activateSteed(user:ID!,steed:ID!): Steed!
-    activateProduct(user:ID!,product:ID!): Product!
+    orderPlat(user:ID!,plat:ID!): Plat!
+    orderHouse(user:ID!,house:ID!): House!
+    orderProduct(user:ID!,product:ID!): Product!
 }
 type User{
     id: ID! 
@@ -31,7 +31,7 @@ type User{
     date : String!
     plates : [UsersOnPlates!]
     houses : [UsersOnHouses!]
-    steeds : [UsersOnSteeds!]
+    steeds : [Steed!]
     products : [UsersOnProducts!]
 }
 type UsersOnPlates{
@@ -71,22 +71,15 @@ type House{
     date : String!
     users : [UsersOnHouses!]
 }
-type UsersOnSteeds{
-    id : ID! 
-    user: User!
-    userId: Int!
-    steed : Steed!
-    steedId: Int
-    date: String!
-    active: Boolean!
-}
+
 type Steed{
     id : ID!
     pointA : String!
     pointB : String!
     description: String!
     date : String!
-    users : [UsersOnSteeds!]
+    ordered: Boolean!
+    user : User!
 }
 type UsersOnProducts{
     id : ID! 

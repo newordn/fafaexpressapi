@@ -655,6 +655,8 @@ type Steed {
   pointB: String!
   description: String!
   date: DateTime
+  ordered: Boolean!
+  user: User!
 }
 
 type SteedConnection {
@@ -668,6 +670,21 @@ input SteedCreateInput {
   pointA: String!
   pointB: String!
   description: String!
+  ordered: Boolean!
+  user: UserCreateOneWithoutSteedsInput!
+}
+
+input SteedCreateManyWithoutUserInput {
+  create: [SteedCreateWithoutUserInput!]
+  connect: [SteedWhereUniqueInput!]
+}
+
+input SteedCreateWithoutUserInput {
+  id: ID
+  pointA: String!
+  pointB: String!
+  description: String!
+  ordered: Boolean!
 }
 
 type SteedEdge {
@@ -686,6 +703,8 @@ enum SteedOrderByInput {
   description_DESC
   date_ASC
   date_DESC
+  ordered_ASC
+  ordered_DESC
 }
 
 type SteedPreviousValues {
@@ -694,6 +713,79 @@ type SteedPreviousValues {
   pointB: String!
   description: String!
   date: DateTime
+  ordered: Boolean!
+}
+
+input SteedScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  pointA: String
+  pointA_not: String
+  pointA_in: [String!]
+  pointA_not_in: [String!]
+  pointA_lt: String
+  pointA_lte: String
+  pointA_gt: String
+  pointA_gte: String
+  pointA_contains: String
+  pointA_not_contains: String
+  pointA_starts_with: String
+  pointA_not_starts_with: String
+  pointA_ends_with: String
+  pointA_not_ends_with: String
+  pointB: String
+  pointB_not: String
+  pointB_in: [String!]
+  pointB_not_in: [String!]
+  pointB_lt: String
+  pointB_lte: String
+  pointB_gt: String
+  pointB_gte: String
+  pointB_contains: String
+  pointB_not_contains: String
+  pointB_starts_with: String
+  pointB_not_starts_with: String
+  pointB_ends_with: String
+  pointB_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  ordered: Boolean
+  ordered_not: Boolean
+  AND: [SteedScalarWhereInput!]
+  OR: [SteedScalarWhereInput!]
+  NOT: [SteedScalarWhereInput!]
 }
 
 type SteedSubscriptionPayload {
@@ -718,12 +810,57 @@ input SteedUpdateInput {
   pointA: String
   pointB: String
   description: String
+  ordered: Boolean
+  user: UserUpdateOneRequiredWithoutSteedsInput
+}
+
+input SteedUpdateManyDataInput {
+  pointA: String
+  pointB: String
+  description: String
+  ordered: Boolean
 }
 
 input SteedUpdateManyMutationInput {
   pointA: String
   pointB: String
   description: String
+  ordered: Boolean
+}
+
+input SteedUpdateManyWithoutUserInput {
+  create: [SteedCreateWithoutUserInput!]
+  delete: [SteedWhereUniqueInput!]
+  connect: [SteedWhereUniqueInput!]
+  set: [SteedWhereUniqueInput!]
+  disconnect: [SteedWhereUniqueInput!]
+  update: [SteedUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [SteedUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [SteedScalarWhereInput!]
+  updateMany: [SteedUpdateManyWithWhereNestedInput!]
+}
+
+input SteedUpdateManyWithWhereNestedInput {
+  where: SteedScalarWhereInput!
+  data: SteedUpdateManyDataInput!
+}
+
+input SteedUpdateWithoutUserDataInput {
+  pointA: String
+  pointB: String
+  description: String
+  ordered: Boolean
+}
+
+input SteedUpdateWithWhereUniqueWithoutUserInput {
+  where: SteedWhereUniqueInput!
+  data: SteedUpdateWithoutUserDataInput!
+}
+
+input SteedUpsertWithWhereUniqueWithoutUserInput {
+  where: SteedWhereUniqueInput!
+  update: SteedUpdateWithoutUserDataInput!
+  create: SteedCreateWithoutUserInput!
 }
 
 input SteedWhereInput {
@@ -791,6 +928,9 @@ input SteedWhereInput {
   date_lte: DateTime
   date_gt: DateTime
   date_gte: DateTime
+  ordered: Boolean
+  ordered_not: Boolean
+  user: UserWhereInput
   AND: [SteedWhereInput!]
   OR: [SteedWhereInput!]
   NOT: [SteedWhereInput!]
@@ -819,6 +959,7 @@ type User {
   role: String!
   date: DateTime
   plates(where: UsersOnPlatesWhereInput, orderBy: UsersOnPlatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnPlates!]
+  steeds(where: SteedWhereInput, orderBy: SteedOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Steed!]
 }
 
 type UserConnection {
@@ -836,10 +977,16 @@ input UserCreateInput {
   password: String!
   role: String!
   plates: UsersOnPlatesCreateManyWithoutUserInput
+  steeds: SteedCreateManyWithoutUserInput
 }
 
 input UserCreateOneWithoutPlatesInput {
   create: UserCreateWithoutPlatesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutSteedsInput {
+  create: UserCreateWithoutSteedsInput
   connect: UserWhereUniqueInput
 }
 
@@ -851,6 +998,18 @@ input UserCreateWithoutPlatesInput {
   illustration: String!
   password: String!
   role: String!
+  steeds: SteedCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutSteedsInput {
+  id: ID
+  name: String!
+  phone: String!
+  email: String!
+  illustration: String!
+  password: String!
+  role: String!
+  plates: UsersOnPlatesCreateManyWithoutUserInput
 }
 
 type UserEdge {
@@ -1232,6 +1391,7 @@ input UserUpdateInput {
   password: String
   role: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
+  steeds: SteedUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
@@ -1250,6 +1410,13 @@ input UserUpdateOneRequiredWithoutPlatesInput {
   connect: UserWhereUniqueInput
 }
 
+input UserUpdateOneRequiredWithoutSteedsInput {
+  create: UserCreateWithoutSteedsInput
+  update: UserUpdateWithoutSteedsDataInput
+  upsert: UserUpsertWithoutSteedsInput
+  connect: UserWhereUniqueInput
+}
+
 input UserUpdateWithoutPlatesDataInput {
   name: String
   phone: String
@@ -1257,11 +1424,27 @@ input UserUpdateWithoutPlatesDataInput {
   illustration: String
   password: String
   role: String
+  steeds: SteedUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutSteedsDataInput {
+  name: String
+  phone: String
+  email: String
+  illustration: String
+  password: String
+  role: String
+  plates: UsersOnPlatesUpdateManyWithoutUserInput
 }
 
 input UserUpsertWithoutPlatesInput {
   update: UserUpdateWithoutPlatesDataInput!
   create: UserCreateWithoutPlatesInput!
+}
+
+input UserUpsertWithoutSteedsInput {
+  update: UserUpdateWithoutSteedsDataInput!
+  create: UserCreateWithoutSteedsInput!
 }
 
 input UserWhereInput {
@@ -1374,6 +1557,9 @@ input UserWhereInput {
   plates_every: UsersOnPlatesWhereInput
   plates_some: UsersOnPlatesWhereInput
   plates_none: UsersOnPlatesWhereInput
+  steeds_every: SteedWhereInput
+  steeds_some: SteedWhereInput
+  steeds_none: SteedWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

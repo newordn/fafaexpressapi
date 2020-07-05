@@ -330,6 +330,20 @@ export type UsersOnPlatesOrderByInput =
   | "date_ASC"
   | "date_DESC";
 
+export type SteedOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "pointA_ASC"
+  | "pointA_DESC"
+  | "pointB_ASC"
+  | "pointB_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "date_ASC"
+  | "date_DESC"
+  | "ordered_ASC"
+  | "ordered_DESC";
+
 export type PlatOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -355,18 +369,6 @@ export type ProductOrderByInput =
   | "illustration_DESC"
   | "price_ASC"
   | "price_DESC"
-  | "date_ASC"
-  | "date_DESC";
-
-export type SteedOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "pointA_ASC"
-  | "pointA_DESC"
-  | "pointB_ASC"
-  | "pointB_DESC"
-  | "description_ASC"
-  | "description_DESC"
   | "date_ASC"
   | "date_DESC";
 
@@ -648,9 +650,85 @@ export interface UserWhereInput {
   plates_every?: Maybe<UsersOnPlatesWhereInput>;
   plates_some?: Maybe<UsersOnPlatesWhereInput>;
   plates_none?: Maybe<UsersOnPlatesWhereInput>;
+  steeds_every?: Maybe<SteedWhereInput>;
+  steeds_some?: Maybe<SteedWhereInput>;
+  steeds_none?: Maybe<SteedWhereInput>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
+export interface SteedWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  pointA?: Maybe<String>;
+  pointA_not?: Maybe<String>;
+  pointA_in?: Maybe<String[] | String>;
+  pointA_not_in?: Maybe<String[] | String>;
+  pointA_lt?: Maybe<String>;
+  pointA_lte?: Maybe<String>;
+  pointA_gt?: Maybe<String>;
+  pointA_gte?: Maybe<String>;
+  pointA_contains?: Maybe<String>;
+  pointA_not_contains?: Maybe<String>;
+  pointA_starts_with?: Maybe<String>;
+  pointA_not_starts_with?: Maybe<String>;
+  pointA_ends_with?: Maybe<String>;
+  pointA_not_ends_with?: Maybe<String>;
+  pointB?: Maybe<String>;
+  pointB_not?: Maybe<String>;
+  pointB_in?: Maybe<String[] | String>;
+  pointB_not_in?: Maybe<String[] | String>;
+  pointB_lt?: Maybe<String>;
+  pointB_lte?: Maybe<String>;
+  pointB_gt?: Maybe<String>;
+  pointB_gte?: Maybe<String>;
+  pointB_contains?: Maybe<String>;
+  pointB_not_contains?: Maybe<String>;
+  pointB_starts_with?: Maybe<String>;
+  pointB_not_starts_with?: Maybe<String>;
+  pointB_ends_with?: Maybe<String>;
+  pointB_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
+  user?: Maybe<UserWhereInput>;
+  AND?: Maybe<SteedWhereInput[] | SteedWhereInput>;
+  OR?: Maybe<SteedWhereInput[] | SteedWhereInput>;
+  NOT?: Maybe<SteedWhereInput[] | SteedWhereInput>;
 }
 
 export interface PlatWhereInput {
@@ -820,76 +898,6 @@ export type SteedWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface SteedWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  pointA?: Maybe<String>;
-  pointA_not?: Maybe<String>;
-  pointA_in?: Maybe<String[] | String>;
-  pointA_not_in?: Maybe<String[] | String>;
-  pointA_lt?: Maybe<String>;
-  pointA_lte?: Maybe<String>;
-  pointA_gt?: Maybe<String>;
-  pointA_gte?: Maybe<String>;
-  pointA_contains?: Maybe<String>;
-  pointA_not_contains?: Maybe<String>;
-  pointA_starts_with?: Maybe<String>;
-  pointA_not_starts_with?: Maybe<String>;
-  pointA_ends_with?: Maybe<String>;
-  pointA_not_ends_with?: Maybe<String>;
-  pointB?: Maybe<String>;
-  pointB_not?: Maybe<String>;
-  pointB_in?: Maybe<String[] | String>;
-  pointB_not_in?: Maybe<String[] | String>;
-  pointB_lt?: Maybe<String>;
-  pointB_lte?: Maybe<String>;
-  pointB_gt?: Maybe<String>;
-  pointB_gte?: Maybe<String>;
-  pointB_contains?: Maybe<String>;
-  pointB_not_contains?: Maybe<String>;
-  pointB_starts_with?: Maybe<String>;
-  pointB_not_starts_with?: Maybe<String>;
-  pointB_ends_with?: Maybe<String>;
-  pointB_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<SteedWhereInput[] | SteedWhereInput>;
-  OR?: Maybe<SteedWhereInput[] | SteedWhereInput>;
-  NOT?: Maybe<SteedWhereInput[] | SteedWhereInput>;
-}
-
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   phone?: Maybe<String>;
@@ -962,6 +970,20 @@ export interface UserCreateWithoutPlatesInput {
   illustration: String;
   password: String;
   role: String;
+  steeds?: Maybe<SteedCreateManyWithoutUserInput>;
+}
+
+export interface SteedCreateManyWithoutUserInput {
+  create?: Maybe<SteedCreateWithoutUserInput[] | SteedCreateWithoutUserInput>;
+  connect?: Maybe<SteedWhereUniqueInput[] | SteedWhereUniqueInput>;
+}
+
+export interface SteedCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  pointA: String;
+  pointB: String;
+  description: String;
+  ordered: Boolean;
 }
 
 export interface PlatUpdateInput {
@@ -1030,6 +1052,129 @@ export interface UserUpdateWithoutPlatesDataInput {
   illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
+}
+
+export interface SteedUpdateManyWithoutUserInput {
+  create?: Maybe<SteedCreateWithoutUserInput[] | SteedCreateWithoutUserInput>;
+  delete?: Maybe<SteedWhereUniqueInput[] | SteedWhereUniqueInput>;
+  connect?: Maybe<SteedWhereUniqueInput[] | SteedWhereUniqueInput>;
+  set?: Maybe<SteedWhereUniqueInput[] | SteedWhereUniqueInput>;
+  disconnect?: Maybe<SteedWhereUniqueInput[] | SteedWhereUniqueInput>;
+  update?: Maybe<
+    | SteedUpdateWithWhereUniqueWithoutUserInput[]
+    | SteedUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | SteedUpsertWithWhereUniqueWithoutUserInput[]
+    | SteedUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<SteedScalarWhereInput[] | SteedScalarWhereInput>;
+  updateMany?: Maybe<
+    SteedUpdateManyWithWhereNestedInput[] | SteedUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface SteedUpdateWithWhereUniqueWithoutUserInput {
+  where: SteedWhereUniqueInput;
+  data: SteedUpdateWithoutUserDataInput;
+}
+
+export interface SteedUpdateWithoutUserDataInput {
+  pointA?: Maybe<String>;
+  pointB?: Maybe<String>;
+  description?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
+}
+
+export interface SteedUpsertWithWhereUniqueWithoutUserInput {
+  where: SteedWhereUniqueInput;
+  update: SteedUpdateWithoutUserDataInput;
+  create: SteedCreateWithoutUserInput;
+}
+
+export interface SteedScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  pointA?: Maybe<String>;
+  pointA_not?: Maybe<String>;
+  pointA_in?: Maybe<String[] | String>;
+  pointA_not_in?: Maybe<String[] | String>;
+  pointA_lt?: Maybe<String>;
+  pointA_lte?: Maybe<String>;
+  pointA_gt?: Maybe<String>;
+  pointA_gte?: Maybe<String>;
+  pointA_contains?: Maybe<String>;
+  pointA_not_contains?: Maybe<String>;
+  pointA_starts_with?: Maybe<String>;
+  pointA_not_starts_with?: Maybe<String>;
+  pointA_ends_with?: Maybe<String>;
+  pointA_not_ends_with?: Maybe<String>;
+  pointB?: Maybe<String>;
+  pointB_not?: Maybe<String>;
+  pointB_in?: Maybe<String[] | String>;
+  pointB_not_in?: Maybe<String[] | String>;
+  pointB_lt?: Maybe<String>;
+  pointB_lte?: Maybe<String>;
+  pointB_gt?: Maybe<String>;
+  pointB_gte?: Maybe<String>;
+  pointB_contains?: Maybe<String>;
+  pointB_not_contains?: Maybe<String>;
+  pointB_starts_with?: Maybe<String>;
+  pointB_not_starts_with?: Maybe<String>;
+  pointB_ends_with?: Maybe<String>;
+  pointB_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
+  AND?: Maybe<SteedScalarWhereInput[] | SteedScalarWhereInput>;
+  OR?: Maybe<SteedScalarWhereInput[] | SteedScalarWhereInput>;
+  NOT?: Maybe<SteedScalarWhereInput[] | SteedScalarWhereInput>;
+}
+
+export interface SteedUpdateManyWithWhereNestedInput {
+  where: SteedScalarWhereInput;
+  data: SteedUpdateManyDataInput;
+}
+
+export interface SteedUpdateManyDataInput {
+  pointA?: Maybe<String>;
+  pointB?: Maybe<String>;
+  description?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
 }
 
 export interface UserUpsertWithoutPlatesInput {
@@ -1149,21 +1294,16 @@ export interface SteedCreateInput {
   pointA: String;
   pointB: String;
   description: String;
+  ordered: Boolean;
+  user: UserCreateOneWithoutSteedsInput;
 }
 
-export interface SteedUpdateInput {
-  pointA?: Maybe<String>;
-  pointB?: Maybe<String>;
-  description?: Maybe<String>;
+export interface UserCreateOneWithoutSteedsInput {
+  create?: Maybe<UserCreateWithoutSteedsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface SteedUpdateManyMutationInput {
-  pointA?: Maybe<String>;
-  pointB?: Maybe<String>;
-  description?: Maybe<String>;
-}
-
-export interface UserCreateInput {
+export interface UserCreateWithoutSteedsInput {
   id?: Maybe<ID_Input>;
   name: String;
   phone: String;
@@ -1205,7 +1345,22 @@ export interface PlatCreateWithoutUsersInput {
   price: Float;
 }
 
-export interface UserUpdateInput {
+export interface SteedUpdateInput {
+  pointA?: Maybe<String>;
+  pointB?: Maybe<String>;
+  description?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
+  user?: Maybe<UserUpdateOneRequiredWithoutSteedsInput>;
+}
+
+export interface UserUpdateOneRequiredWithoutSteedsInput {
+  create?: Maybe<UserCreateWithoutSteedsInput>;
+  update?: Maybe<UserUpdateWithoutSteedsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutSteedsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutSteedsDataInput {
   name?: Maybe<String>;
   phone?: Maybe<String>;
   email?: Maybe<String>;
@@ -1282,6 +1437,41 @@ export interface UsersOnPlatesUpsertWithWhereUniqueWithoutUserInput {
   where: UsersOnPlatesWhereUniqueInput;
   update: UsersOnPlatesUpdateWithoutUserDataInput;
   create: UsersOnPlatesCreateWithoutUserInput;
+}
+
+export interface UserUpsertWithoutSteedsInput {
+  update: UserUpdateWithoutSteedsDataInput;
+  create: UserCreateWithoutSteedsInput;
+}
+
+export interface SteedUpdateManyMutationInput {
+  pointA?: Maybe<String>;
+  pointB?: Maybe<String>;
+  description?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  phone: String;
+  email: String;
+  illustration: String;
+  password: String;
+  role: String;
+  plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
+  steeds?: Maybe<SteedCreateManyWithoutUserInput>;
+}
+
+export interface UserUpdateInput {
+  name?: Maybe<String>;
+  phone?: Maybe<String>;
+  email?: Maybe<String>;
+  illustration?: Maybe<String>;
+  password?: Maybe<String>;
+  role?: Maybe<String>;
+  plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
+  steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -1656,6 +1846,15 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  steeds: <T = FragmentableArray<Steed>>(args?: {
+    where?: SteedWhereInput;
+    orderBy?: SteedOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface UserSubscription
@@ -1672,6 +1871,15 @@ export interface UserSubscription
   plates: <T = Promise<AsyncIterator<UsersOnPlatesSubscription>>>(args?: {
     where?: UsersOnPlatesWhereInput;
     orderBy?: UsersOnPlatesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  steeds: <T = Promise<AsyncIterator<SteedSubscription>>>(args?: {
+    where?: SteedWhereInput;
+    orderBy?: SteedOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -1700,6 +1908,58 @@ export interface UserNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  steeds: <T = FragmentableArray<Steed>>(args?: {
+    where?: SteedWhereInput;
+    orderBy?: SteedOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface Steed {
+  id: ID_Output;
+  pointA: String;
+  pointB: String;
+  description: String;
+  date?: DateTimeOutput;
+  ordered: Boolean;
+}
+
+export interface SteedPromise extends Promise<Steed>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  pointA: () => Promise<String>;
+  pointB: () => Promise<String>;
+  description: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+  ordered: () => Promise<Boolean>;
+  user: <T = UserPromise>() => T;
+}
+
+export interface SteedSubscription
+  extends Promise<AsyncIterator<Steed>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  pointA: () => Promise<AsyncIterator<String>>;
+  pointB: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
+  user: <T = UserSubscription>() => T;
+}
+
+export interface SteedNullablePromise
+  extends Promise<Steed | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  pointA: () => Promise<String>;
+  pointB: () => Promise<String>;
+  description: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+  ordered: () => Promise<Boolean>;
+  user: <T = UserPromise>() => T;
 }
 
 export interface PlatConnection {
@@ -1848,42 +2108,6 @@ export interface AggregateProductSubscription
   extends Promise<AsyncIterator<AggregateProduct>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Steed {
-  id: ID_Output;
-  pointA: String;
-  pointB: String;
-  description: String;
-  date?: DateTimeOutput;
-}
-
-export interface SteedPromise extends Promise<Steed>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  pointA: () => Promise<String>;
-  pointB: () => Promise<String>;
-  description: () => Promise<String>;
-  date: () => Promise<DateTimeOutput>;
-}
-
-export interface SteedSubscription
-  extends Promise<AsyncIterator<Steed>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  pointA: () => Promise<AsyncIterator<String>>;
-  pointB: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface SteedNullablePromise
-  extends Promise<Steed | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  pointA: () => Promise<String>;
-  pointB: () => Promise<String>;
-  description: () => Promise<String>;
-  date: () => Promise<DateTimeOutput>;
 }
 
 export interface SteedConnection {
@@ -2265,6 +2489,7 @@ export interface SteedPreviousValues {
   pointB: String;
   description: String;
   date?: DateTimeOutput;
+  ordered: Boolean;
 }
 
 export interface SteedPreviousValuesPromise
@@ -2275,6 +2500,7 @@ export interface SteedPreviousValuesPromise
   pointB: () => Promise<String>;
   description: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
+  ordered: () => Promise<Boolean>;
 }
 
 export interface SteedPreviousValuesSubscription
@@ -2285,6 +2511,7 @@ export interface SteedPreviousValuesSubscription
   pointB: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface UserSubscriptionPayload {
