@@ -13,6 +13,14 @@ var models = [
     embedded: false
   },
   {
+    name: "UsersOnHouses",
+    embedded: false
+  },
+  {
+    name: "UsersOnProducts",
+    embedded: false
+  },
+  {
     name: "Plat",
     embedded: false
   },

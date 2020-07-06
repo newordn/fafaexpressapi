@@ -23,7 +23,15 @@ type AggregateUser {
   count: Int!
 }
 
+type AggregateUsersOnHouses {
+  count: Int!
+}
+
 type AggregateUsersOnPlates {
+  count: Int!
+}
+
+type AggregateUsersOnProducts {
   count: Int!
 }
 
@@ -54,6 +62,11 @@ input HouseCreateInput {
   description: String
   localisation: String!
   price: Float!
+}
+
+input HouseCreateOneInput {
+  create: HouseCreateInput
+  connect: HouseWhereUniqueInput
 }
 
 type HouseEdge {
@@ -103,6 +116,13 @@ input HouseSubscriptionWhereInput {
   NOT: [HouseSubscriptionWhereInput!]
 }
 
+input HouseUpdateDataInput {
+  illustration: String
+  description: String
+  localisation: String
+  price: Float
+}
+
 input HouseUpdateInput {
   illustration: String
   description: String
@@ -115,6 +135,18 @@ input HouseUpdateManyMutationInput {
   description: String
   localisation: String
   price: Float
+}
+
+input HouseUpdateOneRequiredInput {
+  create: HouseCreateInput
+  update: HouseUpdateDataInput
+  upsert: HouseUpsertNestedInput
+  connect: HouseWhereUniqueInput
+}
+
+input HouseUpsertNestedInput {
+  update: HouseUpdateDataInput!
+  create: HouseCreateInput!
 }
 
 input HouseWhereInput {
@@ -232,12 +264,24 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createUsersOnHouses(data: UsersOnHousesCreateInput!): UsersOnHouses!
+  updateUsersOnHouses(data: UsersOnHousesUpdateInput!, where: UsersOnHousesWhereUniqueInput!): UsersOnHouses
+  updateManyUsersOnHouseses(data: UsersOnHousesUpdateManyMutationInput!, where: UsersOnHousesWhereInput): BatchPayload!
+  upsertUsersOnHouses(where: UsersOnHousesWhereUniqueInput!, create: UsersOnHousesCreateInput!, update: UsersOnHousesUpdateInput!): UsersOnHouses!
+  deleteUsersOnHouses(where: UsersOnHousesWhereUniqueInput!): UsersOnHouses
+  deleteManyUsersOnHouseses(where: UsersOnHousesWhereInput): BatchPayload!
   createUsersOnPlates(data: UsersOnPlatesCreateInput!): UsersOnPlates!
   updateUsersOnPlates(data: UsersOnPlatesUpdateInput!, where: UsersOnPlatesWhereUniqueInput!): UsersOnPlates
   updateManyUsersOnPlateses(data: UsersOnPlatesUpdateManyMutationInput!, where: UsersOnPlatesWhereInput): BatchPayload!
   upsertUsersOnPlates(where: UsersOnPlatesWhereUniqueInput!, create: UsersOnPlatesCreateInput!, update: UsersOnPlatesUpdateInput!): UsersOnPlates!
   deleteUsersOnPlates(where: UsersOnPlatesWhereUniqueInput!): UsersOnPlates
   deleteManyUsersOnPlateses(where: UsersOnPlatesWhereInput): BatchPayload!
+  createUsersOnProducts(data: UsersOnProductsCreateInput!): UsersOnProducts!
+  updateUsersOnProducts(data: UsersOnProductsUpdateInput!, where: UsersOnProductsWhereUniqueInput!): UsersOnProducts
+  updateManyUsersOnProductses(data: UsersOnProductsUpdateManyMutationInput!, where: UsersOnProductsWhereInput): BatchPayload!
+  upsertUsersOnProducts(where: UsersOnProductsWhereUniqueInput!, create: UsersOnProductsCreateInput!, update: UsersOnProductsUpdateInput!): UsersOnProducts!
+  deleteUsersOnProducts(where: UsersOnProductsWhereUniqueInput!): UsersOnProducts
+  deleteManyUsersOnProductses(where: UsersOnProductsWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -484,6 +528,11 @@ input ProductCreateInput {
   price: Float!
 }
 
+input ProductCreateOneInput {
+  create: ProductCreateInput
+  connect: ProductWhereUniqueInput
+}
+
 type ProductEdge {
   node: Product!
   cursor: String!
@@ -531,6 +580,13 @@ input ProductSubscriptionWhereInput {
   NOT: [ProductSubscriptionWhereInput!]
 }
 
+input ProductUpdateDataInput {
+  name: String
+  description: String
+  illustration: String
+  price: Float
+}
+
 input ProductUpdateInput {
   name: String
   description: String
@@ -543,6 +599,18 @@ input ProductUpdateManyMutationInput {
   description: String
   illustration: String
   price: Float
+}
+
+input ProductUpdateOneRequiredInput {
+  create: ProductCreateInput
+  update: ProductUpdateDataInput
+  upsert: ProductUpsertNestedInput
+  connect: ProductWhereUniqueInput
+}
+
+input ProductUpsertNestedInput {
+  update: ProductUpdateDataInput!
+  create: ProductCreateInput!
 }
 
 input ProductWhereInput {
@@ -643,9 +711,15 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  usersOnHouses(where: UsersOnHousesWhereUniqueInput!): UsersOnHouses
+  usersOnHouseses(where: UsersOnHousesWhereInput, orderBy: UsersOnHousesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnHouses]!
+  usersOnHousesesConnection(where: UsersOnHousesWhereInput, orderBy: UsersOnHousesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UsersOnHousesConnection!
   usersOnPlates(where: UsersOnPlatesWhereUniqueInput!): UsersOnPlates
   usersOnPlateses(where: UsersOnPlatesWhereInput, orderBy: UsersOnPlatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnPlates]!
   usersOnPlatesesConnection(where: UsersOnPlatesWhereInput, orderBy: UsersOnPlatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UsersOnPlatesConnection!
+  usersOnProducts(where: UsersOnProductsWhereUniqueInput!): UsersOnProducts
+  usersOnProductses(where: UsersOnProductsWhereInput, orderBy: UsersOnProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnProducts]!
+  usersOnProductsesConnection(where: UsersOnProductsWhereInput, orderBy: UsersOnProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UsersOnProductsConnection!
   node(id: ID!): Node
 }
 
@@ -946,7 +1020,9 @@ type Subscription {
   product(where: ProductSubscriptionWhereInput): ProductSubscriptionPayload
   steed(where: SteedSubscriptionWhereInput): SteedSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  usersOnHouses(where: UsersOnHousesSubscriptionWhereInput): UsersOnHousesSubscriptionPayload
   usersOnPlates(where: UsersOnPlatesSubscriptionWhereInput): UsersOnPlatesSubscriptionPayload
+  usersOnProducts(where: UsersOnProductsSubscriptionWhereInput): UsersOnProductsSubscriptionPayload
 }
 
 type User {
@@ -959,6 +1035,8 @@ type User {
   role: String!
   date: DateTime
   plates(where: UsersOnPlatesWhereInput, orderBy: UsersOnPlatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnPlates!]
+  houses(where: UsersOnHousesWhereInput, orderBy: UsersOnHousesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnHouses!]
+  products(where: UsersOnProductsWhereInput, orderBy: UsersOnProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnProducts!]
   steeds(where: SteedWhereInput, orderBy: SteedOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Steed!]
 }
 
@@ -977,7 +1055,14 @@ input UserCreateInput {
   password: String!
   role: String!
   plates: UsersOnPlatesCreateManyWithoutUserInput
+  houses: UsersOnHousesCreateManyWithoutUserInput
+  products: UsersOnProductsCreateManyWithoutUserInput
   steeds: SteedCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutHousesInput {
+  create: UserCreateWithoutHousesInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutPlatesInput {
@@ -985,9 +1070,27 @@ input UserCreateOneWithoutPlatesInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateOneWithoutProductsInput {
+  create: UserCreateWithoutProductsInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreateOneWithoutSteedsInput {
   create: UserCreateWithoutSteedsInput
   connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutHousesInput {
+  id: ID
+  name: String!
+  phone: String!
+  email: String!
+  illustration: String!
+  password: String!
+  role: String!
+  plates: UsersOnPlatesCreateManyWithoutUserInput
+  products: UsersOnProductsCreateManyWithoutUserInput
+  steeds: SteedCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutPlatesInput {
@@ -998,6 +1101,21 @@ input UserCreateWithoutPlatesInput {
   illustration: String!
   password: String!
   role: String!
+  houses: UsersOnHousesCreateManyWithoutUserInput
+  products: UsersOnProductsCreateManyWithoutUserInput
+  steeds: SteedCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutProductsInput {
+  id: ID
+  name: String!
+  phone: String!
+  email: String!
+  illustration: String!
+  password: String!
+  role: String!
+  plates: UsersOnPlatesCreateManyWithoutUserInput
+  houses: UsersOnHousesCreateManyWithoutUserInput
   steeds: SteedCreateManyWithoutUserInput
 }
 
@@ -1010,6 +1128,8 @@ input UserCreateWithoutSteedsInput {
   password: String!
   role: String!
   plates: UsersOnPlatesCreateManyWithoutUserInput
+  houses: UsersOnHousesCreateManyWithoutUserInput
+  products: UsersOnProductsCreateManyWithoutUserInput
 }
 
 type UserEdge {
@@ -1047,14 +1167,195 @@ type UserPreviousValues {
   date: DateTime
 }
 
+type UsersOnHouses {
+  id: ID!
+  user: User!
+  house: House!
+  ordered: Boolean!
+  date: DateTime
+}
+
+type UsersOnHousesConnection {
+  pageInfo: PageInfo!
+  edges: [UsersOnHousesEdge]!
+  aggregate: AggregateUsersOnHouses!
+}
+
+input UsersOnHousesCreateInput {
+  id: ID
+  user: UserCreateOneWithoutHousesInput!
+  house: HouseCreateOneInput!
+  ordered: Boolean!
+}
+
+input UsersOnHousesCreateManyWithoutUserInput {
+  create: [UsersOnHousesCreateWithoutUserInput!]
+  connect: [UsersOnHousesWhereUniqueInput!]
+}
+
+input UsersOnHousesCreateWithoutUserInput {
+  id: ID
+  house: HouseCreateOneInput!
+  ordered: Boolean!
+}
+
+type UsersOnHousesEdge {
+  node: UsersOnHouses!
+  cursor: String!
+}
+
+enum UsersOnHousesOrderByInput {
+  id_ASC
+  id_DESC
+  ordered_ASC
+  ordered_DESC
+  date_ASC
+  date_DESC
+}
+
+type UsersOnHousesPreviousValues {
+  id: ID!
+  ordered: Boolean!
+  date: DateTime
+}
+
+input UsersOnHousesScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  ordered: Boolean
+  ordered_not: Boolean
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  AND: [UsersOnHousesScalarWhereInput!]
+  OR: [UsersOnHousesScalarWhereInput!]
+  NOT: [UsersOnHousesScalarWhereInput!]
+}
+
+type UsersOnHousesSubscriptionPayload {
+  mutation: MutationType!
+  node: UsersOnHouses
+  updatedFields: [String!]
+  previousValues: UsersOnHousesPreviousValues
+}
+
+input UsersOnHousesSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UsersOnHousesWhereInput
+  AND: [UsersOnHousesSubscriptionWhereInput!]
+  OR: [UsersOnHousesSubscriptionWhereInput!]
+  NOT: [UsersOnHousesSubscriptionWhereInput!]
+}
+
+input UsersOnHousesUpdateInput {
+  user: UserUpdateOneRequiredWithoutHousesInput
+  house: HouseUpdateOneRequiredInput
+  ordered: Boolean
+}
+
+input UsersOnHousesUpdateManyDataInput {
+  ordered: Boolean
+}
+
+input UsersOnHousesUpdateManyMutationInput {
+  ordered: Boolean
+}
+
+input UsersOnHousesUpdateManyWithoutUserInput {
+  create: [UsersOnHousesCreateWithoutUserInput!]
+  delete: [UsersOnHousesWhereUniqueInput!]
+  connect: [UsersOnHousesWhereUniqueInput!]
+  set: [UsersOnHousesWhereUniqueInput!]
+  disconnect: [UsersOnHousesWhereUniqueInput!]
+  update: [UsersOnHousesUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [UsersOnHousesUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [UsersOnHousesScalarWhereInput!]
+  updateMany: [UsersOnHousesUpdateManyWithWhereNestedInput!]
+}
+
+input UsersOnHousesUpdateManyWithWhereNestedInput {
+  where: UsersOnHousesScalarWhereInput!
+  data: UsersOnHousesUpdateManyDataInput!
+}
+
+input UsersOnHousesUpdateWithoutUserDataInput {
+  house: HouseUpdateOneRequiredInput
+  ordered: Boolean
+}
+
+input UsersOnHousesUpdateWithWhereUniqueWithoutUserInput {
+  where: UsersOnHousesWhereUniqueInput!
+  data: UsersOnHousesUpdateWithoutUserDataInput!
+}
+
+input UsersOnHousesUpsertWithWhereUniqueWithoutUserInput {
+  where: UsersOnHousesWhereUniqueInput!
+  update: UsersOnHousesUpdateWithoutUserDataInput!
+  create: UsersOnHousesCreateWithoutUserInput!
+}
+
+input UsersOnHousesWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  house: HouseWhereInput
+  ordered: Boolean
+  ordered_not: Boolean
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  AND: [UsersOnHousesWhereInput!]
+  OR: [UsersOnHousesWhereInput!]
+  NOT: [UsersOnHousesWhereInput!]
+}
+
+input UsersOnHousesWhereUniqueInput {
+  id: ID
+}
+
 type UsersOnPlates {
   id: ID!
   user: User!
-  userId: Int!
   plat: Plat!
-  platId: Int
   localisation: String!
-  active: Boolean!
+  ordered: Boolean!
   date: DateTime
 }
 
@@ -1067,11 +1368,9 @@ type UsersOnPlatesConnection {
 input UsersOnPlatesCreateInput {
   id: ID
   user: UserCreateOneWithoutPlatesInput!
-  userId: Int!
   plat: PlatCreateOneWithoutUsersInput!
-  platId: Int
   localisation: String!
-  active: Boolean!
+  ordered: Boolean!
 }
 
 input UsersOnPlatesCreateManyWithoutPlatInput {
@@ -1087,19 +1386,15 @@ input UsersOnPlatesCreateManyWithoutUserInput {
 input UsersOnPlatesCreateWithoutPlatInput {
   id: ID
   user: UserCreateOneWithoutPlatesInput!
-  userId: Int!
-  platId: Int
   localisation: String!
-  active: Boolean!
+  ordered: Boolean!
 }
 
 input UsersOnPlatesCreateWithoutUserInput {
   id: ID
-  userId: Int!
   plat: PlatCreateOneWithoutUsersInput!
-  platId: Int
   localisation: String!
-  active: Boolean!
+  ordered: Boolean!
 }
 
 type UsersOnPlatesEdge {
@@ -1110,24 +1405,18 @@ type UsersOnPlatesEdge {
 enum UsersOnPlatesOrderByInput {
   id_ASC
   id_DESC
-  userId_ASC
-  userId_DESC
-  platId_ASC
-  platId_DESC
   localisation_ASC
   localisation_DESC
-  active_ASC
-  active_DESC
+  ordered_ASC
+  ordered_DESC
   date_ASC
   date_DESC
 }
 
 type UsersOnPlatesPreviousValues {
   id: ID!
-  userId: Int!
-  platId: Int
   localisation: String!
-  active: Boolean!
+  ordered: Boolean!
   date: DateTime
 }
 
@@ -1146,22 +1435,6 @@ input UsersOnPlatesScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  userId: Int
-  userId_not: Int
-  userId_in: [Int!]
-  userId_not_in: [Int!]
-  userId_lt: Int
-  userId_lte: Int
-  userId_gt: Int
-  userId_gte: Int
-  platId: Int
-  platId_not: Int
-  platId_in: [Int!]
-  platId_not_in: [Int!]
-  platId_lt: Int
-  platId_lte: Int
-  platId_gt: Int
-  platId_gte: Int
   localisation: String
   localisation_not: String
   localisation_in: [String!]
@@ -1176,8 +1449,8 @@ input UsersOnPlatesScalarWhereInput {
   localisation_not_starts_with: String
   localisation_ends_with: String
   localisation_not_ends_with: String
-  active: Boolean
-  active_not: Boolean
+  ordered: Boolean
+  ordered_not: Boolean
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -1211,25 +1484,19 @@ input UsersOnPlatesSubscriptionWhereInput {
 
 input UsersOnPlatesUpdateInput {
   user: UserUpdateOneRequiredWithoutPlatesInput
-  userId: Int
   plat: PlatUpdateOneRequiredWithoutUsersInput
-  platId: Int
   localisation: String
-  active: Boolean
+  ordered: Boolean
 }
 
 input UsersOnPlatesUpdateManyDataInput {
-  userId: Int
-  platId: Int
   localisation: String
-  active: Boolean
+  ordered: Boolean
 }
 
 input UsersOnPlatesUpdateManyMutationInput {
-  userId: Int
-  platId: Int
   localisation: String
-  active: Boolean
+  ordered: Boolean
 }
 
 input UsersOnPlatesUpdateManyWithoutPlatInput {
@@ -1263,18 +1530,14 @@ input UsersOnPlatesUpdateManyWithWhereNestedInput {
 
 input UsersOnPlatesUpdateWithoutPlatDataInput {
   user: UserUpdateOneRequiredWithoutPlatesInput
-  userId: Int
-  platId: Int
   localisation: String
-  active: Boolean
+  ordered: Boolean
 }
 
 input UsersOnPlatesUpdateWithoutUserDataInput {
-  userId: Int
   plat: PlatUpdateOneRequiredWithoutUsersInput
-  platId: Int
   localisation: String
-  active: Boolean
+  ordered: Boolean
 }
 
 input UsersOnPlatesUpdateWithWhereUniqueWithoutPlatInput {
@@ -1315,23 +1578,7 @@ input UsersOnPlatesWhereInput {
   id_ends_with: ID
   id_not_ends_with: ID
   user: UserWhereInput
-  userId: Int
-  userId_not: Int
-  userId_in: [Int!]
-  userId_not_in: [Int!]
-  userId_lt: Int
-  userId_lte: Int
-  userId_gt: Int
-  userId_gte: Int
   plat: PlatWhereInput
-  platId: Int
-  platId_not: Int
-  platId_in: [Int!]
-  platId_not_in: [Int!]
-  platId_lt: Int
-  platId_lte: Int
-  platId_gt: Int
-  platId_gte: Int
   localisation: String
   localisation_not: String
   localisation_in: [String!]
@@ -1346,8 +1593,8 @@ input UsersOnPlatesWhereInput {
   localisation_not_starts_with: String
   localisation_ends_with: String
   localisation_not_ends_with: String
-  active: Boolean
-  active_not: Boolean
+  ordered: Boolean
+  ordered_not: Boolean
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -1362,6 +1609,227 @@ input UsersOnPlatesWhereInput {
 }
 
 input UsersOnPlatesWhereUniqueInput {
+  id: ID
+}
+
+type UsersOnProducts {
+  id: ID!
+  user: User!
+  product: Product!
+  localisation: String!
+  date: DateTime
+  ordered: Boolean!
+}
+
+type UsersOnProductsConnection {
+  pageInfo: PageInfo!
+  edges: [UsersOnProductsEdge]!
+  aggregate: AggregateUsersOnProducts!
+}
+
+input UsersOnProductsCreateInput {
+  id: ID
+  user: UserCreateOneWithoutProductsInput!
+  product: ProductCreateOneInput!
+  localisation: String!
+  ordered: Boolean!
+}
+
+input UsersOnProductsCreateManyWithoutUserInput {
+  create: [UsersOnProductsCreateWithoutUserInput!]
+  connect: [UsersOnProductsWhereUniqueInput!]
+}
+
+input UsersOnProductsCreateWithoutUserInput {
+  id: ID
+  product: ProductCreateOneInput!
+  localisation: String!
+  ordered: Boolean!
+}
+
+type UsersOnProductsEdge {
+  node: UsersOnProducts!
+  cursor: String!
+}
+
+enum UsersOnProductsOrderByInput {
+  id_ASC
+  id_DESC
+  localisation_ASC
+  localisation_DESC
+  date_ASC
+  date_DESC
+  ordered_ASC
+  ordered_DESC
+}
+
+type UsersOnProductsPreviousValues {
+  id: ID!
+  localisation: String!
+  date: DateTime
+  ordered: Boolean!
+}
+
+input UsersOnProductsScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  localisation: String
+  localisation_not: String
+  localisation_in: [String!]
+  localisation_not_in: [String!]
+  localisation_lt: String
+  localisation_lte: String
+  localisation_gt: String
+  localisation_gte: String
+  localisation_contains: String
+  localisation_not_contains: String
+  localisation_starts_with: String
+  localisation_not_starts_with: String
+  localisation_ends_with: String
+  localisation_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  ordered: Boolean
+  ordered_not: Boolean
+  AND: [UsersOnProductsScalarWhereInput!]
+  OR: [UsersOnProductsScalarWhereInput!]
+  NOT: [UsersOnProductsScalarWhereInput!]
+}
+
+type UsersOnProductsSubscriptionPayload {
+  mutation: MutationType!
+  node: UsersOnProducts
+  updatedFields: [String!]
+  previousValues: UsersOnProductsPreviousValues
+}
+
+input UsersOnProductsSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UsersOnProductsWhereInput
+  AND: [UsersOnProductsSubscriptionWhereInput!]
+  OR: [UsersOnProductsSubscriptionWhereInput!]
+  NOT: [UsersOnProductsSubscriptionWhereInput!]
+}
+
+input UsersOnProductsUpdateInput {
+  user: UserUpdateOneRequiredWithoutProductsInput
+  product: ProductUpdateOneRequiredInput
+  localisation: String
+  ordered: Boolean
+}
+
+input UsersOnProductsUpdateManyDataInput {
+  localisation: String
+  ordered: Boolean
+}
+
+input UsersOnProductsUpdateManyMutationInput {
+  localisation: String
+  ordered: Boolean
+}
+
+input UsersOnProductsUpdateManyWithoutUserInput {
+  create: [UsersOnProductsCreateWithoutUserInput!]
+  delete: [UsersOnProductsWhereUniqueInput!]
+  connect: [UsersOnProductsWhereUniqueInput!]
+  set: [UsersOnProductsWhereUniqueInput!]
+  disconnect: [UsersOnProductsWhereUniqueInput!]
+  update: [UsersOnProductsUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [UsersOnProductsUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [UsersOnProductsScalarWhereInput!]
+  updateMany: [UsersOnProductsUpdateManyWithWhereNestedInput!]
+}
+
+input UsersOnProductsUpdateManyWithWhereNestedInput {
+  where: UsersOnProductsScalarWhereInput!
+  data: UsersOnProductsUpdateManyDataInput!
+}
+
+input UsersOnProductsUpdateWithoutUserDataInput {
+  product: ProductUpdateOneRequiredInput
+  localisation: String
+  ordered: Boolean
+}
+
+input UsersOnProductsUpdateWithWhereUniqueWithoutUserInput {
+  where: UsersOnProductsWhereUniqueInput!
+  data: UsersOnProductsUpdateWithoutUserDataInput!
+}
+
+input UsersOnProductsUpsertWithWhereUniqueWithoutUserInput {
+  where: UsersOnProductsWhereUniqueInput!
+  update: UsersOnProductsUpdateWithoutUserDataInput!
+  create: UsersOnProductsCreateWithoutUserInput!
+}
+
+input UsersOnProductsWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  product: ProductWhereInput
+  localisation: String
+  localisation_not: String
+  localisation_in: [String!]
+  localisation_not_in: [String!]
+  localisation_lt: String
+  localisation_lte: String
+  localisation_gt: String
+  localisation_gte: String
+  localisation_contains: String
+  localisation_not_contains: String
+  localisation_starts_with: String
+  localisation_not_starts_with: String
+  localisation_ends_with: String
+  localisation_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  ordered: Boolean
+  ordered_not: Boolean
+  AND: [UsersOnProductsWhereInput!]
+  OR: [UsersOnProductsWhereInput!]
+  NOT: [UsersOnProductsWhereInput!]
+}
+
+input UsersOnProductsWhereUniqueInput {
   id: ID
 }
 
@@ -1391,6 +1859,8 @@ input UserUpdateInput {
   password: String
   role: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
+  houses: UsersOnHousesUpdateManyWithoutUserInput
+  products: UsersOnProductsUpdateManyWithoutUserInput
   steeds: SteedUpdateManyWithoutUserInput
 }
 
@@ -1403,10 +1873,24 @@ input UserUpdateManyMutationInput {
   role: String
 }
 
+input UserUpdateOneRequiredWithoutHousesInput {
+  create: UserCreateWithoutHousesInput
+  update: UserUpdateWithoutHousesDataInput
+  upsert: UserUpsertWithoutHousesInput
+  connect: UserWhereUniqueInput
+}
+
 input UserUpdateOneRequiredWithoutPlatesInput {
   create: UserCreateWithoutPlatesInput
   update: UserUpdateWithoutPlatesDataInput
   upsert: UserUpsertWithoutPlatesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutProductsInput {
+  create: UserCreateWithoutProductsInput
+  update: UserUpdateWithoutProductsDataInput
+  upsert: UserUpsertWithoutProductsInput
   connect: UserWhereUniqueInput
 }
 
@@ -1417,6 +1901,18 @@ input UserUpdateOneRequiredWithoutSteedsInput {
   connect: UserWhereUniqueInput
 }
 
+input UserUpdateWithoutHousesDataInput {
+  name: String
+  phone: String
+  email: String
+  illustration: String
+  password: String
+  role: String
+  plates: UsersOnPlatesUpdateManyWithoutUserInput
+  products: UsersOnProductsUpdateManyWithoutUserInput
+  steeds: SteedUpdateManyWithoutUserInput
+}
+
 input UserUpdateWithoutPlatesDataInput {
   name: String
   phone: String
@@ -1424,6 +1920,20 @@ input UserUpdateWithoutPlatesDataInput {
   illustration: String
   password: String
   role: String
+  houses: UsersOnHousesUpdateManyWithoutUserInput
+  products: UsersOnProductsUpdateManyWithoutUserInput
+  steeds: SteedUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutProductsDataInput {
+  name: String
+  phone: String
+  email: String
+  illustration: String
+  password: String
+  role: String
+  plates: UsersOnPlatesUpdateManyWithoutUserInput
+  houses: UsersOnHousesUpdateManyWithoutUserInput
   steeds: SteedUpdateManyWithoutUserInput
 }
 
@@ -1435,11 +1945,23 @@ input UserUpdateWithoutSteedsDataInput {
   password: String
   role: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
+  houses: UsersOnHousesUpdateManyWithoutUserInput
+  products: UsersOnProductsUpdateManyWithoutUserInput
+}
+
+input UserUpsertWithoutHousesInput {
+  update: UserUpdateWithoutHousesDataInput!
+  create: UserCreateWithoutHousesInput!
 }
 
 input UserUpsertWithoutPlatesInput {
   update: UserUpdateWithoutPlatesDataInput!
   create: UserCreateWithoutPlatesInput!
+}
+
+input UserUpsertWithoutProductsInput {
+  update: UserUpdateWithoutProductsDataInput!
+  create: UserCreateWithoutProductsInput!
 }
 
 input UserUpsertWithoutSteedsInput {
@@ -1557,6 +2079,12 @@ input UserWhereInput {
   plates_every: UsersOnPlatesWhereInput
   plates_some: UsersOnPlatesWhereInput
   plates_none: UsersOnPlatesWhereInput
+  houses_every: UsersOnHousesWhereInput
+  houses_some: UsersOnHousesWhereInput
+  houses_none: UsersOnHousesWhereInput
+  products_every: UsersOnProductsWhereInput
+  products_some: UsersOnProductsWhereInput
+  products_none: UsersOnProductsWhereInput
   steeds_every: SteedWhereInput
   steeds_some: SteedWhereInput
   steeds_none: SteedWhereInput

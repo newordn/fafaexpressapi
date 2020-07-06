@@ -8,17 +8,32 @@ type User{
     role : String!
     date : DateTime @createdAt
     plates : [UsersOnPlates!]
+    houses : [UsersOnHouses!]
+    products : [UsersOnProducts!]
     steeds: [Steed!] @relation(name:"UserSteeds")
 }
 type UsersOnPlates{
     id : ID! @id
     user: User! @relation(fields:[userId],references:[id])
-    userId: Int!
-    plat : Plat! @relation(fields:[categoryId],references:[id])
-    platId: Int
+    plat : Plat! @relation(fields:[platId],references:[id])
     localisation: String!
-    active: Boolean!
+    ordered: Boolean!
     date: DateTime @createdAt
+}
+type UsersOnHouses{
+    id : ID! @id
+    user: User! @relation(fields:[userId],references:[id])
+    house : House! @relation(fields:[houseId],references:[id])
+    ordered: Boolean!
+    date: DateTime @createdAt
+}
+type UsersOnProducts{
+    id : ID! @id
+    user: User! @relation(fields:[userId],references:[id])
+    product : Product! @relation(fields:[productId],references:[id])
+    localisation: String!
+    date: DateTime @createdAt
+    ordered: Boolean!
 }
 type Plat{
     id: ID! @id

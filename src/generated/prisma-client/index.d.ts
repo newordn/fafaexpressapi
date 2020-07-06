@@ -21,7 +21,9 @@ export interface Exists {
   product: (where?: ProductWhereInput) => Promise<boolean>;
   steed: (where?: SteedWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
+  usersOnHouses: (where?: UsersOnHousesWhereInput) => Promise<boolean>;
   usersOnPlates: (where?: UsersOnPlatesWhereInput) => Promise<boolean>;
+  usersOnProducts: (where?: UsersOnProductsWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -138,6 +140,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => UserConnectionPromise;
+  usersOnHouses: (
+    where: UsersOnHousesWhereUniqueInput
+  ) => UsersOnHousesNullablePromise;
+  usersOnHouseses: (args?: {
+    where?: UsersOnHousesWhereInput;
+    orderBy?: UsersOnHousesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<UsersOnHouses>;
+  usersOnHousesesConnection: (args?: {
+    where?: UsersOnHousesWhereInput;
+    orderBy?: UsersOnHousesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => UsersOnHousesConnectionPromise;
   usersOnPlates: (
     where: UsersOnPlatesWhereUniqueInput
   ) => UsersOnPlatesNullablePromise;
@@ -159,6 +182,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => UsersOnPlatesConnectionPromise;
+  usersOnProducts: (
+    where: UsersOnProductsWhereUniqueInput
+  ) => UsersOnProductsNullablePromise;
+  usersOnProductses: (args?: {
+    where?: UsersOnProductsWhereInput;
+    orderBy?: UsersOnProductsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<UsersOnProducts>;
+  usersOnProductsesConnection: (args?: {
+    where?: UsersOnProductsWhereInput;
+    orderBy?: UsersOnProductsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => UsersOnProductsConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
@@ -245,6 +289,26 @@ export interface Prisma {
   }) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  createUsersOnHouses: (data: UsersOnHousesCreateInput) => UsersOnHousesPromise;
+  updateUsersOnHouses: (args: {
+    data: UsersOnHousesUpdateInput;
+    where: UsersOnHousesWhereUniqueInput;
+  }) => UsersOnHousesPromise;
+  updateManyUsersOnHouseses: (args: {
+    data: UsersOnHousesUpdateManyMutationInput;
+    where?: UsersOnHousesWhereInput;
+  }) => BatchPayloadPromise;
+  upsertUsersOnHouses: (args: {
+    where: UsersOnHousesWhereUniqueInput;
+    create: UsersOnHousesCreateInput;
+    update: UsersOnHousesUpdateInput;
+  }) => UsersOnHousesPromise;
+  deleteUsersOnHouses: (
+    where: UsersOnHousesWhereUniqueInput
+  ) => UsersOnHousesPromise;
+  deleteManyUsersOnHouseses: (
+    where?: UsersOnHousesWhereInput
+  ) => BatchPayloadPromise;
   createUsersOnPlates: (data: UsersOnPlatesCreateInput) => UsersOnPlatesPromise;
   updateUsersOnPlates: (args: {
     data: UsersOnPlatesUpdateInput;
@@ -264,6 +328,28 @@ export interface Prisma {
   ) => UsersOnPlatesPromise;
   deleteManyUsersOnPlateses: (
     where?: UsersOnPlatesWhereInput
+  ) => BatchPayloadPromise;
+  createUsersOnProducts: (
+    data: UsersOnProductsCreateInput
+  ) => UsersOnProductsPromise;
+  updateUsersOnProducts: (args: {
+    data: UsersOnProductsUpdateInput;
+    where: UsersOnProductsWhereUniqueInput;
+  }) => UsersOnProductsPromise;
+  updateManyUsersOnProductses: (args: {
+    data: UsersOnProductsUpdateManyMutationInput;
+    where?: UsersOnProductsWhereInput;
+  }) => BatchPayloadPromise;
+  upsertUsersOnProducts: (args: {
+    where: UsersOnProductsWhereUniqueInput;
+    create: UsersOnProductsCreateInput;
+    update: UsersOnProductsUpdateInput;
+  }) => UsersOnProductsPromise;
+  deleteUsersOnProducts: (
+    where: UsersOnProductsWhereUniqueInput
+  ) => UsersOnProductsPromise;
+  deleteManyUsersOnProductses: (
+    where?: UsersOnProductsWhereInput
   ) => BatchPayloadPromise;
 
   /**
@@ -289,9 +375,15 @@ export interface Subscription {
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
+  usersOnHouses: (
+    where?: UsersOnHousesSubscriptionWhereInput
+  ) => UsersOnHousesSubscriptionPayloadSubscription;
   usersOnPlates: (
     where?: UsersOnPlatesSubscriptionWhereInput
   ) => UsersOnPlatesSubscriptionPayloadSubscription;
+  usersOnProducts: (
+    where?: UsersOnProductsSubscriptionWhereInput
+  ) => UsersOnProductsSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -319,16 +411,30 @@ export type HouseOrderByInput =
 export type UsersOnPlatesOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "userId_ASC"
-  | "userId_DESC"
-  | "platId_ASC"
-  | "platId_DESC"
   | "localisation_ASC"
   | "localisation_DESC"
-  | "active_ASC"
-  | "active_DESC"
+  | "ordered_ASC"
+  | "ordered_DESC"
   | "date_ASC"
   | "date_DESC";
+
+export type UsersOnHousesOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "ordered_ASC"
+  | "ordered_DESC"
+  | "date_ASC"
+  | "date_DESC";
+
+export type UsersOnProductsOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "localisation_ASC"
+  | "localisation_DESC"
+  | "date_ASC"
+  | "date_DESC"
+  | "ordered_ASC"
+  | "ordered_DESC";
 
 export type SteedOrderByInput =
   | "id_ASC"
@@ -494,23 +600,7 @@ export interface UsersOnPlatesWhereInput {
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
   user?: Maybe<UserWhereInput>;
-  userId?: Maybe<Int>;
-  userId_not?: Maybe<Int>;
-  userId_in?: Maybe<Int[] | Int>;
-  userId_not_in?: Maybe<Int[] | Int>;
-  userId_lt?: Maybe<Int>;
-  userId_lte?: Maybe<Int>;
-  userId_gt?: Maybe<Int>;
-  userId_gte?: Maybe<Int>;
   plat?: Maybe<PlatWhereInput>;
-  platId?: Maybe<Int>;
-  platId_not?: Maybe<Int>;
-  platId_in?: Maybe<Int[] | Int>;
-  platId_not_in?: Maybe<Int[] | Int>;
-  platId_lt?: Maybe<Int>;
-  platId_lte?: Maybe<Int>;
-  platId_gt?: Maybe<Int>;
-  platId_gte?: Maybe<Int>;
   localisation?: Maybe<String>;
   localisation_not?: Maybe<String>;
   localisation_in?: Maybe<String[] | String>;
@@ -525,8 +615,8 @@ export interface UsersOnPlatesWhereInput {
   localisation_not_starts_with?: Maybe<String>;
   localisation_ends_with?: Maybe<String>;
   localisation_not_ends_with?: Maybe<String>;
-  active?: Maybe<Boolean>;
-  active_not?: Maybe<Boolean>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
   date?: Maybe<DateTimeInput>;
   date_not?: Maybe<DateTimeInput>;
   date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -650,12 +740,174 @@ export interface UserWhereInput {
   plates_every?: Maybe<UsersOnPlatesWhereInput>;
   plates_some?: Maybe<UsersOnPlatesWhereInput>;
   plates_none?: Maybe<UsersOnPlatesWhereInput>;
+  houses_every?: Maybe<UsersOnHousesWhereInput>;
+  houses_some?: Maybe<UsersOnHousesWhereInput>;
+  houses_none?: Maybe<UsersOnHousesWhereInput>;
+  products_every?: Maybe<UsersOnProductsWhereInput>;
+  products_some?: Maybe<UsersOnProductsWhereInput>;
+  products_none?: Maybe<UsersOnProductsWhereInput>;
   steeds_every?: Maybe<SteedWhereInput>;
   steeds_some?: Maybe<SteedWhereInput>;
   steeds_none?: Maybe<SteedWhereInput>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
+export interface UsersOnHousesWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  house?: Maybe<HouseWhereInput>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<UsersOnHousesWhereInput[] | UsersOnHousesWhereInput>;
+  OR?: Maybe<UsersOnHousesWhereInput[] | UsersOnHousesWhereInput>;
+  NOT?: Maybe<UsersOnHousesWhereInput[] | UsersOnHousesWhereInput>;
+}
+
+export interface UsersOnProductsWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  product?: Maybe<ProductWhereInput>;
+  localisation?: Maybe<String>;
+  localisation_not?: Maybe<String>;
+  localisation_in?: Maybe<String[] | String>;
+  localisation_not_in?: Maybe<String[] | String>;
+  localisation_lt?: Maybe<String>;
+  localisation_lte?: Maybe<String>;
+  localisation_gt?: Maybe<String>;
+  localisation_gte?: Maybe<String>;
+  localisation_contains?: Maybe<String>;
+  localisation_not_contains?: Maybe<String>;
+  localisation_starts_with?: Maybe<String>;
+  localisation_not_starts_with?: Maybe<String>;
+  localisation_ends_with?: Maybe<String>;
+  localisation_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
+  AND?: Maybe<UsersOnProductsWhereInput[] | UsersOnProductsWhereInput>;
+  OR?: Maybe<UsersOnProductsWhereInput[] | UsersOnProductsWhereInput>;
+  NOT?: Maybe<UsersOnProductsWhereInput[] | UsersOnProductsWhereInput>;
+}
+
+export interface ProductWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  illustration?: Maybe<String>;
+  illustration_not?: Maybe<String>;
+  illustration_in?: Maybe<String[] | String>;
+  illustration_not_in?: Maybe<String[] | String>;
+  illustration_lt?: Maybe<String>;
+  illustration_lte?: Maybe<String>;
+  illustration_gt?: Maybe<String>;
+  illustration_gte?: Maybe<String>;
+  illustration_contains?: Maybe<String>;
+  illustration_not_contains?: Maybe<String>;
+  illustration_starts_with?: Maybe<String>;
+  illustration_not_starts_with?: Maybe<String>;
+  illustration_ends_with?: Maybe<String>;
+  illustration_not_ends_with?: Maybe<String>;
+  price?: Maybe<Float>;
+  price_not?: Maybe<Float>;
+  price_in?: Maybe<Float[] | Float>;
+  price_not_in?: Maybe<Float[] | Float>;
+  price_lt?: Maybe<Float>;
+  price_lte?: Maybe<Float>;
+  price_gt?: Maybe<Float>;
+  price_gte?: Maybe<Float>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ProductWhereInput[] | ProductWhereInput>;
+  OR?: Maybe<ProductWhereInput[] | ProductWhereInput>;
+  NOT?: Maybe<ProductWhereInput[] | ProductWhereInput>;
 }
 
 export interface SteedWhereInput {
@@ -816,84 +1068,6 @@ export type ProductWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface ProductWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  illustration?: Maybe<String>;
-  illustration_not?: Maybe<String>;
-  illustration_in?: Maybe<String[] | String>;
-  illustration_not_in?: Maybe<String[] | String>;
-  illustration_lt?: Maybe<String>;
-  illustration_lte?: Maybe<String>;
-  illustration_gt?: Maybe<String>;
-  illustration_gte?: Maybe<String>;
-  illustration_contains?: Maybe<String>;
-  illustration_not_contains?: Maybe<String>;
-  illustration_starts_with?: Maybe<String>;
-  illustration_not_starts_with?: Maybe<String>;
-  illustration_ends_with?: Maybe<String>;
-  illustration_not_ends_with?: Maybe<String>;
-  price?: Maybe<Float>;
-  price_not?: Maybe<Float>;
-  price_in?: Maybe<Float[] | Float>;
-  price_not_in?: Maybe<Float[] | Float>;
-  price_lt?: Maybe<Float>;
-  price_lte?: Maybe<Float>;
-  price_gt?: Maybe<Float>;
-  price_gte?: Maybe<Float>;
-  date?: Maybe<DateTimeInput>;
-  date_not?: Maybe<DateTimeInput>;
-  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  date_lt?: Maybe<DateTimeInput>;
-  date_lte?: Maybe<DateTimeInput>;
-  date_gt?: Maybe<DateTimeInput>;
-  date_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<ProductWhereInput[] | ProductWhereInput>;
-  OR?: Maybe<ProductWhereInput[] | ProductWhereInput>;
-  NOT?: Maybe<ProductWhereInput[] | ProductWhereInput>;
-}
-
 export type SteedWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
@@ -904,7 +1078,15 @@ export type UserWhereUniqueInput = AtLeastOne<{
   email?: Maybe<String>;
 }>;
 
+export type UsersOnHousesWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
 export type UsersOnPlatesWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type UsersOnProductsWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
@@ -951,10 +1133,8 @@ export interface UsersOnPlatesCreateManyWithoutPlatInput {
 export interface UsersOnPlatesCreateWithoutPlatInput {
   id?: Maybe<ID_Input>;
   user: UserCreateOneWithoutPlatesInput;
-  userId: Int;
-  platId?: Maybe<Int>;
   localisation: String;
-  active: Boolean;
+  ordered: Boolean;
 }
 
 export interface UserCreateOneWithoutPlatesInput {
@@ -970,7 +1150,59 @@ export interface UserCreateWithoutPlatesInput {
   illustration: String;
   password: String;
   role: String;
+  houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
   steeds?: Maybe<SteedCreateManyWithoutUserInput>;
+}
+
+export interface UsersOnHousesCreateManyWithoutUserInput {
+  create?: Maybe<
+    UsersOnHousesCreateWithoutUserInput[] | UsersOnHousesCreateWithoutUserInput
+  >;
+  connect?: Maybe<
+    UsersOnHousesWhereUniqueInput[] | UsersOnHousesWhereUniqueInput
+  >;
+}
+
+export interface UsersOnHousesCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  house: HouseCreateOneInput;
+  ordered: Boolean;
+}
+
+export interface HouseCreateOneInput {
+  create?: Maybe<HouseCreateInput>;
+  connect?: Maybe<HouseWhereUniqueInput>;
+}
+
+export interface UsersOnProductsCreateManyWithoutUserInput {
+  create?: Maybe<
+    | UsersOnProductsCreateWithoutUserInput[]
+    | UsersOnProductsCreateWithoutUserInput
+  >;
+  connect?: Maybe<
+    UsersOnProductsWhereUniqueInput[] | UsersOnProductsWhereUniqueInput
+  >;
+}
+
+export interface UsersOnProductsCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  product: ProductCreateOneInput;
+  localisation: String;
+  ordered: Boolean;
+}
+
+export interface ProductCreateOneInput {
+  create?: Maybe<ProductCreateInput>;
+  connect?: Maybe<ProductWhereUniqueInput>;
+}
+
+export interface ProductCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  description: String;
+  illustration: String;
+  price: Float;
 }
 
 export interface SteedCreateManyWithoutUserInput {
@@ -1032,10 +1264,8 @@ export interface UsersOnPlatesUpdateWithWhereUniqueWithoutPlatInput {
 
 export interface UsersOnPlatesUpdateWithoutPlatDataInput {
   user?: Maybe<UserUpdateOneRequiredWithoutPlatesInput>;
-  userId?: Maybe<Int>;
-  platId?: Maybe<Int>;
   localisation?: Maybe<String>;
-  active?: Maybe<Boolean>;
+  ordered?: Maybe<Boolean>;
 }
 
 export interface UserUpdateOneRequiredWithoutPlatesInput {
@@ -1052,7 +1282,244 @@ export interface UserUpdateWithoutPlatesDataInput {
   illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
   steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
+}
+
+export interface UsersOnHousesUpdateManyWithoutUserInput {
+  create?: Maybe<
+    UsersOnHousesCreateWithoutUserInput[] | UsersOnHousesCreateWithoutUserInput
+  >;
+  delete?: Maybe<
+    UsersOnHousesWhereUniqueInput[] | UsersOnHousesWhereUniqueInput
+  >;
+  connect?: Maybe<
+    UsersOnHousesWhereUniqueInput[] | UsersOnHousesWhereUniqueInput
+  >;
+  set?: Maybe<UsersOnHousesWhereUniqueInput[] | UsersOnHousesWhereUniqueInput>;
+  disconnect?: Maybe<
+    UsersOnHousesWhereUniqueInput[] | UsersOnHousesWhereUniqueInput
+  >;
+  update?: Maybe<
+    | UsersOnHousesUpdateWithWhereUniqueWithoutUserInput[]
+    | UsersOnHousesUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | UsersOnHousesUpsertWithWhereUniqueWithoutUserInput[]
+    | UsersOnHousesUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<
+    UsersOnHousesScalarWhereInput[] | UsersOnHousesScalarWhereInput
+  >;
+  updateMany?: Maybe<
+    | UsersOnHousesUpdateManyWithWhereNestedInput[]
+    | UsersOnHousesUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UsersOnHousesUpdateWithWhereUniqueWithoutUserInput {
+  where: UsersOnHousesWhereUniqueInput;
+  data: UsersOnHousesUpdateWithoutUserDataInput;
+}
+
+export interface UsersOnHousesUpdateWithoutUserDataInput {
+  house?: Maybe<HouseUpdateOneRequiredInput>;
+  ordered?: Maybe<Boolean>;
+}
+
+export interface HouseUpdateOneRequiredInput {
+  create?: Maybe<HouseCreateInput>;
+  update?: Maybe<HouseUpdateDataInput>;
+  upsert?: Maybe<HouseUpsertNestedInput>;
+  connect?: Maybe<HouseWhereUniqueInput>;
+}
+
+export interface HouseUpdateDataInput {
+  illustration?: Maybe<String>;
+  description?: Maybe<String>;
+  localisation?: Maybe<String>;
+  price?: Maybe<Float>;
+}
+
+export interface HouseUpsertNestedInput {
+  update: HouseUpdateDataInput;
+  create: HouseCreateInput;
+}
+
+export interface UsersOnHousesUpsertWithWhereUniqueWithoutUserInput {
+  where: UsersOnHousesWhereUniqueInput;
+  update: UsersOnHousesUpdateWithoutUserDataInput;
+  create: UsersOnHousesCreateWithoutUserInput;
+}
+
+export interface UsersOnHousesScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<UsersOnHousesScalarWhereInput[] | UsersOnHousesScalarWhereInput>;
+  OR?: Maybe<UsersOnHousesScalarWhereInput[] | UsersOnHousesScalarWhereInput>;
+  NOT?: Maybe<UsersOnHousesScalarWhereInput[] | UsersOnHousesScalarWhereInput>;
+}
+
+export interface UsersOnHousesUpdateManyWithWhereNestedInput {
+  where: UsersOnHousesScalarWhereInput;
+  data: UsersOnHousesUpdateManyDataInput;
+}
+
+export interface UsersOnHousesUpdateManyDataInput {
+  ordered?: Maybe<Boolean>;
+}
+
+export interface UsersOnProductsUpdateManyWithoutUserInput {
+  create?: Maybe<
+    | UsersOnProductsCreateWithoutUserInput[]
+    | UsersOnProductsCreateWithoutUserInput
+  >;
+  delete?: Maybe<
+    UsersOnProductsWhereUniqueInput[] | UsersOnProductsWhereUniqueInput
+  >;
+  connect?: Maybe<
+    UsersOnProductsWhereUniqueInput[] | UsersOnProductsWhereUniqueInput
+  >;
+  set?: Maybe<
+    UsersOnProductsWhereUniqueInput[] | UsersOnProductsWhereUniqueInput
+  >;
+  disconnect?: Maybe<
+    UsersOnProductsWhereUniqueInput[] | UsersOnProductsWhereUniqueInput
+  >;
+  update?: Maybe<
+    | UsersOnProductsUpdateWithWhereUniqueWithoutUserInput[]
+    | UsersOnProductsUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | UsersOnProductsUpsertWithWhereUniqueWithoutUserInput[]
+    | UsersOnProductsUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<
+    UsersOnProductsScalarWhereInput[] | UsersOnProductsScalarWhereInput
+  >;
+  updateMany?: Maybe<
+    | UsersOnProductsUpdateManyWithWhereNestedInput[]
+    | UsersOnProductsUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UsersOnProductsUpdateWithWhereUniqueWithoutUserInput {
+  where: UsersOnProductsWhereUniqueInput;
+  data: UsersOnProductsUpdateWithoutUserDataInput;
+}
+
+export interface UsersOnProductsUpdateWithoutUserDataInput {
+  product?: Maybe<ProductUpdateOneRequiredInput>;
+  localisation?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
+}
+
+export interface ProductUpdateOneRequiredInput {
+  create?: Maybe<ProductCreateInput>;
+  update?: Maybe<ProductUpdateDataInput>;
+  upsert?: Maybe<ProductUpsertNestedInput>;
+  connect?: Maybe<ProductWhereUniqueInput>;
+}
+
+export interface ProductUpdateDataInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+  illustration?: Maybe<String>;
+  price?: Maybe<Float>;
+}
+
+export interface ProductUpsertNestedInput {
+  update: ProductUpdateDataInput;
+  create: ProductCreateInput;
+}
+
+export interface UsersOnProductsUpsertWithWhereUniqueWithoutUserInput {
+  where: UsersOnProductsWhereUniqueInput;
+  update: UsersOnProductsUpdateWithoutUserDataInput;
+  create: UsersOnProductsCreateWithoutUserInput;
+}
+
+export interface UsersOnProductsScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  localisation?: Maybe<String>;
+  localisation_not?: Maybe<String>;
+  localisation_in?: Maybe<String[] | String>;
+  localisation_not_in?: Maybe<String[] | String>;
+  localisation_lt?: Maybe<String>;
+  localisation_lte?: Maybe<String>;
+  localisation_gt?: Maybe<String>;
+  localisation_gte?: Maybe<String>;
+  localisation_contains?: Maybe<String>;
+  localisation_not_contains?: Maybe<String>;
+  localisation_starts_with?: Maybe<String>;
+  localisation_not_starts_with?: Maybe<String>;
+  localisation_ends_with?: Maybe<String>;
+  localisation_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
+  AND?: Maybe<
+    UsersOnProductsScalarWhereInput[] | UsersOnProductsScalarWhereInput
+  >;
+  OR?: Maybe<
+    UsersOnProductsScalarWhereInput[] | UsersOnProductsScalarWhereInput
+  >;
+  NOT?: Maybe<
+    UsersOnProductsScalarWhereInput[] | UsersOnProductsScalarWhereInput
+  >;
+}
+
+export interface UsersOnProductsUpdateManyWithWhereNestedInput {
+  where: UsersOnProductsScalarWhereInput;
+  data: UsersOnProductsUpdateManyDataInput;
+}
+
+export interface UsersOnProductsUpdateManyDataInput {
+  localisation?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
 }
 
 export interface SteedUpdateManyWithoutUserInput {
@@ -1203,22 +1670,6 @@ export interface UsersOnPlatesScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  userId?: Maybe<Int>;
-  userId_not?: Maybe<Int>;
-  userId_in?: Maybe<Int[] | Int>;
-  userId_not_in?: Maybe<Int[] | Int>;
-  userId_lt?: Maybe<Int>;
-  userId_lte?: Maybe<Int>;
-  userId_gt?: Maybe<Int>;
-  userId_gte?: Maybe<Int>;
-  platId?: Maybe<Int>;
-  platId_not?: Maybe<Int>;
-  platId_in?: Maybe<Int[] | Int>;
-  platId_not_in?: Maybe<Int[] | Int>;
-  platId_lt?: Maybe<Int>;
-  platId_lte?: Maybe<Int>;
-  platId_gt?: Maybe<Int>;
-  platId_gte?: Maybe<Int>;
   localisation?: Maybe<String>;
   localisation_not?: Maybe<String>;
   localisation_in?: Maybe<String[] | String>;
@@ -1233,8 +1684,8 @@ export interface UsersOnPlatesScalarWhereInput {
   localisation_not_starts_with?: Maybe<String>;
   localisation_ends_with?: Maybe<String>;
   localisation_not_ends_with?: Maybe<String>;
-  active?: Maybe<Boolean>;
-  active_not?: Maybe<Boolean>;
+  ordered?: Maybe<Boolean>;
+  ordered_not?: Maybe<Boolean>;
   date?: Maybe<DateTimeInput>;
   date_not?: Maybe<DateTimeInput>;
   date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1254,10 +1705,8 @@ export interface UsersOnPlatesUpdateManyWithWhereNestedInput {
 }
 
 export interface UsersOnPlatesUpdateManyDataInput {
-  userId?: Maybe<Int>;
-  platId?: Maybe<Int>;
   localisation?: Maybe<String>;
-  active?: Maybe<Boolean>;
+  ordered?: Maybe<Boolean>;
 }
 
 export interface PlatUpdateManyMutationInput {
@@ -1265,14 +1714,6 @@ export interface PlatUpdateManyMutationInput {
   illustration?: Maybe<String>;
   description?: Maybe<String>;
   price?: Maybe<Float>;
-}
-
-export interface ProductCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  description: String;
-  illustration: String;
-  price: Float;
 }
 
 export interface ProductUpdateInput {
@@ -1312,6 +1753,8 @@ export interface UserCreateWithoutSteedsInput {
   password: String;
   role: String;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
+  houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
 }
 
 export interface UsersOnPlatesCreateManyWithoutUserInput {
@@ -1325,11 +1768,9 @@ export interface UsersOnPlatesCreateManyWithoutUserInput {
 
 export interface UsersOnPlatesCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
-  userId: Int;
   plat: PlatCreateOneWithoutUsersInput;
-  platId?: Maybe<Int>;
   localisation: String;
-  active: Boolean;
+  ordered: Boolean;
 }
 
 export interface PlatCreateOneWithoutUsersInput {
@@ -1368,6 +1809,8 @@ export interface UserUpdateWithoutSteedsDataInput {
   password?: Maybe<String>;
   role?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
+  houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
 }
 
 export interface UsersOnPlatesUpdateManyWithoutUserInput {
@@ -1407,11 +1850,9 @@ export interface UsersOnPlatesUpdateWithWhereUniqueWithoutUserInput {
 }
 
 export interface UsersOnPlatesUpdateWithoutUserDataInput {
-  userId?: Maybe<Int>;
   plat?: Maybe<PlatUpdateOneRequiredWithoutUsersInput>;
-  platId?: Maybe<Int>;
   localisation?: Maybe<String>;
-  active?: Maybe<Boolean>;
+  ordered?: Maybe<Boolean>;
 }
 
 export interface PlatUpdateOneRequiredWithoutUsersInput {
@@ -1460,6 +1901,8 @@ export interface UserCreateInput {
   password: String;
   role: String;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
+  houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
   steeds?: Maybe<SteedCreateManyWithoutUserInput>;
 }
 
@@ -1471,6 +1914,8 @@ export interface UserUpdateInput {
   password?: Maybe<String>;
   role?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
+  houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
   steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
 }
 
@@ -1483,30 +1928,145 @@ export interface UserUpdateManyMutationInput {
   role?: Maybe<String>;
 }
 
+export interface UsersOnHousesCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneWithoutHousesInput;
+  house: HouseCreateOneInput;
+  ordered: Boolean;
+}
+
+export interface UserCreateOneWithoutHousesInput {
+  create?: Maybe<UserCreateWithoutHousesInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutHousesInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  phone: String;
+  email: String;
+  illustration: String;
+  password: String;
+  role: String;
+  plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
+  steeds?: Maybe<SteedCreateManyWithoutUserInput>;
+}
+
+export interface UsersOnHousesUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutHousesInput>;
+  house?: Maybe<HouseUpdateOneRequiredInput>;
+  ordered?: Maybe<Boolean>;
+}
+
+export interface UserUpdateOneRequiredWithoutHousesInput {
+  create?: Maybe<UserCreateWithoutHousesInput>;
+  update?: Maybe<UserUpdateWithoutHousesDataInput>;
+  upsert?: Maybe<UserUpsertWithoutHousesInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutHousesDataInput {
+  name?: Maybe<String>;
+  phone?: Maybe<String>;
+  email?: Maybe<String>;
+  illustration?: Maybe<String>;
+  password?: Maybe<String>;
+  role?: Maybe<String>;
+  plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
+  products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
+  steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
+}
+
+export interface UserUpsertWithoutHousesInput {
+  update: UserUpdateWithoutHousesDataInput;
+  create: UserCreateWithoutHousesInput;
+}
+
+export interface UsersOnHousesUpdateManyMutationInput {
+  ordered?: Maybe<Boolean>;
+}
+
 export interface UsersOnPlatesCreateInput {
   id?: Maybe<ID_Input>;
   user: UserCreateOneWithoutPlatesInput;
-  userId: Int;
   plat: PlatCreateOneWithoutUsersInput;
-  platId?: Maybe<Int>;
   localisation: String;
-  active: Boolean;
+  ordered: Boolean;
 }
 
 export interface UsersOnPlatesUpdateInput {
   user?: Maybe<UserUpdateOneRequiredWithoutPlatesInput>;
-  userId?: Maybe<Int>;
   plat?: Maybe<PlatUpdateOneRequiredWithoutUsersInput>;
-  platId?: Maybe<Int>;
   localisation?: Maybe<String>;
-  active?: Maybe<Boolean>;
+  ordered?: Maybe<Boolean>;
 }
 
 export interface UsersOnPlatesUpdateManyMutationInput {
-  userId?: Maybe<Int>;
-  platId?: Maybe<Int>;
   localisation?: Maybe<String>;
-  active?: Maybe<Boolean>;
+  ordered?: Maybe<Boolean>;
+}
+
+export interface UsersOnProductsCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneWithoutProductsInput;
+  product: ProductCreateOneInput;
+  localisation: String;
+  ordered: Boolean;
+}
+
+export interface UserCreateOneWithoutProductsInput {
+  create?: Maybe<UserCreateWithoutProductsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutProductsInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  phone: String;
+  email: String;
+  illustration: String;
+  password: String;
+  role: String;
+  plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
+  houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
+  steeds?: Maybe<SteedCreateManyWithoutUserInput>;
+}
+
+export interface UsersOnProductsUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutProductsInput>;
+  product?: Maybe<ProductUpdateOneRequiredInput>;
+  localisation?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
+}
+
+export interface UserUpdateOneRequiredWithoutProductsInput {
+  create?: Maybe<UserCreateWithoutProductsInput>;
+  update?: Maybe<UserUpdateWithoutProductsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutProductsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutProductsDataInput {
+  name?: Maybe<String>;
+  phone?: Maybe<String>;
+  email?: Maybe<String>;
+  illustration?: Maybe<String>;
+  password?: Maybe<String>;
+  role?: Maybe<String>;
+  plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
+  houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
+  steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
+}
+
+export interface UserUpsertWithoutProductsInput {
+  update: UserUpdateWithoutProductsDataInput;
+  create: UserCreateWithoutProductsInput;
+}
+
+export interface UsersOnProductsUpdateManyMutationInput {
+  localisation?: Maybe<String>;
+  ordered?: Maybe<Boolean>;
 }
 
 export interface HouseSubscriptionWhereInput {
@@ -1564,6 +2124,23 @@ export interface UserSubscriptionWhereInput {
   NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
+export interface UsersOnHousesSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UsersOnHousesWhereInput>;
+  AND?: Maybe<
+    UsersOnHousesSubscriptionWhereInput[] | UsersOnHousesSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    UsersOnHousesSubscriptionWhereInput[] | UsersOnHousesSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    UsersOnHousesSubscriptionWhereInput[] | UsersOnHousesSubscriptionWhereInput
+  >;
+}
+
 export interface UsersOnPlatesSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -1578,6 +2155,26 @@ export interface UsersOnPlatesSubscriptionWhereInput {
   >;
   NOT?: Maybe<
     UsersOnPlatesSubscriptionWhereInput[] | UsersOnPlatesSubscriptionWhereInput
+  >;
+}
+
+export interface UsersOnProductsSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UsersOnProductsWhereInput>;
+  AND?: Maybe<
+    | UsersOnProductsSubscriptionWhereInput[]
+    | UsersOnProductsSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | UsersOnProductsSubscriptionWhereInput[]
+    | UsersOnProductsSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | UsersOnProductsSubscriptionWhereInput[]
+    | UsersOnProductsSubscriptionWhereInput
   >;
 }
 
@@ -1771,10 +2368,8 @@ export interface PlatNullablePromise
 
 export interface UsersOnPlates {
   id: ID_Output;
-  userId: Int;
-  platId?: Int;
   localisation: String;
-  active: Boolean;
+  ordered: Boolean;
   date?: DateTimeOutput;
 }
 
@@ -1783,11 +2378,9 @@ export interface UsersOnPlatesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   user: <T = UserPromise>() => T;
-  userId: () => Promise<Int>;
   plat: <T = PlatPromise>() => T;
-  platId: () => Promise<Int>;
   localisation: () => Promise<String>;
-  active: () => Promise<Boolean>;
+  ordered: () => Promise<Boolean>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -1796,11 +2389,9 @@ export interface UsersOnPlatesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   user: <T = UserSubscription>() => T;
-  userId: () => Promise<AsyncIterator<Int>>;
   plat: <T = PlatSubscription>() => T;
-  platId: () => Promise<AsyncIterator<Int>>;
   localisation: () => Promise<AsyncIterator<String>>;
-  active: () => Promise<AsyncIterator<Boolean>>;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
@@ -1809,11 +2400,9 @@ export interface UsersOnPlatesNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   user: <T = UserPromise>() => T;
-  userId: () => Promise<Int>;
   plat: <T = PlatPromise>() => T;
-  platId: () => Promise<Int>;
   localisation: () => Promise<String>;
-  active: () => Promise<Boolean>;
+  ordered: () => Promise<Boolean>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -1840,6 +2429,24 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   plates: <T = FragmentableArray<UsersOnPlates>>(args?: {
     where?: UsersOnPlatesWhereInput;
     orderBy?: UsersOnPlatesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  houses: <T = FragmentableArray<UsersOnHouses>>(args?: {
+    where?: UsersOnHousesWhereInput;
+    orderBy?: UsersOnHousesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  products: <T = FragmentableArray<UsersOnProducts>>(args?: {
+    where?: UsersOnProductsWhereInput;
+    orderBy?: UsersOnProductsOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -1877,6 +2484,24 @@ export interface UserSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  houses: <T = Promise<AsyncIterator<UsersOnHousesSubscription>>>(args?: {
+    where?: UsersOnHousesWhereInput;
+    orderBy?: UsersOnHousesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  products: <T = Promise<AsyncIterator<UsersOnProductsSubscription>>>(args?: {
+    where?: UsersOnProductsWhereInput;
+    orderBy?: UsersOnProductsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   steeds: <T = Promise<AsyncIterator<SteedSubscription>>>(args?: {
     where?: SteedWhereInput;
     orderBy?: SteedOrderByInput;
@@ -1908,6 +2533,24 @@ export interface UserNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  houses: <T = FragmentableArray<UsersOnHouses>>(args?: {
+    where?: UsersOnHousesWhereInput;
+    orderBy?: UsersOnHousesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  products: <T = FragmentableArray<UsersOnProducts>>(args?: {
+    where?: UsersOnProductsWhereInput;
+    orderBy?: UsersOnProductsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   steeds: <T = FragmentableArray<Steed>>(args?: {
     where?: SteedWhereInput;
     orderBy?: SteedOrderByInput;
@@ -1917,6 +2560,122 @@ export interface UserNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+}
+
+export interface UsersOnHouses {
+  id: ID_Output;
+  ordered: Boolean;
+  date?: DateTimeOutput;
+}
+
+export interface UsersOnHousesPromise
+  extends Promise<UsersOnHouses>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  house: <T = HousePromise>() => T;
+  ordered: () => Promise<Boolean>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface UsersOnHousesSubscription
+  extends Promise<AsyncIterator<UsersOnHouses>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  house: <T = HouseSubscription>() => T;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UsersOnHousesNullablePromise
+  extends Promise<UsersOnHouses | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  house: <T = HousePromise>() => T;
+  ordered: () => Promise<Boolean>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface UsersOnProducts {
+  id: ID_Output;
+  localisation: String;
+  date?: DateTimeOutput;
+  ordered: Boolean;
+}
+
+export interface UsersOnProductsPromise
+  extends Promise<UsersOnProducts>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  product: <T = ProductPromise>() => T;
+  localisation: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+  ordered: () => Promise<Boolean>;
+}
+
+export interface UsersOnProductsSubscription
+  extends Promise<AsyncIterator<UsersOnProducts>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  product: <T = ProductSubscription>() => T;
+  localisation: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface UsersOnProductsNullablePromise
+  extends Promise<UsersOnProducts | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  product: <T = ProductPromise>() => T;
+  localisation: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+  ordered: () => Promise<Boolean>;
+}
+
+export interface Product {
+  id: ID_Output;
+  name: String;
+  description: String;
+  illustration: String;
+  price: Float;
+  date?: DateTimeOutput;
+}
+
+export interface ProductPromise extends Promise<Product>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  illustration: () => Promise<String>;
+  price: () => Promise<Float>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface ProductSubscription
+  extends Promise<AsyncIterator<Product>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  illustration: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ProductNullablePromise
+  extends Promise<Product | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  illustration: () => Promise<String>;
+  price: () => Promise<Float>;
+  date: () => Promise<DateTimeOutput>;
 }
 
 export interface Steed {
@@ -2014,46 +2773,6 @@ export interface AggregatePlatSubscription
   extends Promise<AsyncIterator<AggregatePlat>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Product {
-  id: ID_Output;
-  name: String;
-  description: String;
-  illustration: String;
-  price: Float;
-  date?: DateTimeOutput;
-}
-
-export interface ProductPromise extends Promise<Product>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  illustration: () => Promise<String>;
-  price: () => Promise<Float>;
-  date: () => Promise<DateTimeOutput>;
-}
-
-export interface ProductSubscription
-  extends Promise<AsyncIterator<Product>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  illustration: () => Promise<AsyncIterator<String>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface ProductNullablePromise
-  extends Promise<Product | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  illustration: () => Promise<String>;
-  price: () => Promise<Float>;
-  date: () => Promise<DateTimeOutput>;
 }
 
 export interface ProductConnection {
@@ -2218,6 +2937,62 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface UsersOnHousesConnection {
+  pageInfo: PageInfo;
+  edges: UsersOnHousesEdge[];
+}
+
+export interface UsersOnHousesConnectionPromise
+  extends Promise<UsersOnHousesConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UsersOnHousesEdge>>() => T;
+  aggregate: <T = AggregateUsersOnHousesPromise>() => T;
+}
+
+export interface UsersOnHousesConnectionSubscription
+  extends Promise<AsyncIterator<UsersOnHousesConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UsersOnHousesEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUsersOnHousesSubscription>() => T;
+}
+
+export interface UsersOnHousesEdge {
+  node: UsersOnHouses;
+  cursor: String;
+}
+
+export interface UsersOnHousesEdgePromise
+  extends Promise<UsersOnHousesEdge>,
+    Fragmentable {
+  node: <T = UsersOnHousesPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UsersOnHousesEdgeSubscription
+  extends Promise<AsyncIterator<UsersOnHousesEdge>>,
+    Fragmentable {
+  node: <T = UsersOnHousesSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUsersOnHouses {
+  count: Int;
+}
+
+export interface AggregateUsersOnHousesPromise
+  extends Promise<AggregateUsersOnHouses>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUsersOnHousesSubscription
+  extends Promise<AsyncIterator<AggregateUsersOnHouses>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface UsersOnPlatesConnection {
   pageInfo: PageInfo;
   edges: UsersOnPlatesEdge[];
@@ -2270,6 +3045,62 @@ export interface AggregateUsersOnPlatesPromise
 
 export interface AggregateUsersOnPlatesSubscription
   extends Promise<AsyncIterator<AggregateUsersOnPlates>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UsersOnProductsConnection {
+  pageInfo: PageInfo;
+  edges: UsersOnProductsEdge[];
+}
+
+export interface UsersOnProductsConnectionPromise
+  extends Promise<UsersOnProductsConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UsersOnProductsEdge>>() => T;
+  aggregate: <T = AggregateUsersOnProductsPromise>() => T;
+}
+
+export interface UsersOnProductsConnectionSubscription
+  extends Promise<AsyncIterator<UsersOnProductsConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UsersOnProductsEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUsersOnProductsSubscription>() => T;
+}
+
+export interface UsersOnProductsEdge {
+  node: UsersOnProducts;
+  cursor: String;
+}
+
+export interface UsersOnProductsEdgePromise
+  extends Promise<UsersOnProductsEdge>,
+    Fragmentable {
+  node: <T = UsersOnProductsPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UsersOnProductsEdgeSubscription
+  extends Promise<AsyncIterator<UsersOnProductsEdge>>,
+    Fragmentable {
+  node: <T = UsersOnProductsSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUsersOnProducts {
+  count: Int;
+}
+
+export interface AggregateUsersOnProductsPromise
+  extends Promise<AggregateUsersOnProducts>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUsersOnProductsSubscription
+  extends Promise<AsyncIterator<AggregateUsersOnProducts>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -2576,6 +3407,53 @@ export interface UserPreviousValuesSubscription
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
+export interface UsersOnHousesSubscriptionPayload {
+  mutation: MutationType;
+  node: UsersOnHouses;
+  updatedFields: String[];
+  previousValues: UsersOnHousesPreviousValues;
+}
+
+export interface UsersOnHousesSubscriptionPayloadPromise
+  extends Promise<UsersOnHousesSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UsersOnHousesPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UsersOnHousesPreviousValuesPromise>() => T;
+}
+
+export interface UsersOnHousesSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UsersOnHousesSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UsersOnHousesSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UsersOnHousesPreviousValuesSubscription>() => T;
+}
+
+export interface UsersOnHousesPreviousValues {
+  id: ID_Output;
+  ordered: Boolean;
+  date?: DateTimeOutput;
+}
+
+export interface UsersOnHousesPreviousValuesPromise
+  extends Promise<UsersOnHousesPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  ordered: () => Promise<Boolean>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface UsersOnHousesPreviousValuesSubscription
+  extends Promise<AsyncIterator<UsersOnHousesPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
 export interface UsersOnPlatesSubscriptionPayload {
   mutation: MutationType;
   node: UsersOnPlates;
@@ -2603,10 +3481,8 @@ export interface UsersOnPlatesSubscriptionPayloadSubscription
 
 export interface UsersOnPlatesPreviousValues {
   id: ID_Output;
-  userId: Int;
-  platId?: Int;
   localisation: String;
-  active: Boolean;
+  ordered: Boolean;
   date?: DateTimeOutput;
 }
 
@@ -2614,10 +3490,8 @@ export interface UsersOnPlatesPreviousValuesPromise
   extends Promise<UsersOnPlatesPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  userId: () => Promise<Int>;
-  platId: () => Promise<Int>;
   localisation: () => Promise<String>;
-  active: () => Promise<Boolean>;
+  ordered: () => Promise<Boolean>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -2625,11 +3499,59 @@ export interface UsersOnPlatesPreviousValuesSubscription
   extends Promise<AsyncIterator<UsersOnPlatesPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  userId: () => Promise<AsyncIterator<Int>>;
-  platId: () => Promise<AsyncIterator<Int>>;
   localisation: () => Promise<AsyncIterator<String>>;
-  active: () => Promise<AsyncIterator<Boolean>>;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UsersOnProductsSubscriptionPayload {
+  mutation: MutationType;
+  node: UsersOnProducts;
+  updatedFields: String[];
+  previousValues: UsersOnProductsPreviousValues;
+}
+
+export interface UsersOnProductsSubscriptionPayloadPromise
+  extends Promise<UsersOnProductsSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UsersOnProductsPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UsersOnProductsPreviousValuesPromise>() => T;
+}
+
+export interface UsersOnProductsSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UsersOnProductsSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UsersOnProductsSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UsersOnProductsPreviousValuesSubscription>() => T;
+}
+
+export interface UsersOnProductsPreviousValues {
+  id: ID_Output;
+  localisation: String;
+  date?: DateTimeOutput;
+  ordered: Boolean;
+}
+
+export interface UsersOnProductsPreviousValuesPromise
+  extends Promise<UsersOnProductsPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  localisation: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+  ordered: () => Promise<Boolean>;
+}
+
+export interface UsersOnProductsPreviousValuesSubscription
+  extends Promise<AsyncIterator<UsersOnProductsPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  localisation: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  ordered: () => Promise<AsyncIterator<Boolean>>;
 }
 
 /*
@@ -2681,6 +3603,14 @@ export const models: Model[] = [
   },
   {
     name: "UsersOnPlates",
+    embedded: false
+  },
+  {
+    name: "UsersOnHouses",
+    embedded: false
+  },
+  {
+    name: "UsersOnProducts",
     embedded: false
   },
   {

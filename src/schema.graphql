@@ -4,10 +4,10 @@ scalar Upload
 type Query{
     info: String!
     users: [User!]!
-    platesByUser(user:ID!): [UsersOnPlates!]!
-    housesByUser(user:ID!): [UsersOnHouses!]!
     steedsByUser(user:ID!): [Steed!]!
-    productsByUser(User:ID!): [UsersOnProducts!]!
+    orderedPlatesByUser(user:ID!): [UsersOnPlates!]!
+    orderedHousesByUser(user:ID!): [UsersOnHouses!]!
+    orderedProductsByUser(User:ID!): [UsersOnProducts!]!
 }
 type Mutation{
     signUp(name:String!,phone:String!,email:String!,password:String!,illustration:Upload!,role:String!):User!
@@ -16,9 +16,9 @@ type Mutation{
     house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
     steed(pointA:String!,pointB:String!,description:String!,user:ID!): Steed!
     product(name:String!,description:String!,illustration:Upload!,price:Float!): Product!
-    orderPlat(user:ID!,plat:ID!): Plat!
-    orderHouse(user:ID!,house:ID!): House!
-    orderProduct(user:ID!,product:ID!): Product!
+    orderPlate(user:ID!,plat:ID!,localisation:String!): UsersOnPlates!
+    orderHouse(user:ID!,house:ID!): UsersOnHouses!
+    orderProduct(user:ID!,product:ID!,localisation:String!): UsersOnProducts!
 }
 type User{
     id: ID! 
@@ -37,12 +37,10 @@ type User{
 type UsersOnPlates{
     id : ID! 
     user: User!
-    userId: Int!
     plat : Plat!
-    platId: Int
     localisation: String!
     date: String!
-    active: Boolean!
+    ordered: Boolean!
 }
 type Plat{
     id: ID!
@@ -56,11 +54,9 @@ type Plat{
 type UsersOnHouses{
     id : ID! 
     user: User!
-    userId: Int!
     house : House!
-    houseId: Int
     date: String!
-    active: Boolean!
+    ordered: Boolean!
 }
 type House{
     id: ID!
@@ -84,12 +80,10 @@ type Steed{
 type UsersOnProducts{
     id : ID! 
     user: User!
-    userId: Int!
     product : Product!
-    productId: Int
     localisation: String!
     date: String!
-    active: Boolean!
+    ordered: Boolean!
 }
 type Product{
     id: ID!
