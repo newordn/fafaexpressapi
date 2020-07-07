@@ -7,7 +7,7 @@ type Query{
     steedsByUser(user:ID!): [Steed!]!
     orderedPlatesByUser(user:ID!): [UsersOnPlates!]!
     orderedHousesByUser(user:ID!): [UsersOnHouses!]!
-    orderedProductsByUser(User:ID!): [UsersOnProducts!]!
+    orderedProductsByUser(user:ID!): [UsersOnProducts!]!
 }
 type Mutation{
     signUp(name:String!,phone:String!,email:String!,password:String!,illustration:Upload!,role:String!):User!
