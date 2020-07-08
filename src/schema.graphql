@@ -6,6 +6,8 @@ type Query{
     users: [User!]!
     steedsByUser(user:ID!): [Steed!]!
     plates: [Plat!]!
+    houses: [House!]!
+    products: [Product!]!
     orderedPlatesByUser(user:ID!): [UsersOnPlates!]!
     orderedHousesByUser(user:ID!): [UsersOnHouses!]!
     orderedProductsByUser(user:ID!): [UsersOnProducts!]!
