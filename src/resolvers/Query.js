@@ -11,7 +11,7 @@ const users = async (parent,args,context,info)=>{
 }
 const plates = async (parent,args,context,info)=>{
     console.log('plates query')
-    const plates = await context.prisma.plateses({orderBy:'id_DESC'})
+    const plates = await context.prisma.plats({orderBy:'id_DESC'})
     return plates
 }
 const orderedPlatesByUser = async (parent,args,context,info)=>{
