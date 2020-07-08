@@ -23,7 +23,7 @@ const signUp = async (parent,args,context,info)=>{
     const password = await bcrypt.hash(args.password,10)
     const illustration =  await context.storeUpload(args.illustration)
     const user = await context.prisma.createUser({...args,password,illustration:illustration.path})
-    //await sendMail(user.email,"FafaExpress",`Inscription Reussite. Bienvenu dans FafaExpress, faites vous livrez en un laps de temps.`)
+    await sendMail(user.email,"FafaExpress",`Inscription Reussite. Bienvenu dans FafaExpress, faites vous livrez en un laps de temps.`)
     return user
 }
 const plat = async (parent,args,context,info)=>{
