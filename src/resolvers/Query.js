@@ -9,6 +9,11 @@ const users = async (parent,args,context,info)=>{
     const users = await context.prisma.users({orderBy:'id_DESC'})
     return users
 }
+const plates = async (parent,args,context,info)=>{
+    console.log('plates query')
+    const plates = await context.prisma.plateses({orderBy:'id_DESC'})
+    return plates
+}
 const orderedPlatesByUser = async (parent,args,context,info)=>{
     console.log('orderedPlatesByUser query')
     const orderedPlates = await context.prisma.usersOnPlateses({where:{user:{id:args.user}}})
@@ -32,5 +37,6 @@ module.exports={
     users,
     orderedPlatesByUser,
     orderedHousesByUser,
-    orderedProductsByUser
+    orderedProductsByUser,
+    plates
 }

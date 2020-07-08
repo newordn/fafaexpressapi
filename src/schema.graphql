@@ -5,6 +5,7 @@ type Query{
     info: String!
     users: [User!]!
     steedsByUser(user:ID!): [Steed!]!
+    plates: [Plat!]!
     orderedPlatesByUser(user:ID!): [UsersOnPlates!]!
     orderedHousesByUser(user:ID!): [UsersOnHouses!]!
     orderedProductsByUser(user:ID!): [UsersOnProducts!]!
