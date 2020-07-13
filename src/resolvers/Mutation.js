@@ -5,10 +5,8 @@ async function signIn(parent,args,context,info)
     console.log('user signIn mutation')
     let user =  await context.prisma.user({phone:args.phone})
     if(!user){
-        user =  await context.prisma.user({email:args.phone})
-        if(!user){
         throw new Error("L'utilisateur n'existe pas. Inscrivez-vous")
-        }
+        
     }
     const valid = await bcrypt.compare(args.password,user.password)
     if(!valid){
