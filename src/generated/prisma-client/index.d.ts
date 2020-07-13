@@ -487,8 +487,6 @@ export type UserOrderByInput =
   | "phone_DESC"
   | "email_ASC"
   | "email_DESC"
-  | "illustration_ASC"
-  | "illustration_DESC"
   | "password_ASC"
   | "password_DESC"
   | "role_ASC"
@@ -687,20 +685,6 @@ export interface UserWhereInput {
   email_not_starts_with?: Maybe<String>;
   email_ends_with?: Maybe<String>;
   email_not_ends_with?: Maybe<String>;
-  illustration?: Maybe<String>;
-  illustration_not?: Maybe<String>;
-  illustration_in?: Maybe<String[] | String>;
-  illustration_not_in?: Maybe<String[] | String>;
-  illustration_lt?: Maybe<String>;
-  illustration_lte?: Maybe<String>;
-  illustration_gt?: Maybe<String>;
-  illustration_gte?: Maybe<String>;
-  illustration_contains?: Maybe<String>;
-  illustration_not_contains?: Maybe<String>;
-  illustration_starts_with?: Maybe<String>;
-  illustration_not_starts_with?: Maybe<String>;
-  illustration_ends_with?: Maybe<String>;
-  illustration_not_ends_with?: Maybe<String>;
   password?: Maybe<String>;
   password_not?: Maybe<String>;
   password_in?: Maybe<String[] | String>;
@@ -1075,7 +1059,6 @@ export type SteedWhereUniqueInput = AtLeastOne<{
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   phone?: Maybe<String>;
-  email?: Maybe<String>;
 }>;
 
 export type UsersOnHousesWhereUniqueInput = AtLeastOne<{
@@ -1146,8 +1129,7 @@ export interface UserCreateWithoutPlatesInput {
   id?: Maybe<ID_Input>;
   name: String;
   phone: String;
-  email: String;
-  illustration: String;
+  email?: Maybe<String>;
   password: String;
   role: String;
   houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
@@ -1279,7 +1261,6 @@ export interface UserUpdateWithoutPlatesDataInput {
   name?: Maybe<String>;
   phone?: Maybe<String>;
   email?: Maybe<String>;
-  illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
   houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
@@ -1748,8 +1729,7 @@ export interface UserCreateWithoutSteedsInput {
   id?: Maybe<ID_Input>;
   name: String;
   phone: String;
-  email: String;
-  illustration: String;
+  email?: Maybe<String>;
   password: String;
   role: String;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
@@ -1805,7 +1785,6 @@ export interface UserUpdateWithoutSteedsDataInput {
   name?: Maybe<String>;
   phone?: Maybe<String>;
   email?: Maybe<String>;
-  illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
@@ -1896,8 +1875,7 @@ export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   phone: String;
-  email: String;
-  illustration: String;
+  email?: Maybe<String>;
   password: String;
   role: String;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
@@ -1910,7 +1888,6 @@ export interface UserUpdateInput {
   name?: Maybe<String>;
   phone?: Maybe<String>;
   email?: Maybe<String>;
-  illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
@@ -1923,7 +1900,6 @@ export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
   phone?: Maybe<String>;
   email?: Maybe<String>;
-  illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
 }
@@ -1944,8 +1920,7 @@ export interface UserCreateWithoutHousesInput {
   id?: Maybe<ID_Input>;
   name: String;
   phone: String;
-  email: String;
-  illustration: String;
+  email?: Maybe<String>;
   password: String;
   role: String;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
@@ -1970,7 +1945,6 @@ export interface UserUpdateWithoutHousesDataInput {
   name?: Maybe<String>;
   phone?: Maybe<String>;
   email?: Maybe<String>;
-  illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
@@ -2024,8 +1998,7 @@ export interface UserCreateWithoutProductsInput {
   id?: Maybe<ID_Input>;
   name: String;
   phone: String;
-  email: String;
-  illustration: String;
+  email?: Maybe<String>;
   password: String;
   role: String;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
@@ -2051,7 +2024,6 @@ export interface UserUpdateWithoutProductsDataInput {
   name?: Maybe<String>;
   phone?: Maybe<String>;
   email?: Maybe<String>;
-  illustration?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
@@ -2410,8 +2382,7 @@ export interface User {
   id: ID_Output;
   name: String;
   phone: String;
-  email: String;
-  illustration: String;
+  email?: String;
   password: String;
   role: String;
   date?: DateTimeOutput;
@@ -2422,7 +2393,6 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   name: () => Promise<String>;
   phone: () => Promise<String>;
   email: () => Promise<String>;
-  illustration: () => Promise<String>;
   password: () => Promise<String>;
   role: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
@@ -2471,7 +2441,6 @@ export interface UserSubscription
   name: () => Promise<AsyncIterator<String>>;
   phone: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
-  illustration: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -2520,7 +2489,6 @@ export interface UserNullablePromise
   name: () => Promise<String>;
   phone: () => Promise<String>;
   email: () => Promise<String>;
-  illustration: () => Promise<String>;
   password: () => Promise<String>;
   role: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
@@ -3374,8 +3342,7 @@ export interface UserPreviousValues {
   id: ID_Output;
   name: String;
   phone: String;
-  email: String;
-  illustration: String;
+  email?: String;
   password: String;
   role: String;
   date?: DateTimeOutput;
@@ -3388,7 +3355,6 @@ export interface UserPreviousValuesPromise
   name: () => Promise<String>;
   phone: () => Promise<String>;
   email: () => Promise<String>;
-  illustration: () => Promise<String>;
   password: () => Promise<String>;
   role: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
@@ -3401,7 +3367,6 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   phone: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
-  illustration: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;

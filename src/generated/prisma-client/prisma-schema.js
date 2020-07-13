@@ -1029,8 +1029,7 @@ type User {
   id: ID!
   name: String!
   phone: String!
-  email: String!
-  illustration: String!
+  email: String
   password: String!
   role: String!
   date: DateTime
@@ -1050,8 +1049,7 @@ input UserCreateInput {
   id: ID
   name: String!
   phone: String!
-  email: String!
-  illustration: String!
+  email: String
   password: String!
   role: String!
   plates: UsersOnPlatesCreateManyWithoutUserInput
@@ -1084,8 +1082,7 @@ input UserCreateWithoutHousesInput {
   id: ID
   name: String!
   phone: String!
-  email: String!
-  illustration: String!
+  email: String
   password: String!
   role: String!
   plates: UsersOnPlatesCreateManyWithoutUserInput
@@ -1097,8 +1094,7 @@ input UserCreateWithoutPlatesInput {
   id: ID
   name: String!
   phone: String!
-  email: String!
-  illustration: String!
+  email: String
   password: String!
   role: String!
   houses: UsersOnHousesCreateManyWithoutUserInput
@@ -1110,8 +1106,7 @@ input UserCreateWithoutProductsInput {
   id: ID
   name: String!
   phone: String!
-  email: String!
-  illustration: String!
+  email: String
   password: String!
   role: String!
   plates: UsersOnPlatesCreateManyWithoutUserInput
@@ -1123,8 +1118,7 @@ input UserCreateWithoutSteedsInput {
   id: ID
   name: String!
   phone: String!
-  email: String!
-  illustration: String!
+  email: String
   password: String!
   role: String!
   plates: UsersOnPlatesCreateManyWithoutUserInput
@@ -1146,8 +1140,6 @@ enum UserOrderByInput {
   phone_DESC
   email_ASC
   email_DESC
-  illustration_ASC
-  illustration_DESC
   password_ASC
   password_DESC
   role_ASC
@@ -1160,8 +1152,7 @@ type UserPreviousValues {
   id: ID!
   name: String!
   phone: String!
-  email: String!
-  illustration: String!
+  email: String
   password: String!
   role: String!
   date: DateTime
@@ -1855,7 +1846,6 @@ input UserUpdateInput {
   name: String
   phone: String
   email: String
-  illustration: String
   password: String
   role: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
@@ -1868,7 +1858,6 @@ input UserUpdateManyMutationInput {
   name: String
   phone: String
   email: String
-  illustration: String
   password: String
   role: String
 }
@@ -1905,7 +1894,6 @@ input UserUpdateWithoutHousesDataInput {
   name: String
   phone: String
   email: String
-  illustration: String
   password: String
   role: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
@@ -1917,7 +1905,6 @@ input UserUpdateWithoutPlatesDataInput {
   name: String
   phone: String
   email: String
-  illustration: String
   password: String
   role: String
   houses: UsersOnHousesUpdateManyWithoutUserInput
@@ -1929,7 +1916,6 @@ input UserUpdateWithoutProductsDataInput {
   name: String
   phone: String
   email: String
-  illustration: String
   password: String
   role: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
@@ -1941,7 +1927,6 @@ input UserUpdateWithoutSteedsDataInput {
   name: String
   phone: String
   email: String
-  illustration: String
   password: String
   role: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
@@ -2026,20 +2011,6 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  illustration: String
-  illustration_not: String
-  illustration_in: [String!]
-  illustration_not_in: [String!]
-  illustration_lt: String
-  illustration_lte: String
-  illustration_gt: String
-  illustration_gte: String
-  illustration_contains: String
-  illustration_not_contains: String
-  illustration_starts_with: String
-  illustration_not_starts_with: String
-  illustration_ends_with: String
-  illustration_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]
@@ -2096,7 +2067,6 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   phone: String
-  email: String
 }
 `
       }

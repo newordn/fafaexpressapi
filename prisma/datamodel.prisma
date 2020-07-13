@@ -2,8 +2,7 @@ type User{
     id: ID! @id
     name: String!
     phone: String! @unique
-    email: String! @unique
-    illustration: String!
+    email: String
     password: String!
     role : String!
     date : DateTime @createdAt

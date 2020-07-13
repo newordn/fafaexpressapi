@@ -13,7 +13,7 @@ type Query{
     orderedProductsByUser(user:ID!): [UsersOnProducts!]!
 }
 type Mutation{
-    signUp(name:String!,phone:String!,email:String!,password:String!,illustration:Upload!,role:String!):User!
+    signUp(name:String!,phone:String!,email:String!,password:String!,role:String!):User!
     signIn(phone:String!,password:String!):User!
     plat(name:String!,illustration:Upload!,description:String!,price:Float!): Plat!
     house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
@@ -27,9 +27,8 @@ type User{
     id: ID! 
     name: String!
     phone: String!
-    email: String!
+    email: String
     password: String!
-    illustration: String!
     role : String!
     date : String!
     plates : [UsersOnPlates!]

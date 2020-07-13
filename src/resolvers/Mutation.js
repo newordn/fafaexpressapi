@@ -21,8 +21,7 @@ async function signIn(parent,args,context,info)
 const signUp = async (parent,args,context,info)=>{
     console.log('signUp mutation')
     const password = await bcrypt.hash(args.password,10)
-    const illustration =  await context.storeUpload(args.illustration)
-    const user = await context.prisma.createUser({...args,password,illustration:illustration.path})
+    const user = await context.prisma.createUser({...args,password})
     await sendMail(user.email,"FafaExpress",`Inscription Reussite. Bienvenu dans FafaExpress, faites vous livrez en un laps de temps.`)
     return user
 }
