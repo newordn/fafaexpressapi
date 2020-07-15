@@ -4,7 +4,7 @@ async function user(parent,args,context,info){
 }
 
 async function house(parent,args,context,info){
-    const house = context.prisma.usersOnHouses({id:parent.id}).plat()
+    const house = context.prisma.usersOnHouses({id:parent.id}).house()
     return house
 }
 
