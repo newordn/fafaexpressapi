@@ -1201,8 +1201,6 @@ type UsersOnHouses {
   user: User!
   house: House!
   ordered: Boolean!
-  localisation: String!
-  nombre: Int!
   phone: String!
   date: DateTime
 }
@@ -1218,8 +1216,6 @@ input UsersOnHousesCreateInput {
   user: UserCreateOneWithoutHousesInput!
   house: HouseCreateOneInput!
   ordered: Boolean!
-  localisation: String!
-  nombre: Int!
   phone: String!
 }
 
@@ -1232,8 +1228,6 @@ input UsersOnHousesCreateWithoutUserInput {
   id: ID
   house: HouseCreateOneInput!
   ordered: Boolean!
-  localisation: String!
-  nombre: Int!
   phone: String!
 }
 
@@ -1247,10 +1241,6 @@ enum UsersOnHousesOrderByInput {
   id_DESC
   ordered_ASC
   ordered_DESC
-  localisation_ASC
-  localisation_DESC
-  nombre_ASC
-  nombre_DESC
   phone_ASC
   phone_DESC
   date_ASC
@@ -1260,8 +1250,6 @@ enum UsersOnHousesOrderByInput {
 type UsersOnHousesPreviousValues {
   id: ID!
   ordered: Boolean!
-  localisation: String!
-  nombre: Int!
   phone: String!
   date: DateTime
 }
@@ -1283,28 +1271,6 @@ input UsersOnHousesScalarWhereInput {
   id_not_ends_with: ID
   ordered: Boolean
   ordered_not: Boolean
-  localisation: String
-  localisation_not: String
-  localisation_in: [String!]
-  localisation_not_in: [String!]
-  localisation_lt: String
-  localisation_lte: String
-  localisation_gt: String
-  localisation_gte: String
-  localisation_contains: String
-  localisation_not_contains: String
-  localisation_starts_with: String
-  localisation_not_starts_with: String
-  localisation_ends_with: String
-  localisation_not_ends_with: String
-  nombre: Int
-  nombre_not: Int
-  nombre_in: [Int!]
-  nombre_not_in: [Int!]
-  nombre_lt: Int
-  nombre_lte: Int
-  nombre_gt: Int
-  nombre_gte: Int
   phone: String
   phone_not: String
   phone_in: [String!]
@@ -1354,22 +1320,16 @@ input UsersOnHousesUpdateInput {
   user: UserUpdateOneRequiredWithoutHousesInput
   house: HouseUpdateOneRequiredInput
   ordered: Boolean
-  localisation: String
-  nombre: Int
   phone: String
 }
 
 input UsersOnHousesUpdateManyDataInput {
   ordered: Boolean
-  localisation: String
-  nombre: Int
   phone: String
 }
 
 input UsersOnHousesUpdateManyMutationInput {
   ordered: Boolean
-  localisation: String
-  nombre: Int
   phone: String
 }
 
@@ -1393,8 +1353,6 @@ input UsersOnHousesUpdateManyWithWhereNestedInput {
 input UsersOnHousesUpdateWithoutUserDataInput {
   house: HouseUpdateOneRequiredInput
   ordered: Boolean
-  localisation: String
-  nombre: Int
   phone: String
 }
 
@@ -1428,28 +1386,6 @@ input UsersOnHousesWhereInput {
   house: HouseWhereInput
   ordered: Boolean
   ordered_not: Boolean
-  localisation: String
-  localisation_not: String
-  localisation_in: [String!]
-  localisation_not_in: [String!]
-  localisation_lt: String
-  localisation_lte: String
-  localisation_gt: String
-  localisation_gte: String
-  localisation_contains: String
-  localisation_not_contains: String
-  localisation_starts_with: String
-  localisation_not_starts_with: String
-  localisation_ends_with: String
-  localisation_not_ends_with: String
-  nombre: Int
-  nombre_not: Int
-  nombre_in: [Int!]
-  nombre_not_in: [Int!]
-  nombre_lt: Int
-  nombre_lte: Int
-  nombre_gt: Int
-  nombre_gte: Int
   phone: String
   phone_not: String
   phone_in: [String!]

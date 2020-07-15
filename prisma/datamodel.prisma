@@ -26,8 +26,6 @@ type UsersOnHouses{
     user: User! @relation(fields:[userId],references:[id])
     house : House! @relation(fields:[houseId],references:[id])
     ordered: Boolean!
-    localisation: String!
-    nombre : Int!
     phone: String!
     date: DateTime @createdAt
 }

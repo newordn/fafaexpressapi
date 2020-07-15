@@ -427,10 +427,6 @@ export type UsersOnHousesOrderByInput =
   | "id_DESC"
   | "ordered_ASC"
   | "ordered_DESC"
-  | "localisation_ASC"
-  | "localisation_DESC"
-  | "nombre_ASC"
-  | "nombre_DESC"
   | "phone_ASC"
   | "phone_DESC"
   | "date_ASC"
@@ -795,28 +791,6 @@ export interface UsersOnHousesWhereInput {
   house?: Maybe<HouseWhereInput>;
   ordered?: Maybe<Boolean>;
   ordered_not?: Maybe<Boolean>;
-  localisation?: Maybe<String>;
-  localisation_not?: Maybe<String>;
-  localisation_in?: Maybe<String[] | String>;
-  localisation_not_in?: Maybe<String[] | String>;
-  localisation_lt?: Maybe<String>;
-  localisation_lte?: Maybe<String>;
-  localisation_gt?: Maybe<String>;
-  localisation_gte?: Maybe<String>;
-  localisation_contains?: Maybe<String>;
-  localisation_not_contains?: Maybe<String>;
-  localisation_starts_with?: Maybe<String>;
-  localisation_not_starts_with?: Maybe<String>;
-  localisation_ends_with?: Maybe<String>;
-  localisation_not_ends_with?: Maybe<String>;
-  nombre?: Maybe<Int>;
-  nombre_not?: Maybe<Int>;
-  nombre_in?: Maybe<Int[] | Int>;
-  nombre_not_in?: Maybe<Int[] | Int>;
-  nombre_lt?: Maybe<Int>;
-  nombre_lte?: Maybe<Int>;
-  nombre_gt?: Maybe<Int>;
-  nombre_gte?: Maybe<Int>;
   phone?: Maybe<String>;
   phone_not?: Maybe<String>;
   phone_in?: Maybe<String[] | String>;
@@ -1262,8 +1236,6 @@ export interface UsersOnHousesCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
   house: HouseCreateOneInput;
   ordered: Boolean;
-  localisation: String;
-  nombre: Int;
   phone: String;
 }
 
@@ -1427,8 +1399,6 @@ export interface UsersOnHousesUpdateWithWhereUniqueWithoutUserInput {
 export interface UsersOnHousesUpdateWithoutUserDataInput {
   house?: Maybe<HouseUpdateOneRequiredInput>;
   ordered?: Maybe<Boolean>;
-  localisation?: Maybe<String>;
-  nombre?: Maybe<Int>;
   phone?: Maybe<String>;
 }
 
@@ -1474,28 +1444,6 @@ export interface UsersOnHousesScalarWhereInput {
   id_not_ends_with?: Maybe<ID_Input>;
   ordered?: Maybe<Boolean>;
   ordered_not?: Maybe<Boolean>;
-  localisation?: Maybe<String>;
-  localisation_not?: Maybe<String>;
-  localisation_in?: Maybe<String[] | String>;
-  localisation_not_in?: Maybe<String[] | String>;
-  localisation_lt?: Maybe<String>;
-  localisation_lte?: Maybe<String>;
-  localisation_gt?: Maybe<String>;
-  localisation_gte?: Maybe<String>;
-  localisation_contains?: Maybe<String>;
-  localisation_not_contains?: Maybe<String>;
-  localisation_starts_with?: Maybe<String>;
-  localisation_not_starts_with?: Maybe<String>;
-  localisation_ends_with?: Maybe<String>;
-  localisation_not_ends_with?: Maybe<String>;
-  nombre?: Maybe<Int>;
-  nombre_not?: Maybe<Int>;
-  nombre_in?: Maybe<Int[] | Int>;
-  nombre_not_in?: Maybe<Int[] | Int>;
-  nombre_lt?: Maybe<Int>;
-  nombre_lte?: Maybe<Int>;
-  nombre_gt?: Maybe<Int>;
-  nombre_gte?: Maybe<Int>;
   phone?: Maybe<String>;
   phone_not?: Maybe<String>;
   phone_in?: Maybe<String[] | String>;
@@ -1530,8 +1478,6 @@ export interface UsersOnHousesUpdateManyWithWhereNestedInput {
 
 export interface UsersOnHousesUpdateManyDataInput {
   ordered?: Maybe<Boolean>;
-  localisation?: Maybe<String>;
-  nombre?: Maybe<Int>;
   phone?: Maybe<String>;
 }
 
@@ -2144,8 +2090,6 @@ export interface UsersOnHousesCreateInput {
   user: UserCreateOneWithoutHousesInput;
   house: HouseCreateOneInput;
   ordered: Boolean;
-  localisation: String;
-  nombre: Int;
   phone: String;
 }
 
@@ -2170,8 +2114,6 @@ export interface UsersOnHousesUpdateInput {
   user?: Maybe<UserUpdateOneRequiredWithoutHousesInput>;
   house?: Maybe<HouseUpdateOneRequiredInput>;
   ordered?: Maybe<Boolean>;
-  localisation?: Maybe<String>;
-  nombre?: Maybe<Int>;
   phone?: Maybe<String>;
 }
 
@@ -2200,8 +2142,6 @@ export interface UserUpsertWithoutHousesInput {
 
 export interface UsersOnHousesUpdateManyMutationInput {
   ordered?: Maybe<Boolean>;
-  localisation?: Maybe<String>;
-  nombre?: Maybe<Int>;
   phone?: Maybe<String>;
 }
 
@@ -2797,8 +2737,6 @@ export interface UserNullablePromise
 export interface UsersOnHouses {
   id: ID_Output;
   ordered: Boolean;
-  localisation: String;
-  nombre: Int;
   phone: String;
   date?: DateTimeOutput;
 }
@@ -2810,8 +2748,6 @@ export interface UsersOnHousesPromise
   user: <T = UserPromise>() => T;
   house: <T = HousePromise>() => T;
   ordered: () => Promise<Boolean>;
-  localisation: () => Promise<String>;
-  nombre: () => Promise<Int>;
   phone: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
@@ -2823,8 +2759,6 @@ export interface UsersOnHousesSubscription
   user: <T = UserSubscription>() => T;
   house: <T = HouseSubscription>() => T;
   ordered: () => Promise<AsyncIterator<Boolean>>;
-  localisation: () => Promise<AsyncIterator<String>>;
-  nombre: () => Promise<AsyncIterator<Int>>;
   phone: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -2836,8 +2770,6 @@ export interface UsersOnHousesNullablePromise
   user: <T = UserPromise>() => T;
   house: <T = HousePromise>() => T;
   ordered: () => Promise<Boolean>;
-  localisation: () => Promise<String>;
-  nombre: () => Promise<Int>;
   phone: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
@@ -3691,8 +3623,6 @@ export interface UsersOnHousesSubscriptionPayloadSubscription
 export interface UsersOnHousesPreviousValues {
   id: ID_Output;
   ordered: Boolean;
-  localisation: String;
-  nombre: Int;
   phone: String;
   date?: DateTimeOutput;
 }
@@ -3702,8 +3632,6 @@ export interface UsersOnHousesPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   ordered: () => Promise<Boolean>;
-  localisation: () => Promise<String>;
-  nombre: () => Promise<Int>;
   phone: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
@@ -3713,8 +3641,6 @@ export interface UsersOnHousesPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   ordered: () => Promise<AsyncIterator<Boolean>>;
-  localisation: () => Promise<AsyncIterator<String>>;
-  nombre: () => Promise<AsyncIterator<Int>>;
   phone: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
