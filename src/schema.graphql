@@ -67,6 +67,9 @@ type UsersOnHouses{
     house : House!
     date: String!
     ordered: Boolean!
+    localisation: String!
+    nombre : Int!
+    phone: String!
 }
 type House{
     id: ID!
@@ -91,9 +94,11 @@ type UsersOnProducts{
     id : ID! 
     user: User!
     product : Product!
-    localisation: String!
     date: String!
     ordered: Boolean!
+    localisation: String!
+    nombre : Int!
+    phone: String!
 }
 type Product{
     id: ID!

@@ -730,6 +730,7 @@ type Steed {
   description: String!
   date: DateTime
   ordered: Boolean!
+  phone: String!
   user: User!
 }
 
@@ -745,6 +746,7 @@ input SteedCreateInput {
   pointB: String!
   description: String!
   ordered: Boolean!
+  phone: String!
   user: UserCreateOneWithoutSteedsInput!
 }
 
@@ -759,6 +761,7 @@ input SteedCreateWithoutUserInput {
   pointB: String!
   description: String!
   ordered: Boolean!
+  phone: String!
 }
 
 type SteedEdge {
@@ -779,6 +782,8 @@ enum SteedOrderByInput {
   date_DESC
   ordered_ASC
   ordered_DESC
+  phone_ASC
+  phone_DESC
 }
 
 type SteedPreviousValues {
@@ -788,6 +793,7 @@ type SteedPreviousValues {
   description: String!
   date: DateTime
   ordered: Boolean!
+  phone: String!
 }
 
 input SteedScalarWhereInput {
@@ -857,6 +863,20 @@ input SteedScalarWhereInput {
   date_gte: DateTime
   ordered: Boolean
   ordered_not: Boolean
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   AND: [SteedScalarWhereInput!]
   OR: [SteedScalarWhereInput!]
   NOT: [SteedScalarWhereInput!]
@@ -885,6 +905,7 @@ input SteedUpdateInput {
   pointB: String
   description: String
   ordered: Boolean
+  phone: String
   user: UserUpdateOneRequiredWithoutSteedsInput
 }
 
@@ -893,6 +914,7 @@ input SteedUpdateManyDataInput {
   pointB: String
   description: String
   ordered: Boolean
+  phone: String
 }
 
 input SteedUpdateManyMutationInput {
@@ -900,6 +922,7 @@ input SteedUpdateManyMutationInput {
   pointB: String
   description: String
   ordered: Boolean
+  phone: String
 }
 
 input SteedUpdateManyWithoutUserInput {
@@ -924,6 +947,7 @@ input SteedUpdateWithoutUserDataInput {
   pointB: String
   description: String
   ordered: Boolean
+  phone: String
 }
 
 input SteedUpdateWithWhereUniqueWithoutUserInput {
@@ -1004,6 +1028,20 @@ input SteedWhereInput {
   date_gte: DateTime
   ordered: Boolean
   ordered_not: Boolean
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   user: UserWhereInput
   AND: [SteedWhereInput!]
   OR: [SteedWhereInput!]
@@ -1163,6 +1201,9 @@ type UsersOnHouses {
   user: User!
   house: House!
   ordered: Boolean!
+  localisation: String!
+  nombre: Int!
+  phone: String!
   date: DateTime
 }
 
@@ -1177,6 +1218,9 @@ input UsersOnHousesCreateInput {
   user: UserCreateOneWithoutHousesInput!
   house: HouseCreateOneInput!
   ordered: Boolean!
+  localisation: String!
+  nombre: Int!
+  phone: String!
 }
 
 input UsersOnHousesCreateManyWithoutUserInput {
@@ -1188,6 +1232,9 @@ input UsersOnHousesCreateWithoutUserInput {
   id: ID
   house: HouseCreateOneInput!
   ordered: Boolean!
+  localisation: String!
+  nombre: Int!
+  phone: String!
 }
 
 type UsersOnHousesEdge {
@@ -1200,6 +1247,12 @@ enum UsersOnHousesOrderByInput {
   id_DESC
   ordered_ASC
   ordered_DESC
+  localisation_ASC
+  localisation_DESC
+  nombre_ASC
+  nombre_DESC
+  phone_ASC
+  phone_DESC
   date_ASC
   date_DESC
 }
@@ -1207,6 +1260,9 @@ enum UsersOnHousesOrderByInput {
 type UsersOnHousesPreviousValues {
   id: ID!
   ordered: Boolean!
+  localisation: String!
+  nombre: Int!
+  phone: String!
   date: DateTime
 }
 
@@ -1227,6 +1283,42 @@ input UsersOnHousesScalarWhereInput {
   id_not_ends_with: ID
   ordered: Boolean
   ordered_not: Boolean
+  localisation: String
+  localisation_not: String
+  localisation_in: [String!]
+  localisation_not_in: [String!]
+  localisation_lt: String
+  localisation_lte: String
+  localisation_gt: String
+  localisation_gte: String
+  localisation_contains: String
+  localisation_not_contains: String
+  localisation_starts_with: String
+  localisation_not_starts_with: String
+  localisation_ends_with: String
+  localisation_not_ends_with: String
+  nombre: Int
+  nombre_not: Int
+  nombre_in: [Int!]
+  nombre_not_in: [Int!]
+  nombre_lt: Int
+  nombre_lte: Int
+  nombre_gt: Int
+  nombre_gte: Int
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -1262,14 +1354,23 @@ input UsersOnHousesUpdateInput {
   user: UserUpdateOneRequiredWithoutHousesInput
   house: HouseUpdateOneRequiredInput
   ordered: Boolean
+  localisation: String
+  nombre: Int
+  phone: String
 }
 
 input UsersOnHousesUpdateManyDataInput {
   ordered: Boolean
+  localisation: String
+  nombre: Int
+  phone: String
 }
 
 input UsersOnHousesUpdateManyMutationInput {
   ordered: Boolean
+  localisation: String
+  nombre: Int
+  phone: String
 }
 
 input UsersOnHousesUpdateManyWithoutUserInput {
@@ -1292,6 +1393,9 @@ input UsersOnHousesUpdateManyWithWhereNestedInput {
 input UsersOnHousesUpdateWithoutUserDataInput {
   house: HouseUpdateOneRequiredInput
   ordered: Boolean
+  localisation: String
+  nombre: Int
+  phone: String
 }
 
 input UsersOnHousesUpdateWithWhereUniqueWithoutUserInput {
@@ -1324,6 +1428,42 @@ input UsersOnHousesWhereInput {
   house: HouseWhereInput
   ordered: Boolean
   ordered_not: Boolean
+  localisation: String
+  localisation_not: String
+  localisation_in: [String!]
+  localisation_not_in: [String!]
+  localisation_lt: String
+  localisation_lte: String
+  localisation_gt: String
+  localisation_gte: String
+  localisation_contains: String
+  localisation_not_contains: String
+  localisation_starts_with: String
+  localisation_not_starts_with: String
+  localisation_ends_with: String
+  localisation_not_ends_with: String
+  nombre: Int
+  nombre_not: Int
+  nombre_in: [Int!]
+  nombre_not_in: [Int!]
+  nombre_lt: Int
+  nombre_lte: Int
+  nombre_gt: Int
+  nombre_gte: Int
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -1676,6 +1816,8 @@ type UsersOnProducts {
   user: User!
   product: Product!
   localisation: String!
+  nombre: Int!
+  phone: String!
   date: DateTime
   ordered: Boolean!
 }
@@ -1691,6 +1833,8 @@ input UsersOnProductsCreateInput {
   user: UserCreateOneWithoutProductsInput!
   product: ProductCreateOneInput!
   localisation: String!
+  nombre: Int!
+  phone: String!
   ordered: Boolean!
 }
 
@@ -1703,6 +1847,8 @@ input UsersOnProductsCreateWithoutUserInput {
   id: ID
   product: ProductCreateOneInput!
   localisation: String!
+  nombre: Int!
+  phone: String!
   ordered: Boolean!
 }
 
@@ -1716,6 +1862,10 @@ enum UsersOnProductsOrderByInput {
   id_DESC
   localisation_ASC
   localisation_DESC
+  nombre_ASC
+  nombre_DESC
+  phone_ASC
+  phone_DESC
   date_ASC
   date_DESC
   ordered_ASC
@@ -1725,6 +1875,8 @@ enum UsersOnProductsOrderByInput {
 type UsersOnProductsPreviousValues {
   id: ID!
   localisation: String!
+  nombre: Int!
+  phone: String!
   date: DateTime
   ordered: Boolean!
 }
@@ -1758,6 +1910,28 @@ input UsersOnProductsScalarWhereInput {
   localisation_not_starts_with: String
   localisation_ends_with: String
   localisation_not_ends_with: String
+  nombre: Int
+  nombre_not: Int
+  nombre_in: [Int!]
+  nombre_not_in: [Int!]
+  nombre_lt: Int
+  nombre_lte: Int
+  nombre_gt: Int
+  nombre_gte: Int
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -1795,16 +1969,22 @@ input UsersOnProductsUpdateInput {
   user: UserUpdateOneRequiredWithoutProductsInput
   product: ProductUpdateOneRequiredInput
   localisation: String
+  nombre: Int
+  phone: String
   ordered: Boolean
 }
 
 input UsersOnProductsUpdateManyDataInput {
   localisation: String
+  nombre: Int
+  phone: String
   ordered: Boolean
 }
 
 input UsersOnProductsUpdateManyMutationInput {
   localisation: String
+  nombre: Int
+  phone: String
   ordered: Boolean
 }
 
@@ -1828,6 +2008,8 @@ input UsersOnProductsUpdateManyWithWhereNestedInput {
 input UsersOnProductsUpdateWithoutUserDataInput {
   product: ProductUpdateOneRequiredInput
   localisation: String
+  nombre: Int
+  phone: String
   ordered: Boolean
 }
 
@@ -1873,6 +2055,28 @@ input UsersOnProductsWhereInput {
   localisation_not_starts_with: String
   localisation_ends_with: String
   localisation_not_ends_with: String
+  nombre: Int
+  nombre_not: Int
+  nombre_in: [Int!]
+  nombre_not_in: [Int!]
+  nombre_lt: Int
+  nombre_lte: Int
+  nombre_gt: Int
+  nombre_gte: Int
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]

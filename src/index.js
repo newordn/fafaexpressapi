@@ -7,10 +7,14 @@ const {makeExecutableSchema} = require('graphql-tools')
 const {typeDefs} = require('./schema.graphql')
 const Mutation = require('./resolvers/Mutation')
 const UsersOnPlates = require('./resolvers/UsersOnPlates')
+const UsersOnProducts = require('./resolvers/UsersOnProducts')
+const UsersOnHouses = require('./resolvers/UsersOnHouses')
 const resolvers = {
     Query,
     Mutation,
     UsersOnPlates,
+    UsersOnHouses,
+    UsersOnProducts,
     Upload: GraphQLUpload
 }
 const schema = makeExecutableSchema({typeDefs,resolvers})

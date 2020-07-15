@@ -26,6 +26,9 @@ type UsersOnHouses{
     user: User! @relation(fields:[userId],references:[id])
     house : House! @relation(fields:[houseId],references:[id])
     ordered: Boolean!
+    localisation: String!
+    nombre : Int!
+    phone: String!
     date: DateTime @createdAt
 }
 type UsersOnProducts{
@@ -33,6 +36,8 @@ type UsersOnProducts{
     user: User! @relation(fields:[userId],references:[id])
     product : Product! @relation(fields:[productId],references:[id])
     localisation: String!
+    nombre : Int!
+    phone: String!
     date: DateTime @createdAt
     ordered: Boolean!
 }
@@ -60,6 +65,7 @@ type Steed{
     description: String!
     date : DateTime @createdAt
     ordered: Boolean!
+    phone: String!
     user : User!  @relation(name:"UserSteeds")
 }
 type Product{
