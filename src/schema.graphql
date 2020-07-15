@@ -21,7 +21,7 @@ type Mutation{
     signIn(phone:String!,password:String!):User!
     plat(name:String!,illustration:Upload!,description:String!,price:Float!): Plat!
     house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
-    steed(pointA:String!,pointB:String!,description:String!,user:ID!): Steed!
+    steed(pointA:String!,pointB:String!,description:String!,user:ID!,phone:String!): Steed!
     product(name:String!,description:String!,illustration:Upload!,price:Float!): Product!
     orderPlate(user:ID!,plat:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnPlates!
     orderHouse(user:ID!,house:ID!,phone:String!): UsersOnHouses!
