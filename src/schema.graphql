@@ -5,6 +5,7 @@ type Query{
     info: String!
     users: [User!]!
     steedsByUser(user:ID!): [Steed!]!
+    steedsByUsers: [Steed!]!
     plates: [Plat!]!
     houses: [House!]!
     products: [Product!]!
@@ -25,6 +26,7 @@ type Mutation{
     orderPlate(user:ID!,plat:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnPlates!
     orderHouse(user:ID!,house:ID!,phone:String!): UsersOnHouses!
     unOrderPlat(usersOnPlates: ID!): UsersOnPlates!
+    unOrderSteed(steed:ID!): Steed!
     unOrderHouse(usersOnHouses: ID!): UsersOnHouses!
     unOrderProduct(usersOnProducts: ID!): UsersOnProducts!
     orderProduct(user:ID!,product:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnProducts!
@@ -86,6 +88,7 @@ type Steed{
     description: String!
     date : String!
     ordered: Boolean!
+    phone: String!
     user : User!
 }
 type UsersOnProducts{

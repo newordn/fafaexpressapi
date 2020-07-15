@@ -55,6 +55,11 @@ const orderedProductsByUsers = async (parent,args,context,info)=>{
     const orderedProductsByUser = await context.prisma.usersOnProductses({orderBy:'id_DESC'})
     return orderedProductsByUser
 }
+const steedsByUsers = async (parent,args,context,info)=>{
+    console.log('steedsByUsers query')
+    const steedsByUsers = await context.prisma.steeds({orderBy:'id_DESC'})
+    return steedsByUsers
+}
 
 
 module.exports={
@@ -69,5 +74,6 @@ module.exports={
     orderedProductsByUsers,
     plates,
     houses,
-    products
+    products,
+    steedsByUsers
 }

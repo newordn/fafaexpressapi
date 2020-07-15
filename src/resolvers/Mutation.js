@@ -72,9 +72,14 @@ const unOrderHouse = async (parent,args,context,info)=>{
     return usersOnHouses
 }
 const unOrderProduct = async (parent,args,context,info)=>{
-    console.log('un order a house mutation')
+    console.log('un order a product mutation')
     const usersOnProducts = await context.prisma.updateUsersOnProducts({where:{id:args.usersOnProducts},data:{ordered:false}})
     return usersOnProducts
+}
+const unOrderSteed = async (parent,args,context,info)=>{
+    console.log('un order a steed mutation')
+    const unOrderSteed = await context.prisma.updateSteed({where:{id:args.steed},data:{ordered:false}})
+    return unOrderSteed
 }
 module.exports={
     signIn,
@@ -88,5 +93,6 @@ module.exports={
     orderProduct,
     unOrderPlat,
     unOrderHouse,
-    unOrderProduct
+    unOrderProduct,
+    unOrderSteed
 }
