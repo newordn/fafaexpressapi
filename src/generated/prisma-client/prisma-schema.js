@@ -1347,6 +1347,8 @@ type UsersOnPlates {
   plat: Plat!
   localisation: String!
   ordered: Boolean!
+  nombre: Int!
+  phone: String!
   date: DateTime
 }
 
@@ -1362,6 +1364,8 @@ input UsersOnPlatesCreateInput {
   plat: PlatCreateOneWithoutUsersInput!
   localisation: String!
   ordered: Boolean!
+  nombre: Int!
+  phone: String!
 }
 
 input UsersOnPlatesCreateManyWithoutPlatInput {
@@ -1379,6 +1383,8 @@ input UsersOnPlatesCreateWithoutPlatInput {
   user: UserCreateOneWithoutPlatesInput!
   localisation: String!
   ordered: Boolean!
+  nombre: Int!
+  phone: String!
 }
 
 input UsersOnPlatesCreateWithoutUserInput {
@@ -1386,6 +1392,8 @@ input UsersOnPlatesCreateWithoutUserInput {
   plat: PlatCreateOneWithoutUsersInput!
   localisation: String!
   ordered: Boolean!
+  nombre: Int!
+  phone: String!
 }
 
 type UsersOnPlatesEdge {
@@ -1400,6 +1408,10 @@ enum UsersOnPlatesOrderByInput {
   localisation_DESC
   ordered_ASC
   ordered_DESC
+  nombre_ASC
+  nombre_DESC
+  phone_ASC
+  phone_DESC
   date_ASC
   date_DESC
 }
@@ -1408,6 +1420,8 @@ type UsersOnPlatesPreviousValues {
   id: ID!
   localisation: String!
   ordered: Boolean!
+  nombre: Int!
+  phone: String!
   date: DateTime
 }
 
@@ -1442,6 +1456,28 @@ input UsersOnPlatesScalarWhereInput {
   localisation_not_ends_with: String
   ordered: Boolean
   ordered_not: Boolean
+  nombre: Int
+  nombre_not: Int
+  nombre_in: [Int!]
+  nombre_not_in: [Int!]
+  nombre_lt: Int
+  nombre_lte: Int
+  nombre_gt: Int
+  nombre_gte: Int
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -1478,16 +1514,22 @@ input UsersOnPlatesUpdateInput {
   plat: PlatUpdateOneRequiredWithoutUsersInput
   localisation: String
   ordered: Boolean
+  nombre: Int
+  phone: String
 }
 
 input UsersOnPlatesUpdateManyDataInput {
   localisation: String
   ordered: Boolean
+  nombre: Int
+  phone: String
 }
 
 input UsersOnPlatesUpdateManyMutationInput {
   localisation: String
   ordered: Boolean
+  nombre: Int
+  phone: String
 }
 
 input UsersOnPlatesUpdateManyWithoutPlatInput {
@@ -1523,12 +1565,16 @@ input UsersOnPlatesUpdateWithoutPlatDataInput {
   user: UserUpdateOneRequiredWithoutPlatesInput
   localisation: String
   ordered: Boolean
+  nombre: Int
+  phone: String
 }
 
 input UsersOnPlatesUpdateWithoutUserDataInput {
   plat: PlatUpdateOneRequiredWithoutUsersInput
   localisation: String
   ordered: Boolean
+  nombre: Int
+  phone: String
 }
 
 input UsersOnPlatesUpdateWithWhereUniqueWithoutPlatInput {
@@ -1586,6 +1632,28 @@ input UsersOnPlatesWhereInput {
   localisation_not_ends_with: String
   ordered: Boolean
   ordered_not: Boolean
+  nombre: Int
+  nombre_not: Int
+  nombre_in: [Int!]
+  nombre_not_in: [Int!]
+  nombre_lt: Int
+  nombre_lte: Int
+  nombre_gt: Int
+  nombre_gte: Int
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]

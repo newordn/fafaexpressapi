@@ -17,6 +17,8 @@ type UsersOnPlates{
     plat : Plat! @relation(fields:[platId],references:[id])
     localisation: String!
     ordered: Boolean!
+    nombre: Int!
+    phone: String!
     date: DateTime @createdAt
 }
 type UsersOnHouses{

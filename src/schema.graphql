@@ -9,8 +9,11 @@ type Query{
     houses: [House!]!
     products: [Product!]!
     orderedPlatesByUser(user:ID!): [UsersOnPlates!]!
+    orderedPlatesByUsers: [UsersOnPlates!]!
     orderedHousesByUser(user:ID!): [UsersOnHouses!]!
+    orderedHousesByUsers: [UsersOnHouses!]!
     orderedProductsByUser(user:ID!): [UsersOnProducts!]!
+    orderedProductsByUsers: [UsersOnProducts!]!
 }
 type Mutation{
     signUp(name:String!,phone:String!,email:String!,password:String!,role:String!):User!
@@ -19,7 +22,7 @@ type Mutation{
     house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
     steed(pointA:String!,pointB:String!,description:String!,user:ID!): Steed!
     product(name:String!,description:String!,illustration:Upload!,price:Float!): Product!
-    orderPlate(user:ID!,plat:ID!,localisation:String!): UsersOnPlates!
+    orderPlate(user:ID!,plat:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnPlates!
     orderHouse(user:ID!,house:ID!): UsersOnHouses!
     orderProduct(user:ID!,product:ID!,localisation:String!): UsersOnProducts!
 }
@@ -41,6 +44,8 @@ type UsersOnPlates{
     user: User!
     plat : Plat!
     localisation: String!
+    nombre : Int!
+    phone: String!
     date: String!
     ordered: Boolean!
 }

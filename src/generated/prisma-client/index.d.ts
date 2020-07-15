@@ -415,6 +415,10 @@ export type UsersOnPlatesOrderByInput =
   | "localisation_DESC"
   | "ordered_ASC"
   | "ordered_DESC"
+  | "nombre_ASC"
+  | "nombre_DESC"
+  | "phone_ASC"
+  | "phone_DESC"
   | "date_ASC"
   | "date_DESC";
 
@@ -615,6 +619,28 @@ export interface UsersOnPlatesWhereInput {
   localisation_not_ends_with?: Maybe<String>;
   ordered?: Maybe<Boolean>;
   ordered_not?: Maybe<Boolean>;
+  nombre?: Maybe<Int>;
+  nombre_not?: Maybe<Int>;
+  nombre_in?: Maybe<Int[] | Int>;
+  nombre_not_in?: Maybe<Int[] | Int>;
+  nombre_lt?: Maybe<Int>;
+  nombre_lte?: Maybe<Int>;
+  nombre_gt?: Maybe<Int>;
+  nombre_gte?: Maybe<Int>;
+  phone?: Maybe<String>;
+  phone_not?: Maybe<String>;
+  phone_in?: Maybe<String[] | String>;
+  phone_not_in?: Maybe<String[] | String>;
+  phone_lt?: Maybe<String>;
+  phone_lte?: Maybe<String>;
+  phone_gt?: Maybe<String>;
+  phone_gte?: Maybe<String>;
+  phone_contains?: Maybe<String>;
+  phone_not_contains?: Maybe<String>;
+  phone_starts_with?: Maybe<String>;
+  phone_not_starts_with?: Maybe<String>;
+  phone_ends_with?: Maybe<String>;
+  phone_not_ends_with?: Maybe<String>;
   date?: Maybe<DateTimeInput>;
   date_not?: Maybe<DateTimeInput>;
   date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1118,6 +1144,8 @@ export interface UsersOnPlatesCreateWithoutPlatInput {
   user: UserCreateOneWithoutPlatesInput;
   localisation: String;
   ordered: Boolean;
+  nombre: Int;
+  phone: String;
 }
 
 export interface UserCreateOneWithoutPlatesInput {
@@ -1248,6 +1276,8 @@ export interface UsersOnPlatesUpdateWithoutPlatDataInput {
   user?: Maybe<UserUpdateOneRequiredWithoutPlatesInput>;
   localisation?: Maybe<String>;
   ordered?: Maybe<Boolean>;
+  nombre?: Maybe<Int>;
+  phone?: Maybe<String>;
 }
 
 export interface UserUpdateOneRequiredWithoutPlatesInput {
@@ -1667,6 +1697,28 @@ export interface UsersOnPlatesScalarWhereInput {
   localisation_not_ends_with?: Maybe<String>;
   ordered?: Maybe<Boolean>;
   ordered_not?: Maybe<Boolean>;
+  nombre?: Maybe<Int>;
+  nombre_not?: Maybe<Int>;
+  nombre_in?: Maybe<Int[] | Int>;
+  nombre_not_in?: Maybe<Int[] | Int>;
+  nombre_lt?: Maybe<Int>;
+  nombre_lte?: Maybe<Int>;
+  nombre_gt?: Maybe<Int>;
+  nombre_gte?: Maybe<Int>;
+  phone?: Maybe<String>;
+  phone_not?: Maybe<String>;
+  phone_in?: Maybe<String[] | String>;
+  phone_not_in?: Maybe<String[] | String>;
+  phone_lt?: Maybe<String>;
+  phone_lte?: Maybe<String>;
+  phone_gt?: Maybe<String>;
+  phone_gte?: Maybe<String>;
+  phone_contains?: Maybe<String>;
+  phone_not_contains?: Maybe<String>;
+  phone_starts_with?: Maybe<String>;
+  phone_not_starts_with?: Maybe<String>;
+  phone_ends_with?: Maybe<String>;
+  phone_not_ends_with?: Maybe<String>;
   date?: Maybe<DateTimeInput>;
   date_not?: Maybe<DateTimeInput>;
   date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1688,6 +1740,8 @@ export interface UsersOnPlatesUpdateManyWithWhereNestedInput {
 export interface UsersOnPlatesUpdateManyDataInput {
   localisation?: Maybe<String>;
   ordered?: Maybe<Boolean>;
+  nombre?: Maybe<Int>;
+  phone?: Maybe<String>;
 }
 
 export interface PlatUpdateManyMutationInput {
@@ -1751,6 +1805,8 @@ export interface UsersOnPlatesCreateWithoutUserInput {
   plat: PlatCreateOneWithoutUsersInput;
   localisation: String;
   ordered: Boolean;
+  nombre: Int;
+  phone: String;
 }
 
 export interface PlatCreateOneWithoutUsersInput {
@@ -1832,6 +1888,8 @@ export interface UsersOnPlatesUpdateWithoutUserDataInput {
   plat?: Maybe<PlatUpdateOneRequiredWithoutUsersInput>;
   localisation?: Maybe<String>;
   ordered?: Maybe<Boolean>;
+  nombre?: Maybe<Int>;
+  phone?: Maybe<String>;
 }
 
 export interface PlatUpdateOneRequiredWithoutUsersInput {
@@ -1967,6 +2025,8 @@ export interface UsersOnPlatesCreateInput {
   plat: PlatCreateOneWithoutUsersInput;
   localisation: String;
   ordered: Boolean;
+  nombre: Int;
+  phone: String;
 }
 
 export interface UsersOnPlatesUpdateInput {
@@ -1974,11 +2034,15 @@ export interface UsersOnPlatesUpdateInput {
   plat?: Maybe<PlatUpdateOneRequiredWithoutUsersInput>;
   localisation?: Maybe<String>;
   ordered?: Maybe<Boolean>;
+  nombre?: Maybe<Int>;
+  phone?: Maybe<String>;
 }
 
 export interface UsersOnPlatesUpdateManyMutationInput {
   localisation?: Maybe<String>;
   ordered?: Maybe<Boolean>;
+  nombre?: Maybe<Int>;
+  phone?: Maybe<String>;
 }
 
 export interface UsersOnProductsCreateInput {
@@ -2342,6 +2406,8 @@ export interface UsersOnPlates {
   id: ID_Output;
   localisation: String;
   ordered: Boolean;
+  nombre: Int;
+  phone: String;
   date?: DateTimeOutput;
 }
 
@@ -2353,6 +2419,8 @@ export interface UsersOnPlatesPromise
   plat: <T = PlatPromise>() => T;
   localisation: () => Promise<String>;
   ordered: () => Promise<Boolean>;
+  nombre: () => Promise<Int>;
+  phone: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -2364,6 +2432,8 @@ export interface UsersOnPlatesSubscription
   plat: <T = PlatSubscription>() => T;
   localisation: () => Promise<AsyncIterator<String>>;
   ordered: () => Promise<AsyncIterator<Boolean>>;
+  nombre: () => Promise<AsyncIterator<Int>>;
+  phone: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
@@ -2375,6 +2445,8 @@ export interface UsersOnPlatesNullablePromise
   plat: <T = PlatPromise>() => T;
   localisation: () => Promise<String>;
   ordered: () => Promise<Boolean>;
+  nombre: () => Promise<Int>;
+  phone: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -3448,6 +3520,8 @@ export interface UsersOnPlatesPreviousValues {
   id: ID_Output;
   localisation: String;
   ordered: Boolean;
+  nombre: Int;
+  phone: String;
   date?: DateTimeOutput;
 }
 
@@ -3457,6 +3531,8 @@ export interface UsersOnPlatesPreviousValuesPromise
   id: () => Promise<ID_Output>;
   localisation: () => Promise<String>;
   ordered: () => Promise<Boolean>;
+  nombre: () => Promise<Int>;
+  phone: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
 }
 
@@ -3466,6 +3542,8 @@ export interface UsersOnPlatesPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   localisation: () => Promise<AsyncIterator<String>>;
   ordered: () => Promise<AsyncIterator<Boolean>>;
+  nombre: () => Promise<AsyncIterator<Int>>;
+  phone: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
