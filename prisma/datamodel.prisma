@@ -61,6 +61,7 @@ type Steed{
     pointA : String!
     pointB : String!
     description: String!
+    dateCourse: DateTime!
     date : DateTime @createdAt
     ordered: Boolean!
     phone: String!

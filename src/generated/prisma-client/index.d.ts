@@ -455,6 +455,8 @@ export type SteedOrderByInput =
   | "pointB_DESC"
   | "description_ASC"
   | "description_DESC"
+  | "dateCourse_ASC"
+  | "dateCourse_DESC"
   | "date_ASC"
   | "date_DESC"
   | "ordered_ASC"
@@ -1021,6 +1023,14 @@ export interface SteedWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
+  dateCourse?: Maybe<DateTimeInput>;
+  dateCourse_not?: Maybe<DateTimeInput>;
+  dateCourse_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCourse_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCourse_lt?: Maybe<DateTimeInput>;
+  dateCourse_lte?: Maybe<DateTimeInput>;
+  dateCourse_gt?: Maybe<DateTimeInput>;
+  dateCourse_gte?: Maybe<DateTimeInput>;
   date?: Maybe<DateTimeInput>;
   date_not?: Maybe<DateTimeInput>;
   date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1286,6 +1296,7 @@ export interface SteedCreateWithoutUserInput {
   pointA: String;
   pointB: String;
   description: String;
+  dateCourse: DateTimeInput;
   ordered: Boolean;
   phone: String;
 }
@@ -1666,6 +1677,7 @@ export interface SteedUpdateWithoutUserDataInput {
   pointA?: Maybe<String>;
   pointB?: Maybe<String>;
   description?: Maybe<String>;
+  dateCourse?: Maybe<DateTimeInput>;
   ordered?: Maybe<Boolean>;
   phone?: Maybe<String>;
 }
@@ -1733,6 +1745,14 @@ export interface SteedScalarWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
+  dateCourse?: Maybe<DateTimeInput>;
+  dateCourse_not?: Maybe<DateTimeInput>;
+  dateCourse_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCourse_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCourse_lt?: Maybe<DateTimeInput>;
+  dateCourse_lte?: Maybe<DateTimeInput>;
+  dateCourse_gt?: Maybe<DateTimeInput>;
+  dateCourse_gte?: Maybe<DateTimeInput>;
   date?: Maybe<DateTimeInput>;
   date_not?: Maybe<DateTimeInput>;
   date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1771,6 +1791,7 @@ export interface SteedUpdateManyDataInput {
   pointA?: Maybe<String>;
   pointB?: Maybe<String>;
   description?: Maybe<String>;
+  dateCourse?: Maybe<DateTimeInput>;
   ordered?: Maybe<Boolean>;
   phone?: Maybe<String>;
 }
@@ -1890,6 +1911,7 @@ export interface SteedCreateInput {
   pointA: String;
   pointB: String;
   description: String;
+  dateCourse: DateTimeInput;
   ordered: Boolean;
   phone: String;
   user: UserCreateOneWithoutSteedsInput;
@@ -1947,6 +1969,7 @@ export interface SteedUpdateInput {
   pointA?: Maybe<String>;
   pointB?: Maybe<String>;
   description?: Maybe<String>;
+  dateCourse?: Maybe<DateTimeInput>;
   ordered?: Maybe<Boolean>;
   phone?: Maybe<String>;
   user?: Maybe<UserUpdateOneRequiredWithoutSteedsInput>;
@@ -2048,6 +2071,7 @@ export interface SteedUpdateManyMutationInput {
   pointA?: Maybe<String>;
   pointB?: Maybe<String>;
   description?: Maybe<String>;
+  dateCourse?: Maybe<DateTimeInput>;
   ordered?: Maybe<Boolean>;
   phone?: Maybe<String>;
 }
@@ -2867,6 +2891,7 @@ export interface Steed {
   pointA: String;
   pointB: String;
   description: String;
+  dateCourse: DateTimeOutput;
   date?: DateTimeOutput;
   ordered: Boolean;
   phone: String;
@@ -2877,6 +2902,7 @@ export interface SteedPromise extends Promise<Steed>, Fragmentable {
   pointA: () => Promise<String>;
   pointB: () => Promise<String>;
   description: () => Promise<String>;
+  dateCourse: () => Promise<DateTimeOutput>;
   date: () => Promise<DateTimeOutput>;
   ordered: () => Promise<Boolean>;
   phone: () => Promise<String>;
@@ -2890,6 +2916,7 @@ export interface SteedSubscription
   pointA: () => Promise<AsyncIterator<String>>;
   pointB: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
+  dateCourse: () => Promise<AsyncIterator<DateTimeOutput>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
   ordered: () => Promise<AsyncIterator<Boolean>>;
   phone: () => Promise<AsyncIterator<String>>;
@@ -2903,6 +2930,7 @@ export interface SteedNullablePromise
   pointA: () => Promise<String>;
   pointB: () => Promise<String>;
   description: () => Promise<String>;
+  dateCourse: () => Promise<DateTimeOutput>;
   date: () => Promise<DateTimeOutput>;
   ordered: () => Promise<Boolean>;
   phone: () => Promise<String>;
@@ -3507,6 +3535,7 @@ export interface SteedPreviousValues {
   pointA: String;
   pointB: String;
   description: String;
+  dateCourse: DateTimeOutput;
   date?: DateTimeOutput;
   ordered: Boolean;
   phone: String;
@@ -3519,6 +3548,7 @@ export interface SteedPreviousValuesPromise
   pointA: () => Promise<String>;
   pointB: () => Promise<String>;
   description: () => Promise<String>;
+  dateCourse: () => Promise<DateTimeOutput>;
   date: () => Promise<DateTimeOutput>;
   ordered: () => Promise<Boolean>;
   phone: () => Promise<String>;
@@ -3531,6 +3561,7 @@ export interface SteedPreviousValuesSubscription
   pointA: () => Promise<AsyncIterator<String>>;
   pointB: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
+  dateCourse: () => Promise<AsyncIterator<DateTimeOutput>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
   ordered: () => Promise<AsyncIterator<Boolean>>;
   phone: () => Promise<AsyncIterator<String>>;
