@@ -23,13 +23,13 @@ type Mutation{
     house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
     steed(pointA:String!,pointB:String!,dateCourse:String!,description:String!,user:ID!,phone:String!): Steed!
     product(name:String!,description:String!,illustration:Upload!,price:Float!): Product!
-    orderPlate(user:ID!,plat:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnPlates!
-    orderHouse(user:ID!,house:ID!,phone:String!): UsersOnHouses!
     unOrderPlat(usersOnPlates: ID!): UsersOnPlates!
     unOrderSteed(steed:ID!): Steed!
     unOrderHouse(usersOnHouses: ID!): UsersOnHouses!
     unOrderProduct(usersOnProducts: ID!): UsersOnProducts!
-    orderProduct(user:ID!,product:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnProducts!
+    orderHouses(user:ID!,houses:[ID!]!,phone:String!): UsersOnHouses!
+    orderPlates(user:ID!,plats:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnPlates!
+    orderProducts(user:ID!,products:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnProducts!
 }
 type User{
     id: ID! 

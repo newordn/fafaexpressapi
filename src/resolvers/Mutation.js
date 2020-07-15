@@ -46,19 +46,28 @@ const product = async (parent,args,context,info)=>{
     const product = await context.prisma.createProduct({...args,illustration:illustration.path})
     return product
 }
-const orderPlate = async (parent,args,context,info)=>{
-    console.log('order a plate mutation')
-    const usersOnPlates = await context.prisma.createUsersOnPlates({...args,ordered:true,user:{connect:{id:args.user}},plat:{connect:{id:args.plat}}})
+const orderPlates = async (parent,args,context,info)=>{
+    console.log('order plates mutation')
+    let usersOnPlates
+    args.plats.map(async (plat,i)=>{
+     usersOnPlates = await context.prisma.createUsersOnPlates({...args,ordered:true,user:{connect:{id:args.user}},plat:{connect:{id:plat},nombre:args.nombre[i]}})
+    })
     return usersOnPlates
 }
-const orderHouse = async (parent,args,context,info)=>{
-    console.log('order a house mutation')
-    const usersOnHouses = await context.prisma.createUsersOnHouses({...args,ordered:true,user:{connect:{id:args.user}},house:{connect:{id:args.house}}})
-    return usersOnHouses
+const orderHouses = async (parent,args,context,info)=>{
+    console.log('order houses mutation')
+    let usersOnHouses
+    args.houses.map(async (house,i)=>{
+     usersOnHouses = await context.prisma.createUsersOnHouses({...args,ordered:true,user:{connect:{id:args.user}},house:{connect:{id:house}}})
+    })
+     return usersOnHouses
 }
-const orderProduct = async (parent,args,context,info)=>{
-    console.log('order a product mutation')
-    const usersOnProducts = await context.prisma.createUsersOnProducts({...args,ordered:true,user:{connect:{id:args.user}},product:{connect:{id:args.product}}})
+const orderProducts = async (parent,args,context,info)=>{
+    console.log('order products mutation')
+    let  usersOnProducts
+    args.products.map(async (product,i)=>{
+    usersOnProducts = await context.prisma.createUsersOnProducts({...args,ordered:true,user:{connect:{id:args.user}},product:{connect:{id:product}},nombre:args.nombre[i]})
+})
     return usersOnProducts
 }
 const unOrderPlat = async (parent,args,context,info)=>{
@@ -88,9 +97,9 @@ module.exports={
     house,
     steed,
     product,
-    orderPlate,
-    orderHouse,
-    orderProduct,
+    orderPlates,
+    orderHouses,
+    orderProducts,
     unOrderPlat,
     unOrderHouse,
     unOrderProduct,
