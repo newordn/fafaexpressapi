@@ -9,12 +9,14 @@ const Mutation = require('./resolvers/Mutation')
 const UsersOnPlates = require('./resolvers/UsersOnPlates')
 const UsersOnProducts = require('./resolvers/UsersOnProducts')
 const UsersOnHouses = require('./resolvers/UsersOnHouses')
+const Steed = require('./resolvers/Steed')
 const resolvers = {
     Query,
     Mutation,
     UsersOnPlates,
     UsersOnHouses,
     UsersOnProducts,
+    Steed,
     Upload: GraphQLUpload
 }
 const schema = makeExecutableSchema({typeDefs,resolvers})
