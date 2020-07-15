@@ -728,7 +728,7 @@ type Steed {
   pointA: String!
   pointB: String!
   description: String!
-  dateCourse: DateTime!
+  dateCourse: String!
   date: DateTime
   ordered: Boolean!
   phone: String!
@@ -746,7 +746,7 @@ input SteedCreateInput {
   pointA: String!
   pointB: String!
   description: String!
-  dateCourse: DateTime!
+  dateCourse: String!
   ordered: Boolean!
   phone: String!
   user: UserCreateOneWithoutSteedsInput!
@@ -762,7 +762,7 @@ input SteedCreateWithoutUserInput {
   pointA: String!
   pointB: String!
   description: String!
-  dateCourse: DateTime!
+  dateCourse: String!
   ordered: Boolean!
   phone: String!
 }
@@ -796,7 +796,7 @@ type SteedPreviousValues {
   pointA: String!
   pointB: String!
   description: String!
-  dateCourse: DateTime!
+  dateCourse: String!
   date: DateTime
   ordered: Boolean!
   phone: String!
@@ -859,14 +859,20 @@ input SteedScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  dateCourse: DateTime
-  dateCourse_not: DateTime
-  dateCourse_in: [DateTime!]
-  dateCourse_not_in: [DateTime!]
-  dateCourse_lt: DateTime
-  dateCourse_lte: DateTime
-  dateCourse_gt: DateTime
-  dateCourse_gte: DateTime
+  dateCourse: String
+  dateCourse_not: String
+  dateCourse_in: [String!]
+  dateCourse_not_in: [String!]
+  dateCourse_lt: String
+  dateCourse_lte: String
+  dateCourse_gt: String
+  dateCourse_gte: String
+  dateCourse_contains: String
+  dateCourse_not_contains: String
+  dateCourse_starts_with: String
+  dateCourse_not_starts_with: String
+  dateCourse_ends_with: String
+  dateCourse_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
@@ -918,7 +924,7 @@ input SteedUpdateInput {
   pointA: String
   pointB: String
   description: String
-  dateCourse: DateTime
+  dateCourse: String
   ordered: Boolean
   phone: String
   user: UserUpdateOneRequiredWithoutSteedsInput
@@ -928,7 +934,7 @@ input SteedUpdateManyDataInput {
   pointA: String
   pointB: String
   description: String
-  dateCourse: DateTime
+  dateCourse: String
   ordered: Boolean
   phone: String
 }
@@ -937,7 +943,7 @@ input SteedUpdateManyMutationInput {
   pointA: String
   pointB: String
   description: String
-  dateCourse: DateTime
+  dateCourse: String
   ordered: Boolean
   phone: String
 }
@@ -963,7 +969,7 @@ input SteedUpdateWithoutUserDataInput {
   pointA: String
   pointB: String
   description: String
-  dateCourse: DateTime
+  dateCourse: String
   ordered: Boolean
   phone: String
 }
@@ -1036,14 +1042,20 @@ input SteedWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  dateCourse: DateTime
-  dateCourse_not: DateTime
-  dateCourse_in: [DateTime!]
-  dateCourse_not_in: [DateTime!]
-  dateCourse_lt: DateTime
-  dateCourse_lte: DateTime
-  dateCourse_gt: DateTime
-  dateCourse_gte: DateTime
+  dateCourse: String
+  dateCourse_not: String
+  dateCourse_in: [String!]
+  dateCourse_not_in: [String!]
+  dateCourse_lt: String
+  dateCourse_lte: String
+  dateCourse_gt: String
+  dateCourse_gte: String
+  dateCourse_contains: String
+  dateCourse_not_contains: String
+  dateCourse_starts_with: String
+  dateCourse_not_starts_with: String
+  dateCourse_ends_with: String
+  dateCourse_not_ends_with: String
   date: DateTime
   date_not: DateTime
   date_in: [DateTime!]
