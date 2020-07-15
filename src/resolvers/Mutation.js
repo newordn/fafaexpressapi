@@ -61,6 +61,21 @@ const orderProduct = async (parent,args,context,info)=>{
     const usersOnProducts = await context.prisma.createUsersOnProducts({...args,ordered:true,user:{connect:{id:args.user}},product:{connect:{id:args.product}}})
     return usersOnProducts
 }
+const unOrderPlat = async (parent,args,context,info)=>{
+    console.log('un order a plate mutation')
+    const usersOnPlates = await context.prisma.updateUsersOnPlates({where:{id:args.usersOnPlates},data:{ordered:false}})
+    return usersOnPlates
+}
+const unOrderHouse = async (parent,args,context,info)=>{
+    console.log('un order a house mutation')
+    const usersOnHouses = await context.prisma.updateUsersOnHouses({where:{id:args.usersOnHouses},data:{ordered:false}})
+    return usersOnHouses
+}
+const unOrderProduct = async (parent,args,context,info)=>{
+    console.log('un order a house mutation')
+    const usersOnProducts = await context.prisma.updateUsersOnProducts({where:{id:args.usersOnProducts},data:{ordered:false}})
+    return usersOnProducts
+}
 module.exports={
     signIn,
     signUp,
@@ -70,5 +85,8 @@ module.exports={
     product,
     orderPlate,
     orderHouse,
-    orderProduct
+    orderProduct,
+    unOrderPlat,
+    unOrderHouse,
+    unOrderProduct
 }
