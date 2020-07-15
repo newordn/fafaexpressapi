@@ -25,8 +25,8 @@ type Mutation{
     orderPlate(user:ID!,plat:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnPlates!
     orderHouse(user:ID!,house:ID!,phone:String!): UsersOnHouses!
     unOrderPlat(usersOnPlates: ID!): UsersOnPlates!
-    unOrderHouse(UsersOnHouses: ID!): UsersOnHouses!
-    unOrderProduct(UsersOnProducts: ID!): UsersOnProducts!
+    unOrderHouse(usersOnHouses: ID!): UsersOnHouses!
+    unOrderProduct(usersOnProducts: ID!): UsersOnProducts!
     orderProduct(user:ID!,product:ID!,localisation:String!,phone:String!,nombre:Int!): UsersOnProducts!
 }
 type User{
