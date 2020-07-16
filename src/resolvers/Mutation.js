@@ -95,9 +95,12 @@ const unOrderSteed = async (parent,args,context,info)=>{
     return unOrderSteed
 }
 const updateItemText= async (parent,args,context,info)=>{
-    console.log('updateItemText mutation',args.field,args.item,args.value)
+    
     let update
     let data = {}
+    if(args.field!=="price")
+    data[args.field]= parseFloat(args.value)
+    else
     data[args.field]= args.value 
     update = await context.prisma.plat({id:args.item})
     if(!update){ 
