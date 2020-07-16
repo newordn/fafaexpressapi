@@ -98,7 +98,7 @@ const updateItemText= async (parent,args,context,info)=>{
     
     let update
     let data = {}
-    if(args.field!=="price")
+    if(args.field==="price")
     data[args.field]= parseFloat(args.value)
     else
     data[args.field]= args.value 
