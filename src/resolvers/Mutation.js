@@ -95,7 +95,7 @@ const unOrderSteed = async (parent,args,context,info)=>{
     return unOrderSteed
 }
 const updateItemText= async (parent,args,context,info)=>{
-    console.log('updateItemText mutation')
+    console.log('updateItemText mutation',args.field,args.item,args.value)
     let update
     let data = {}
     data[args.field]= args.value 
@@ -103,14 +103,17 @@ const updateItemText= async (parent,args,context,info)=>{
     if(!update){ 
         update = await context.prisma.product({id:args.item})
         if(!update){
-            update = await context.prisma.updateHouse({where:{id:args.item},data})
+            console.log('updating house')
+             await context.prisma.updateHouse({where:{id:args.item},data})
         }
         else{ // it's a product
-            context.prisma.updateProduct({where:{id:args.item},data})
+        console.log('updating product')
+            await context.prisma.updateProduct({where:{id:args.item},data})
         }
     }
     else{ // it's a plate
-        context.prisma.updatePlat({where:{id:args.item},data})
+    console.log('updating plate')
+        await context.prisma.updatePlat({where:{id:args.item},data})
     }
     
     return args.field
