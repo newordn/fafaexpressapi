@@ -50,7 +50,7 @@ const orderPlates = async (parent,args,context,info)=>{
     console.log('order plates mutation')
     let usersOnPlates
     args.plats.map(async (plat,i)=>{
-     usersOnPlates = await context.prisma.createUsersOnPlates({...args,ordered:true,user:{connect:{id:args.user}},plat:{connect:{id:plat},nombre:args.nombre[i]}})
+     usersOnPlates = await context.prisma.createUsersOnPlates({localisation:args.localisation,phone:args.phone,ordered:true,user:{connect:{id:args.user}},plat:{connect:{id:plat},nombre:args.nombre[i]}})
     })
     return usersOnPlates
 }
@@ -58,7 +58,7 @@ const orderHouses = async (parent,args,context,info)=>{
     console.log('order houses mutation')
     let usersOnHouses
     args.houses.map(async (house,i)=>{
-     usersOnHouses = await context.prisma.createUsersOnHouses({...args,ordered:true,user:{connect:{id:args.user}},house:{connect:{id:house}}})
+     usersOnHouses = await context.prisma.createUsersOnHouses({phone:args.phone,ordered:true,user:{connect:{id:args.user}},house:{connect:{id:house}}})
     })
      return usersOnHouses
 }
@@ -66,7 +66,7 @@ const orderProducts = async (parent,args,context,info)=>{
     console.log('order products mutation')
     let  usersOnProducts
     args.products.map(async (product,i)=>{
-    usersOnProducts = await context.prisma.createUsersOnProducts({...args,ordered:true,user:{connect:{id:args.user}},product:{connect:{id:product}},nombre:args.nombre[i]})
+    usersOnProducts = await context.prisma.createUsersOnProducts({localisation:args.localisation,phone:args.phone,ordered:true,user:{connect:{id:args.user}},product:{connect:{id:product}},nombre:args.nombre[i]})
 })
     return usersOnProducts
 }
