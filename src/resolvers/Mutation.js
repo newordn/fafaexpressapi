@@ -50,7 +50,7 @@ const orderPlates = async (parent,args,context,info)=>{
     console.log('order plates mutation')
     let usersOnPlates
     args.plats.map(async (plat,i)=>{
-     usersOnPlates = await context.prisma.createUsersOnPlates({localisation:args.localisation,phone:args.phone,ordered:true,user:{connect:{id:args.user}},plat:{connect:{id:plat},nombre:parseInt(args.nombre[i])}})
+     usersOnPlates = await context.prisma.createUsersOnPlates({localisation:args.localisation,phone:args.phone,ordered:true,user:{connect:{id:args.user}},plat:{connect:{id:plat}},nombre:parseInt(args.nombre[i])})
     })
     return usersOnPlates
 }
