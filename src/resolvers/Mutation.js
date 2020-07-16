@@ -98,10 +98,8 @@ const updateItemText= async (parent,args,context,info)=>{
     
     let update
     let data = {}
-    if(args.field==="price")
-    data[args.field]= parseFloat(args.value)
-    else
-    data[args.field]= args.value 
+    
+    data[args.field]= args.field==="price"?parseFloat(args.value):args.value
     update = await context.prisma.plat({id:args.item})
     if(!update){ 
         update = await context.prisma.product({id:args.item})
