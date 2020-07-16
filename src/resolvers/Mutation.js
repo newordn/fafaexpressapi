@@ -99,7 +99,7 @@ const updateItemText= async (parent,args,context,info)=>{
     let update
     let data = {}
     data[args.field]= args.value 
-    update = await context.prisma.updateSteed({where:{id:args.item},data})
+    update = await context.prisma.updatePlat({where:{id:args.item},data})
     if(!update){
         update = await context.prisma.updateProduct({where:{id:args.item},data})
     }
