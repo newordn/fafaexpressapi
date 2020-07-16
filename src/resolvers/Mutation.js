@@ -102,10 +102,11 @@ const updateItemText= async (parent,args,context,info)=>{
     update = await context.prisma.updatePlat({where:{id:args.item},data})
     if(!update){
         update = await context.prisma.updateProduct({where:{id:args.item},data})
+        if(!update){
+            update = await context.prisma.updateHouse({where:{id:args.item},data})
+        }
     }
-    else{
-        update = await context.prisma.updateHouse({where:{id:args.item},data})
-    }
+    
     return args.field
 }
 module.exports={
