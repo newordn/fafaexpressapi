@@ -27,9 +27,9 @@ type Mutation{
     unOrderSteed(steed:ID!): Steed!
     unOrderHouse(usersOnHouses: ID!): UsersOnHouses!
     unOrderProduct(usersOnProducts: ID!): UsersOnProducts!
-    orderHouses(user:ID!,houses:[ID!]!,phone:String!): UsersOnHouses!
-    orderPlates(user:ID!,plats:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnPlates!
-    orderProducts(user:ID!,products:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnProducts!
+    orderHouses(user:ID!,houses:[ID!]!,phone:String!): UsersOnHouses
+    orderPlates(user:ID!,plats:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnPlates
+    orderProducts(user:ID!,products:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnProducts
 }
 type User{
     id: ID! 
