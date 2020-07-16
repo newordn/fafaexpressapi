@@ -94,6 +94,20 @@ const unOrderSteed = async (parent,args,context,info)=>{
     const unOrderSteed = await context.prisma.updateSteed({where:{id:args.steed},data:{ordered:false}})
     return unOrderSteed
 }
+const updateItemText= async (parent,args,context,info)=>{
+    console.log('updateItemText mutation')
+    let update
+    let data = {}
+    data[args.field]= args.value 
+    update = await context.prisma.updateSteed({where:{id:args.item},data})
+    if(!update){
+        update = await context.prisma.updateProduct({where:{id:args.item},data})
+    }
+    else{
+        update = await context.prisma.updateHouse({where:{id:args.item},data})
+    }
+    return args.field
+}
 module.exports={
     signIn,
     signUp,
@@ -107,5 +121,6 @@ module.exports={
     unOrderPlat,
     unOrderHouse,
     unOrderProduct,
-    unOrderSteed
+    unOrderSteed,
+    updateItemText
 }

@@ -30,6 +30,7 @@ type Mutation{
     orderHouses(user:ID!,houses:[ID!]!,phone:String!): UsersOnHouses
     orderPlates(user:ID!,plats:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnPlates
     orderProducts(user:ID!,products:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnProducts
+    updateItemText(item:ID!,field:String!,value:String!): String!
 }
 type User{
     id: ID! 
