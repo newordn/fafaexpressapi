@@ -163,7 +163,7 @@ const archived = async (parent,args,context,info)=>{
         await context.prisma.updatePlat({where:{id:args.item},data})
     }
     
-    return data.illustration
+    return args.archived
 }
 
 module.exports={
