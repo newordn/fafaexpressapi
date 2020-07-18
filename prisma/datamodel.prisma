@@ -47,6 +47,7 @@ type Plat{
     price: Float!
     date : DateTime @createdAt
     users : [UsersOnPlates!]
+    archived: Boolean!
 }
 type House{
     id: ID! @id
@@ -55,6 +56,7 @@ type House{
     localisation: String!
     price : Float!
     date : DateTime @createdAt
+    archived: Boolean!
 }
 type Steed{
     id : ID! @id
@@ -74,5 +76,5 @@ type Product{
     illustration: String!
     price: Float!
     date : DateTime @createdAt
-
+    archived: Boolean!
 }

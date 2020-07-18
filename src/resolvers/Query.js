@@ -11,17 +11,17 @@ const users = async (parent,args,context,info)=>{
 }
 const plates = async (parent,args,context,info)=>{
     console.log('plates query')
-    const plates = await context.prisma.plats({orderBy:'id_DESC'})
+    const plates = await context.prisma.plats({orderBy:'id_DESC',where:{archived:false}})
     return plates
 }
 const houses = async (parent,args,context,info)=>{
     console.log('houses query')
-    const houses = await context.prisma.houses({orderBy:'id_DESC'})
+    const houses = await context.prisma.houses({orderBy:'id_DESC',where:{archived:false}})
     return houses
 }
 const products = async (parent,args,context,info)=>{
     console.log('products query')
-    const products = await context.prisma.products({orderBy:'id_DESC'})
+    const products = await context.prisma.products({orderBy:'id_DESC',where:{archived:false}})
     return products
 }
 const orderedPlatesByUser = async (parent,args,context,info)=>{

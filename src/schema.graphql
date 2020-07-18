@@ -64,6 +64,7 @@ type Plat{
     price: Float!
     date : String!
     users : [UsersOnPlates!]
+    archived: Boolean!
 }
 type UsersOnHouses{
     id : ID! 
@@ -81,6 +82,7 @@ type House{
     price : Float!
     date : String!
     users : [UsersOnHouses!]
+    archived: Boolean!
 }
 
 type Steed{
@@ -93,6 +95,7 @@ type Steed{
     ordered: Boolean!
     phone: String!
     user : User!
+    
 }
 type UsersOnProducts{
     id : ID! 
@@ -112,6 +115,7 @@ type Product{
     price: Float!
     date : String!
     users : [UsersOnProducts!]
+    archived: Boolean!
 }
 `
 module.exports={

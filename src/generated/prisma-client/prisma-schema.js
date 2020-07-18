@@ -48,6 +48,7 @@ type House {
   localisation: String!
   price: Float!
   date: DateTime
+  archived: Boolean!
 }
 
 type HouseConnection {
@@ -62,6 +63,7 @@ input HouseCreateInput {
   description: String
   localisation: String!
   price: Float!
+  archived: Boolean!
 }
 
 input HouseCreateOneInput {
@@ -87,6 +89,8 @@ enum HouseOrderByInput {
   price_DESC
   date_ASC
   date_DESC
+  archived_ASC
+  archived_DESC
 }
 
 type HousePreviousValues {
@@ -96,6 +100,7 @@ type HousePreviousValues {
   localisation: String!
   price: Float!
   date: DateTime
+  archived: Boolean!
 }
 
 type HouseSubscriptionPayload {
@@ -121,6 +126,7 @@ input HouseUpdateDataInput {
   description: String
   localisation: String
   price: Float
+  archived: Boolean
 }
 
 input HouseUpdateInput {
@@ -128,6 +134,7 @@ input HouseUpdateInput {
   description: String
   localisation: String
   price: Float
+  archived: Boolean
 }
 
 input HouseUpdateManyMutationInput {
@@ -135,6 +142,7 @@ input HouseUpdateManyMutationInput {
   description: String
   localisation: String
   price: Float
+  archived: Boolean
 }
 
 input HouseUpdateOneRequiredInput {
@@ -222,6 +230,8 @@ input HouseWhereInput {
   date_lte: DateTime
   date_gt: DateTime
   date_gte: DateTime
+  archived: Boolean
+  archived_not: Boolean
   AND: [HouseWhereInput!]
   OR: [HouseWhereInput!]
   NOT: [HouseWhereInput!]
@@ -309,6 +319,7 @@ type Plat {
   price: Float!
   date: DateTime
   users(where: UsersOnPlatesWhereInput, orderBy: UsersOnPlatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnPlates!]
+  archived: Boolean!
 }
 
 type PlatConnection {
@@ -324,6 +335,7 @@ input PlatCreateInput {
   description: String!
   price: Float!
   users: UsersOnPlatesCreateManyWithoutPlatInput
+  archived: Boolean!
 }
 
 input PlatCreateOneWithoutUsersInput {
@@ -337,6 +349,7 @@ input PlatCreateWithoutUsersInput {
   illustration: String!
   description: String!
   price: Float!
+  archived: Boolean!
 }
 
 type PlatEdge {
@@ -357,6 +370,8 @@ enum PlatOrderByInput {
   price_DESC
   date_ASC
   date_DESC
+  archived_ASC
+  archived_DESC
 }
 
 type PlatPreviousValues {
@@ -366,6 +381,7 @@ type PlatPreviousValues {
   description: String!
   price: Float!
   date: DateTime
+  archived: Boolean!
 }
 
 type PlatSubscriptionPayload {
@@ -392,6 +408,7 @@ input PlatUpdateInput {
   description: String
   price: Float
   users: UsersOnPlatesUpdateManyWithoutPlatInput
+  archived: Boolean
 }
 
 input PlatUpdateManyMutationInput {
@@ -399,6 +416,7 @@ input PlatUpdateManyMutationInput {
   illustration: String
   description: String
   price: Float
+  archived: Boolean
 }
 
 input PlatUpdateOneRequiredWithoutUsersInput {
@@ -413,6 +431,7 @@ input PlatUpdateWithoutUsersDataInput {
   illustration: String
   description: String
   price: Float
+  archived: Boolean
 }
 
 input PlatUpsertWithoutUsersInput {
@@ -496,6 +515,8 @@ input PlatWhereInput {
   users_every: UsersOnPlatesWhereInput
   users_some: UsersOnPlatesWhereInput
   users_none: UsersOnPlatesWhereInput
+  archived: Boolean
+  archived_not: Boolean
   AND: [PlatWhereInput!]
   OR: [PlatWhereInput!]
   NOT: [PlatWhereInput!]
@@ -512,6 +533,7 @@ type Product {
   illustration: String!
   price: Float!
   date: DateTime
+  archived: Boolean!
 }
 
 type ProductConnection {
@@ -526,6 +548,7 @@ input ProductCreateInput {
   description: String!
   illustration: String!
   price: Float!
+  archived: Boolean!
 }
 
 input ProductCreateOneInput {
@@ -551,6 +574,8 @@ enum ProductOrderByInput {
   price_DESC
   date_ASC
   date_DESC
+  archived_ASC
+  archived_DESC
 }
 
 type ProductPreviousValues {
@@ -560,6 +585,7 @@ type ProductPreviousValues {
   illustration: String!
   price: Float!
   date: DateTime
+  archived: Boolean!
 }
 
 type ProductSubscriptionPayload {
@@ -585,6 +611,7 @@ input ProductUpdateDataInput {
   description: String
   illustration: String
   price: Float
+  archived: Boolean
 }
 
 input ProductUpdateInput {
@@ -592,6 +619,7 @@ input ProductUpdateInput {
   description: String
   illustration: String
   price: Float
+  archived: Boolean
 }
 
 input ProductUpdateManyMutationInput {
@@ -599,6 +627,7 @@ input ProductUpdateManyMutationInput {
   description: String
   illustration: String
   price: Float
+  archived: Boolean
 }
 
 input ProductUpdateOneRequiredInput {
@@ -686,6 +715,8 @@ input ProductWhereInput {
   date_lte: DateTime
   date_gt: DateTime
   date_gte: DateTime
+  archived: Boolean
+  archived_not: Boolean
   AND: [ProductWhereInput!]
   OR: [ProductWhereInput!]
   NOT: [ProductWhereInput!]

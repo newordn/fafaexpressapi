@@ -406,7 +406,9 @@ export type HouseOrderByInput =
   | "price_ASC"
   | "price_DESC"
   | "date_ASC"
-  | "date_DESC";
+  | "date_DESC"
+  | "archived_ASC"
+  | "archived_DESC";
 
 export type UsersOnPlatesOrderByInput =
   | "id_ASC"
@@ -476,7 +478,9 @@ export type PlatOrderByInput =
   | "price_ASC"
   | "price_DESC"
   | "date_ASC"
-  | "date_DESC";
+  | "date_DESC"
+  | "archived_ASC"
+  | "archived_DESC";
 
 export type ProductOrderByInput =
   | "id_ASC"
@@ -490,7 +494,9 @@ export type ProductOrderByInput =
   | "price_ASC"
   | "price_DESC"
   | "date_ASC"
-  | "date_DESC";
+  | "date_DESC"
+  | "archived_ASC"
+  | "archived_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -587,6 +593,8 @@ export interface HouseWhereInput {
   date_lte?: Maybe<DateTimeInput>;
   date_gt?: Maybe<DateTimeInput>;
   date_gte?: Maybe<DateTimeInput>;
+  archived?: Maybe<Boolean>;
+  archived_not?: Maybe<Boolean>;
   AND?: Maybe<HouseWhereInput[] | HouseWhereInput>;
   OR?: Maybe<HouseWhereInput[] | HouseWhereInput>;
   NOT?: Maybe<HouseWhereInput[] | HouseWhereInput>;
@@ -961,6 +969,8 @@ export interface ProductWhereInput {
   date_lte?: Maybe<DateTimeInput>;
   date_gt?: Maybe<DateTimeInput>;
   date_gte?: Maybe<DateTimeInput>;
+  archived?: Maybe<Boolean>;
+  archived_not?: Maybe<Boolean>;
   AND?: Maybe<ProductWhereInput[] | ProductWhereInput>;
   OR?: Maybe<ProductWhereInput[] | ProductWhereInput>;
   NOT?: Maybe<ProductWhereInput[] | ProductWhereInput>;
@@ -1143,6 +1153,8 @@ export interface PlatWhereInput {
   users_every?: Maybe<UsersOnPlatesWhereInput>;
   users_some?: Maybe<UsersOnPlatesWhereInput>;
   users_none?: Maybe<UsersOnPlatesWhereInput>;
+  archived?: Maybe<Boolean>;
+  archived_not?: Maybe<Boolean>;
   AND?: Maybe<PlatWhereInput[] | PlatWhereInput>;
   OR?: Maybe<PlatWhereInput[] | PlatWhereInput>;
   NOT?: Maybe<PlatWhereInput[] | PlatWhereInput>;
@@ -1179,6 +1191,7 @@ export interface HouseCreateInput {
   description?: Maybe<String>;
   localisation: String;
   price: Float;
+  archived: Boolean;
 }
 
 export interface HouseUpdateInput {
@@ -1186,6 +1199,7 @@ export interface HouseUpdateInput {
   description?: Maybe<String>;
   localisation?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface HouseUpdateManyMutationInput {
@@ -1193,6 +1207,7 @@ export interface HouseUpdateManyMutationInput {
   description?: Maybe<String>;
   localisation?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface PlatCreateInput {
@@ -1202,6 +1217,7 @@ export interface PlatCreateInput {
   description: String;
   price: Float;
   users?: Maybe<UsersOnPlatesCreateManyWithoutPlatInput>;
+  archived: Boolean;
 }
 
 export interface UsersOnPlatesCreateManyWithoutPlatInput {
@@ -1290,6 +1306,7 @@ export interface ProductCreateInput {
   description: String;
   illustration: String;
   price: Float;
+  archived: Boolean;
 }
 
 export interface SteedCreateManyWithoutUserInput {
@@ -1313,6 +1330,7 @@ export interface PlatUpdateInput {
   description?: Maybe<String>;
   price?: Maybe<Float>;
   users?: Maybe<UsersOnPlatesUpdateManyWithoutPlatInput>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface UsersOnPlatesUpdateManyWithoutPlatInput {
@@ -1431,6 +1449,7 @@ export interface HouseUpdateDataInput {
   description?: Maybe<String>;
   localisation?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface HouseUpsertNestedInput {
@@ -1557,6 +1576,7 @@ export interface ProductUpdateDataInput {
   description?: Maybe<String>;
   illustration?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface ProductUpsertNestedInput {
@@ -1902,6 +1922,7 @@ export interface PlatUpdateManyMutationInput {
   illustration?: Maybe<String>;
   description?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface ProductUpdateInput {
@@ -1909,6 +1930,7 @@ export interface ProductUpdateInput {
   description?: Maybe<String>;
   illustration?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface ProductUpdateManyMutationInput {
@@ -1916,6 +1938,7 @@ export interface ProductUpdateManyMutationInput {
   description?: Maybe<String>;
   illustration?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface SteedCreateInput {
@@ -1975,6 +1998,7 @@ export interface PlatCreateWithoutUsersInput {
   illustration: String;
   description: String;
   price: Float;
+  archived: Boolean;
 }
 
 export interface SteedUpdateInput {
@@ -2061,6 +2085,7 @@ export interface PlatUpdateWithoutUsersDataInput {
   illustration?: Maybe<String>;
   description?: Maybe<String>;
   price?: Maybe<Float>;
+  archived?: Maybe<Boolean>;
 }
 
 export interface PlatUpsertWithoutUsersInput {
@@ -2393,6 +2418,7 @@ export interface House {
   localisation: String;
   price: Float;
   date?: DateTimeOutput;
+  archived: Boolean;
 }
 
 export interface HousePromise extends Promise<House>, Fragmentable {
@@ -2402,6 +2428,7 @@ export interface HousePromise extends Promise<House>, Fragmentable {
   localisation: () => Promise<String>;
   price: () => Promise<Float>;
   date: () => Promise<DateTimeOutput>;
+  archived: () => Promise<Boolean>;
 }
 
 export interface HouseSubscription
@@ -2413,6 +2440,7 @@ export interface HouseSubscription
   localisation: () => Promise<AsyncIterator<String>>;
   price: () => Promise<AsyncIterator<Float>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  archived: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface HouseNullablePromise
@@ -2424,6 +2452,7 @@ export interface HouseNullablePromise
   localisation: () => Promise<String>;
   price: () => Promise<Float>;
   date: () => Promise<DateTimeOutput>;
+  archived: () => Promise<Boolean>;
 }
 
 export interface HouseConnection {
@@ -2510,6 +2539,7 @@ export interface Plat {
   description: String;
   price: Float;
   date?: DateTimeOutput;
+  archived: Boolean;
 }
 
 export interface PlatPromise extends Promise<Plat>, Fragmentable {
@@ -2528,6 +2558,7 @@ export interface PlatPromise extends Promise<Plat>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  archived: () => Promise<Boolean>;
 }
 
 export interface PlatSubscription
@@ -2548,6 +2579,7 @@ export interface PlatSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  archived: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface PlatNullablePromise
@@ -2568,6 +2600,7 @@ export interface PlatNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  archived: () => Promise<Boolean>;
 }
 
 export interface UsersOnPlates {
@@ -2865,6 +2898,7 @@ export interface Product {
   illustration: String;
   price: Float;
   date?: DateTimeOutput;
+  archived: Boolean;
 }
 
 export interface ProductPromise extends Promise<Product>, Fragmentable {
@@ -2874,6 +2908,7 @@ export interface ProductPromise extends Promise<Product>, Fragmentable {
   illustration: () => Promise<String>;
   price: () => Promise<Float>;
   date: () => Promise<DateTimeOutput>;
+  archived: () => Promise<Boolean>;
 }
 
 export interface ProductSubscription
@@ -2885,6 +2920,7 @@ export interface ProductSubscription
   illustration: () => Promise<AsyncIterator<String>>;
   price: () => Promise<AsyncIterator<Float>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  archived: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface ProductNullablePromise
@@ -2896,6 +2932,7 @@ export interface ProductNullablePromise
   illustration: () => Promise<String>;
   price: () => Promise<Float>;
   date: () => Promise<DateTimeOutput>;
+  archived: () => Promise<Boolean>;
 }
 
 export interface Steed {
@@ -3381,6 +3418,7 @@ export interface HousePreviousValues {
   localisation: String;
   price: Float;
   date?: DateTimeOutput;
+  archived: Boolean;
 }
 
 export interface HousePreviousValuesPromise
@@ -3392,6 +3430,7 @@ export interface HousePreviousValuesPromise
   localisation: () => Promise<String>;
   price: () => Promise<Float>;
   date: () => Promise<DateTimeOutput>;
+  archived: () => Promise<Boolean>;
 }
 
 export interface HousePreviousValuesSubscription
@@ -3403,6 +3442,7 @@ export interface HousePreviousValuesSubscription
   localisation: () => Promise<AsyncIterator<String>>;
   price: () => Promise<AsyncIterator<Float>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  archived: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface PlatSubscriptionPayload {
@@ -3437,6 +3477,7 @@ export interface PlatPreviousValues {
   description: String;
   price: Float;
   date?: DateTimeOutput;
+  archived: Boolean;
 }
 
 export interface PlatPreviousValuesPromise
@@ -3448,6 +3489,7 @@ export interface PlatPreviousValuesPromise
   description: () => Promise<String>;
   price: () => Promise<Float>;
   date: () => Promise<DateTimeOutput>;
+  archived: () => Promise<Boolean>;
 }
 
 export interface PlatPreviousValuesSubscription
@@ -3459,6 +3501,7 @@ export interface PlatPreviousValuesSubscription
   description: () => Promise<AsyncIterator<String>>;
   price: () => Promise<AsyncIterator<Float>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  archived: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface ProductSubscriptionPayload {
@@ -3493,6 +3536,7 @@ export interface ProductPreviousValues {
   illustration: String;
   price: Float;
   date?: DateTimeOutput;
+  archived: Boolean;
 }
 
 export interface ProductPreviousValuesPromise
@@ -3504,6 +3548,7 @@ export interface ProductPreviousValuesPromise
   illustration: () => Promise<String>;
   price: () => Promise<Float>;
   date: () => Promise<DateTimeOutput>;
+  archived: () => Promise<Boolean>;
 }
 
 export interface ProductPreviousValuesSubscription
@@ -3515,6 +3560,7 @@ export interface ProductPreviousValuesSubscription
   illustration: () => Promise<AsyncIterator<String>>;
   price: () => Promise<AsyncIterator<Float>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  archived: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface SteedSubscriptionPayload {
@@ -3827,14 +3873,14 @@ DateTime scalar output type, which is always a string
 export type DateTimeOutput = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
-
-/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
 
 export type Long = string;
 
