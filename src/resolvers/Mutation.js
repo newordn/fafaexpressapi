@@ -181,5 +181,6 @@ module.exports={
     unOrderProduct,
     unOrderSteed,
     updateItemText,
-    updateItemIllustration
+    updateItemIllustration,
+    archived
 }

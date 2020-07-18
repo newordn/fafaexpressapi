@@ -7,8 +7,11 @@ type Query{
     steedsByUser(user:ID!): [Steed!]
     steedsByUsers: [Steed!]
     plates: [Plat!]!
+    platesAll: [Plat!]!
     houses: [House!]!
+    housesAll: [House!]!
     products: [Product!]!
+    productsAll: [Product!]!
     orderedPlatesByUser(user:ID!): [UsersOnPlates!]!
     orderedPlatesByUsers: [UsersOnPlates!]!
     orderedHousesByUser(user:ID!): [UsersOnHouses!]!
