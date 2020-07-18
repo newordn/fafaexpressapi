@@ -119,8 +119,9 @@ const updateItemText= async (parent,args,context,info)=>{
     
     return args.field
 }
+
 const updateItemIllustration= async (parent,args,context,info)=>{
-    console.log("updateItemIllustration")
+    console.log("updateItemIllustration mutation")
     const illustration =  await context.storeUpload(args.illustration)
     const data = {illustration:illustration.path}
     let update = await context.prisma.plat({id:args.item})
@@ -142,13 +143,36 @@ const updateItemIllustration= async (parent,args,context,info)=>{
     
     return data.illustration
 }
+const archived = async (parent,args,context,info)=>{
+    console.log("archived mutation")
+    let data = {archived:args.archived}
+    let update = await context.prisma.plat({id:args.item})
+    if(!update){ 
+        update = await context.prisma.product({id:args.item})
+        if(!update){
+            console.log('archived house')
+             await context.prisma.updateHouse({where:{id:args.item},data})
+        }
+        else{ // it's a product
+        console.log('archived product')
+            await context.prisma.updateProduct({where:{id:args.item},data})
+        }
+    }
+    else{ // it's a plate
+    console.log('archived plate')
+        await context.prisma.updatePlat({where:{id:args.item},data})
+    }
+    
+    return data.illustration
+}
+
 module.exports={
     signIn,
     signUp,
     plat,
     house,
     steed,
-    product,
+    product, 
     orderPlates,
     orderHouses,
     orderProducts,

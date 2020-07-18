@@ -32,6 +32,7 @@ type Mutation{
     orderProducts(user:ID!,products:[ID!]!,localisation:String!,phone:String!,nombre:[Int!]!): UsersOnProducts
     updateItemText(item:ID!,field:String!,value:String!): String!
     updateItemIllustration(item:ID!,illustration:Upload!): String
+    archived(item:ID!,archived:Boolean!): Boolean!
 }
 type User{
     id: ID! 
