@@ -30,13 +30,13 @@ const signUp = async (parent,args,context,info)=>{
 const plat = async (parent,args,context,info)=>{
     console.log('plat mutation')
     const illustration =  await context.storeUpload(args.illustration)
-    const plat = await context.prisma.createPlat({...args,illustration:illustration.path})
+    const plat = await context.prisma.createPlat({...args,illustration:illustration.path,archived:false})
     return plat
 }
 const house = async (parent,args,context,info)=>{
     console.log('house mutation')
     const illustration =  await context.storeUpload(args.illustration)
-    const house = await context.prisma.createHouse({...args,illustration:illustration.path})
+    const house = await context.prisma.createHouse({...args,illustration:illustration.path,archived:false})
     return house
 }
 const steed = async (parent,args,context,info)=>{
@@ -47,7 +47,7 @@ const steed = async (parent,args,context,info)=>{
 const product = async (parent,args,context,info)=>{
     console.log('product mutation')
     const illustration =  await context.storeUpload(args.illustration)
-    const product = await context.prisma.createProduct({...args,illustration:illustration.path})
+    const product = await context.prisma.createProduct({...args,illustration:illustration.path,archived:false})
     return product
 }
 const orderPlates = async (parent,args,context,info)=>{
