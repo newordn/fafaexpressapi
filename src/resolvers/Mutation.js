@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs')
 const {sendMail} = require('../helpers/mail')
+const {notify} = require('../helpers/notification')
+const APP_NAME = "Fafa Afro Express"
 async function signIn(parent,args,context,info)
 {
     console.log('user signIn mutation')
@@ -31,6 +33,7 @@ const plat = async (parent,args,context,info)=>{
     console.log('plat mutation')
     const illustration =  await context.storeUpload(args.illustration)
     const plat = await context.prisma.createPlat({...args,illustration:illustration.path,archived:false})
+    notify({title:plat.name,bigText:`${plat.price} Dhs`,message:plat.description,subText:APP_NAME})
     return plat
 }
 const house = async (parent,args,context,info)=>{

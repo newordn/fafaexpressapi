@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "firebase-admin": "^9.1.0",
     "fs": "^0.0.1-security",
     "googleapis": "^46.0.0",
     "graphql-tools": "^4.0.6",
