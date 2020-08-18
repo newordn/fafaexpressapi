@@ -1,7 +1,7 @@
 var topic = 'notification'
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./fafaafroexpress-firebase-adminsdk-wivry-d6d0be7952json");
+var serviceAccount = require("./fafaafroexpress-firebase-adminsdk-wivry-d6d0be7952.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://fafaafroexpress.firebaseio.com"
