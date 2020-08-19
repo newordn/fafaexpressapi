@@ -12,11 +12,6 @@ const notify = (data)=>{
 var message = {
     data ,
     topic,
-    android: {
-      notification:{
-      channelId: "rn-push-notification-channel-id"
-      }
-    },
   };
   
   // Send a message to the device corresponding to the provided
