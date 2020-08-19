@@ -33,13 +33,14 @@ const plat = async (parent,args,context,info)=>{
     console.log('plat mutation')
     const illustration =  await context.storeUpload(args.illustration)
     const plat = await context.prisma.createPlat({...args,illustration:illustration.path,archived:false})
-    notify({title:plat.name,bigText:`${plat.price} Dhs`,message:plat.description,subText:APP_NAME})
+    notify({title:`Nouveau Plat: ${plat.name}`,bigText:`${plat.price} Dhs`,message:plat.description,subText:APP_NAME})
     return plat
 }
 const house = async (parent,args,context,info)=>{
     console.log('house mutation')
     const illustration =  await context.storeUpload(args.illustration)
     const house = await context.prisma.createHouse({...args,illustration:illustration.path,archived:false})
+    notify({title: `Du Nouveau: ${house.localisation}`,bigText:`${house.price} Dhs`,message:house.description,subText:APP_NAME})
     return house
 }
 const steed = async (parent,args,context,info)=>{
@@ -51,6 +52,7 @@ const product = async (parent,args,context,info)=>{
     console.log('product mutation')
     const illustration =  await context.storeUpload(args.illustration)
     const product = await context.prisma.createProduct({...args,illustration:illustration.path,archived:false})
+    notify({title:`Nouveau Produit: ${product.name}`,bigText:`${product.price} Dhs`,message:product.description,subText:APP_NAME})
     return product
 }
 const orderPlates = async (parent,args,context,info)=>{
