@@ -13,7 +13,9 @@ var message = {
     data ,
     topic,
     android: {
+      notification:{
       channelId: "FAFAEXPRESS"
+      }
     },
   };
   
