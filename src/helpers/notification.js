@@ -14,7 +14,7 @@ var message = {
     topic,
     android: {
       notification:{
-      channelId: "FAFAEXPRESS"
+      channelId: "rn-push-notification-channel-id"
       }
     },
   };
