@@ -12,7 +12,9 @@ const notify = (data)=>{
 var message = {
     data ,
     topic,
-    android_channel_id: "FAFAEXPRESS"
+    android: {
+      channelId: "FAFAEXPRESS"
+    },
   };
   
   // Send a message to the device corresponding to the provided
