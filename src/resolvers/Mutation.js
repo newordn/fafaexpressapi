@@ -173,6 +173,7 @@ const archived = async (parent,args,context,info)=>{
 const notification = async (parent,args,context,info)=>{
     console.log('notification mutation')
     const notification = await context.prisma.createNotification({...args,subText:APP_NAME})
+    notify({...args,subText: APP_NAME});
     return notification
 }
 module.exports={
