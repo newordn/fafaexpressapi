@@ -124,7 +124,7 @@ type Product{
     archived: Boolean!
 }
 type Notification{
-    id: ID! @id
+    id: ID!
     title: String!
     bigText: String!
     message: String!
