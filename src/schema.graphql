@@ -37,7 +37,7 @@ type Mutation{
     updateItemText(item:ID!,field:String!,value:String!): String!
     updateItemIllustration(item:ID!,illustration:Upload!): String
     archived(item:ID!,archived:Boolean!): Boolean!
-    notification(title:String!,bigText:String!,message:String!,subText:String!):Notification
+    notification(title:String!,bigText:String!,message:String!):Notification
 }
 type User{
     id: ID! 
