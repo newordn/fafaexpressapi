@@ -78,3 +78,11 @@ type Product{
     date : DateTime @createdAt
     archived: Boolean!
 }
+type Notification{
+    id: ID! @id
+    title: String!
+    bigText: String!
+    message: String!
+    subText: String!
+    date: DateTime! @createdAt
+}

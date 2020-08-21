@@ -17,6 +17,7 @@ export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
   house: (where?: HouseWhereInput) => Promise<boolean>;
+  notification: (where?: NotificationWhereInput) => Promise<boolean>;
   plat: (where?: PlatWhereInput) => Promise<boolean>;
   product: (where?: ProductWhereInput) => Promise<boolean>;
   steed: (where?: SteedWhereInput) => Promise<boolean>;
@@ -64,6 +65,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => HouseConnectionPromise;
+  notification: (
+    where: NotificationWhereUniqueInput
+  ) => NotificationNullablePromise;
+  notifications: (args?: {
+    where?: NotificationWhereInput;
+    orderBy?: NotificationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Notification>;
+  notificationsConnection: (args?: {
+    where?: NotificationWhereInput;
+    orderBy?: NotificationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => NotificationConnectionPromise;
   plat: (where: PlatWhereUniqueInput) => PlatNullablePromise;
   plats: (args?: {
     where?: PlatWhereInput;
@@ -225,6 +247,26 @@ export interface Prisma {
   }) => HousePromise;
   deleteHouse: (where: HouseWhereUniqueInput) => HousePromise;
   deleteManyHouses: (where?: HouseWhereInput) => BatchPayloadPromise;
+  createNotification: (data: NotificationCreateInput) => NotificationPromise;
+  updateNotification: (args: {
+    data: NotificationUpdateInput;
+    where: NotificationWhereUniqueInput;
+  }) => NotificationPromise;
+  updateManyNotifications: (args: {
+    data: NotificationUpdateManyMutationInput;
+    where?: NotificationWhereInput;
+  }) => BatchPayloadPromise;
+  upsertNotification: (args: {
+    where: NotificationWhereUniqueInput;
+    create: NotificationCreateInput;
+    update: NotificationUpdateInput;
+  }) => NotificationPromise;
+  deleteNotification: (
+    where: NotificationWhereUniqueInput
+  ) => NotificationPromise;
+  deleteManyNotifications: (
+    where?: NotificationWhereInput
+  ) => BatchPayloadPromise;
   createPlat: (data: PlatCreateInput) => PlatPromise;
   updatePlat: (args: {
     data: PlatUpdateInput;
@@ -363,6 +405,9 @@ export interface Subscription {
   house: (
     where?: HouseSubscriptionWhereInput
   ) => HouseSubscriptionPayloadSubscription;
+  notification: (
+    where?: NotificationSubscriptionWhereInput
+  ) => NotificationSubscriptionPayloadSubscription;
   plat: (
     where?: PlatSubscriptionWhereInput
   ) => PlatSubscriptionPayloadSubscription;
@@ -409,6 +454,20 @@ export type HouseOrderByInput =
   | "date_DESC"
   | "archived_ASC"
   | "archived_DESC";
+
+export type NotificationOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "bigText_ASC"
+  | "bigText_DESC"
+  | "message_ASC"
+  | "message_DESC"
+  | "subText_ASC"
+  | "subText_DESC"
+  | "date_ASC"
+  | "date_DESC";
 
 export type UsersOnPlatesOrderByInput =
   | "id_ASC"
@@ -598,6 +657,94 @@ export interface HouseWhereInput {
   AND?: Maybe<HouseWhereInput[] | HouseWhereInput>;
   OR?: Maybe<HouseWhereInput[] | HouseWhereInput>;
   NOT?: Maybe<HouseWhereInput[] | HouseWhereInput>;
+}
+
+export type NotificationWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface NotificationWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  bigText?: Maybe<String>;
+  bigText_not?: Maybe<String>;
+  bigText_in?: Maybe<String[] | String>;
+  bigText_not_in?: Maybe<String[] | String>;
+  bigText_lt?: Maybe<String>;
+  bigText_lte?: Maybe<String>;
+  bigText_gt?: Maybe<String>;
+  bigText_gte?: Maybe<String>;
+  bigText_contains?: Maybe<String>;
+  bigText_not_contains?: Maybe<String>;
+  bigText_starts_with?: Maybe<String>;
+  bigText_not_starts_with?: Maybe<String>;
+  bigText_ends_with?: Maybe<String>;
+  bigText_not_ends_with?: Maybe<String>;
+  message?: Maybe<String>;
+  message_not?: Maybe<String>;
+  message_in?: Maybe<String[] | String>;
+  message_not_in?: Maybe<String[] | String>;
+  message_lt?: Maybe<String>;
+  message_lte?: Maybe<String>;
+  message_gt?: Maybe<String>;
+  message_gte?: Maybe<String>;
+  message_contains?: Maybe<String>;
+  message_not_contains?: Maybe<String>;
+  message_starts_with?: Maybe<String>;
+  message_not_starts_with?: Maybe<String>;
+  message_ends_with?: Maybe<String>;
+  message_not_ends_with?: Maybe<String>;
+  subText?: Maybe<String>;
+  subText_not?: Maybe<String>;
+  subText_in?: Maybe<String[] | String>;
+  subText_not_in?: Maybe<String[] | String>;
+  subText_lt?: Maybe<String>;
+  subText_lte?: Maybe<String>;
+  subText_gt?: Maybe<String>;
+  subText_gte?: Maybe<String>;
+  subText_contains?: Maybe<String>;
+  subText_not_contains?: Maybe<String>;
+  subText_starts_with?: Maybe<String>;
+  subText_not_starts_with?: Maybe<String>;
+  subText_ends_with?: Maybe<String>;
+  subText_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<NotificationWhereInput[] | NotificationWhereInput>;
+  OR?: Maybe<NotificationWhereInput[] | NotificationWhereInput>;
+  NOT?: Maybe<NotificationWhereInput[] | NotificationWhereInput>;
 }
 
 export type PlatWhereUniqueInput = AtLeastOne<{
@@ -1208,6 +1355,28 @@ export interface HouseUpdateManyMutationInput {
   localisation?: Maybe<String>;
   price?: Maybe<Float>;
   archived?: Maybe<Boolean>;
+}
+
+export interface NotificationCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  bigText: String;
+  message: String;
+  subText: String;
+}
+
+export interface NotificationUpdateInput {
+  title?: Maybe<String>;
+  bigText?: Maybe<String>;
+  message?: Maybe<String>;
+  subText?: Maybe<String>;
+}
+
+export interface NotificationUpdateManyMutationInput {
+  title?: Maybe<String>;
+  bigText?: Maybe<String>;
+  message?: Maybe<String>;
+  subText?: Maybe<String>;
 }
 
 export interface PlatCreateInput {
@@ -2309,6 +2478,23 @@ export interface HouseSubscriptionWhereInput {
   NOT?: Maybe<HouseSubscriptionWhereInput[] | HouseSubscriptionWhereInput>;
 }
 
+export interface NotificationSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<NotificationWhereInput>;
+  AND?: Maybe<
+    NotificationSubscriptionWhereInput[] | NotificationSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    NotificationSubscriptionWhereInput[] | NotificationSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    NotificationSubscriptionWhereInput[] | NotificationSubscriptionWhereInput
+  >;
+}
+
 export interface PlatSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -2528,6 +2714,104 @@ export interface AggregateHousePromise
 
 export interface AggregateHouseSubscription
   extends Promise<AsyncIterator<AggregateHouse>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Notification {
+  id: ID_Output;
+  title: String;
+  bigText: String;
+  message: String;
+  subText: String;
+  date: DateTimeOutput;
+}
+
+export interface NotificationPromise
+  extends Promise<Notification>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  bigText: () => Promise<String>;
+  message: () => Promise<String>;
+  subText: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface NotificationSubscription
+  extends Promise<AsyncIterator<Notification>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  bigText: () => Promise<AsyncIterator<String>>;
+  message: () => Promise<AsyncIterator<String>>;
+  subText: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface NotificationNullablePromise
+  extends Promise<Notification | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  bigText: () => Promise<String>;
+  message: () => Promise<String>;
+  subText: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface NotificationConnection {
+  pageInfo: PageInfo;
+  edges: NotificationEdge[];
+}
+
+export interface NotificationConnectionPromise
+  extends Promise<NotificationConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<NotificationEdge>>() => T;
+  aggregate: <T = AggregateNotificationPromise>() => T;
+}
+
+export interface NotificationConnectionSubscription
+  extends Promise<AsyncIterator<NotificationConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<NotificationEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateNotificationSubscription>() => T;
+}
+
+export interface NotificationEdge {
+  node: Notification;
+  cursor: String;
+}
+
+export interface NotificationEdgePromise
+  extends Promise<NotificationEdge>,
+    Fragmentable {
+  node: <T = NotificationPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface NotificationEdgeSubscription
+  extends Promise<AsyncIterator<NotificationEdge>>,
+    Fragmentable {
+  node: <T = NotificationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateNotification {
+  count: Int;
+}
+
+export interface AggregateNotificationPromise
+  extends Promise<AggregateNotification>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateNotificationSubscription
+  extends Promise<AsyncIterator<AggregateNotification>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -3445,6 +3729,62 @@ export interface HousePreviousValuesSubscription
   archived: () => Promise<AsyncIterator<Boolean>>;
 }
 
+export interface NotificationSubscriptionPayload {
+  mutation: MutationType;
+  node: Notification;
+  updatedFields: String[];
+  previousValues: NotificationPreviousValues;
+}
+
+export interface NotificationSubscriptionPayloadPromise
+  extends Promise<NotificationSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = NotificationPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = NotificationPreviousValuesPromise>() => T;
+}
+
+export interface NotificationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<NotificationSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = NotificationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = NotificationPreviousValuesSubscription>() => T;
+}
+
+export interface NotificationPreviousValues {
+  id: ID_Output;
+  title: String;
+  bigText: String;
+  message: String;
+  subText: String;
+  date: DateTimeOutput;
+}
+
+export interface NotificationPreviousValuesPromise
+  extends Promise<NotificationPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  bigText: () => Promise<String>;
+  message: () => Promise<String>;
+  subText: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+}
+
+export interface NotificationPreviousValuesSubscription
+  extends Promise<AsyncIterator<NotificationPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  bigText: () => Promise<AsyncIterator<String>>;
+  message: () => Promise<AsyncIterator<String>>;
+  subText: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
 export interface PlatSubscriptionPayload {
   mutation: MutationType;
   node: Plat;
@@ -3919,6 +4259,10 @@ export const models: Model[] = [
   },
   {
     name: "Product",
+    embedded: false
+  },
+  {
+    name: "Notification",
     embedded: false
   }
 ];

@@ -18,6 +18,7 @@ type Query{
     orderedHousesByUsers: [UsersOnHouses!]!
     orderedProductsByUser(user:ID!): [UsersOnProducts!]!
     orderedProductsByUsers: [UsersOnProducts!]!
+    notifications:[Notification!]!
 }
 type Mutation{
     signUp(name:String!,phone:String!,email:String!,password:String!,role:String!):User!
@@ -36,6 +37,7 @@ type Mutation{
     updateItemText(item:ID!,field:String!,value:String!): String!
     updateItemIllustration(item:ID!,illustration:Upload!): String
     archived(item:ID!,archived:Boolean!): Boolean!
+    notification(title:String!,bigText:String!,message:String!,subText:String!):Notification
 }
 type User{
     id: ID! 
@@ -120,6 +122,14 @@ type Product{
     date : String!
     users : [UsersOnProducts!]
     archived: Boolean!
+}
+type Notification{
+    id: ID! @id
+    title: String!
+    bigText: String!
+    message: String!
+    subText: String!
+    date: String!
 }
 `
 module.exports={

@@ -75,6 +75,11 @@ const productsAll = async (parent,args,context,info)=>{
     const products = await context.prisma.products({orderBy:'id_DESC'})
     return products
 }
+const notifications = async (parent,args,context,info)=>{
+    console.log('Notifications query')
+    const notifications = await context.prisma.notifications({orderBy:'id_DESC'})
+    return notifications
+}
 
 module.exports={
     info,
@@ -92,5 +97,6 @@ module.exports={
     platesAll,
     housesAll,
     productsAll,
-    steedsByUsers
+    steedsByUsers,
+    notifications
 }

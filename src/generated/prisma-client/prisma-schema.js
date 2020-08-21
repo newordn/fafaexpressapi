@@ -7,6 +7,10 @@ module.exports = {
   count: Int!
 }
 
+type AggregateNotification {
+  count: Int!
+}
+
 type AggregatePlat {
   count: Int!
 }
@@ -250,6 +254,12 @@ type Mutation {
   upsertHouse(where: HouseWhereUniqueInput!, create: HouseCreateInput!, update: HouseUpdateInput!): House!
   deleteHouse(where: HouseWhereUniqueInput!): House
   deleteManyHouses(where: HouseWhereInput): BatchPayload!
+  createNotification(data: NotificationCreateInput!): Notification!
+  updateNotification(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+  updateManyNotifications(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): BatchPayload!
+  upsertNotification(where: NotificationWhereUniqueInput!, create: NotificationCreateInput!, update: NotificationUpdateInput!): Notification!
+  deleteNotification(where: NotificationWhereUniqueInput!): Notification
+  deleteManyNotifications(where: NotificationWhereInput): BatchPayload!
   createPlat(data: PlatCreateInput!): Plat!
   updatePlat(data: PlatUpdateInput!, where: PlatWhereUniqueInput!): Plat
   updateManyPlats(data: PlatUpdateManyMutationInput!, where: PlatWhereInput): BatchPayload!
@@ -302,6 +312,178 @@ enum MutationType {
 
 interface Node {
   id: ID!
+}
+
+type Notification {
+  id: ID!
+  title: String!
+  bigText: String!
+  message: String!
+  subText: String!
+  date: DateTime!
+}
+
+type NotificationConnection {
+  pageInfo: PageInfo!
+  edges: [NotificationEdge]!
+  aggregate: AggregateNotification!
+}
+
+input NotificationCreateInput {
+  id: ID
+  title: String!
+  bigText: String!
+  message: String!
+  subText: String!
+}
+
+type NotificationEdge {
+  node: Notification!
+  cursor: String!
+}
+
+enum NotificationOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  bigText_ASC
+  bigText_DESC
+  message_ASC
+  message_DESC
+  subText_ASC
+  subText_DESC
+  date_ASC
+  date_DESC
+}
+
+type NotificationPreviousValues {
+  id: ID!
+  title: String!
+  bigText: String!
+  message: String!
+  subText: String!
+  date: DateTime!
+}
+
+type NotificationSubscriptionPayload {
+  mutation: MutationType!
+  node: Notification
+  updatedFields: [String!]
+  previousValues: NotificationPreviousValues
+}
+
+input NotificationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NotificationWhereInput
+  AND: [NotificationSubscriptionWhereInput!]
+  OR: [NotificationSubscriptionWhereInput!]
+  NOT: [NotificationSubscriptionWhereInput!]
+}
+
+input NotificationUpdateInput {
+  title: String
+  bigText: String
+  message: String
+  subText: String
+}
+
+input NotificationUpdateManyMutationInput {
+  title: String
+  bigText: String
+  message: String
+  subText: String
+}
+
+input NotificationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  bigText: String
+  bigText_not: String
+  bigText_in: [String!]
+  bigText_not_in: [String!]
+  bigText_lt: String
+  bigText_lte: String
+  bigText_gt: String
+  bigText_gte: String
+  bigText_contains: String
+  bigText_not_contains: String
+  bigText_starts_with: String
+  bigText_not_starts_with: String
+  bigText_ends_with: String
+  bigText_not_ends_with: String
+  message: String
+  message_not: String
+  message_in: [String!]
+  message_not_in: [String!]
+  message_lt: String
+  message_lte: String
+  message_gt: String
+  message_gte: String
+  message_contains: String
+  message_not_contains: String
+  message_starts_with: String
+  message_not_starts_with: String
+  message_ends_with: String
+  message_not_ends_with: String
+  subText: String
+  subText_not: String
+  subText_in: [String!]
+  subText_not_in: [String!]
+  subText_lt: String
+  subText_lte: String
+  subText_gt: String
+  subText_gte: String
+  subText_contains: String
+  subText_not_contains: String
+  subText_starts_with: String
+  subText_not_starts_with: String
+  subText_ends_with: String
+  subText_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+}
+
+input NotificationWhereUniqueInput {
+  id: ID
 }
 
 type PageInfo {
@@ -730,6 +912,9 @@ type Query {
   house(where: HouseWhereUniqueInput!): House
   houses(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [House]!
   housesConnection(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseConnection!
+  notification(where: NotificationWhereUniqueInput!): Notification
+  notifications(where: NotificationWhereInput, orderBy: NotificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Notification]!
+  notificationsConnection(where: NotificationWhereInput, orderBy: NotificationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NotificationConnection!
   plat(where: PlatWhereUniqueInput!): Plat
   plats(where: PlatWhereInput, orderBy: PlatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Plat]!
   platsConnection(where: PlatWhereInput, orderBy: PlatOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PlatConnection!
@@ -1123,6 +1308,7 @@ input SteedWhereUniqueInput {
 
 type Subscription {
   house(where: HouseSubscriptionWhereInput): HouseSubscriptionPayload
+  notification(where: NotificationSubscriptionWhereInput): NotificationSubscriptionPayload
   plat(where: PlatSubscriptionWhereInput): PlatSubscriptionPayload
   product(where: ProductSubscriptionWhereInput): ProductSubscriptionPayload
   steed(where: SteedSubscriptionWhereInput): SteedSubscriptionPayload
