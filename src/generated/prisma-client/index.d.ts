@@ -571,7 +571,13 @@ export type UserOrderByInput =
   | "role_ASC"
   | "role_DESC"
   | "date_ASC"
-  | "date_DESC";
+  | "date_DESC"
+  | "adress1_ASC"
+  | "adress1_DESC"
+  | "adress2_ASC"
+  | "adress2_DESC"
+  | "adress3_ASC"
+  | "adress3_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -912,6 +918,48 @@ export interface UserWhereInput {
   date_lte?: Maybe<DateTimeInput>;
   date_gt?: Maybe<DateTimeInput>;
   date_gte?: Maybe<DateTimeInput>;
+  adress1?: Maybe<String>;
+  adress1_not?: Maybe<String>;
+  adress1_in?: Maybe<String[] | String>;
+  adress1_not_in?: Maybe<String[] | String>;
+  adress1_lt?: Maybe<String>;
+  adress1_lte?: Maybe<String>;
+  adress1_gt?: Maybe<String>;
+  adress1_gte?: Maybe<String>;
+  adress1_contains?: Maybe<String>;
+  adress1_not_contains?: Maybe<String>;
+  adress1_starts_with?: Maybe<String>;
+  adress1_not_starts_with?: Maybe<String>;
+  adress1_ends_with?: Maybe<String>;
+  adress1_not_ends_with?: Maybe<String>;
+  adress2?: Maybe<String>;
+  adress2_not?: Maybe<String>;
+  adress2_in?: Maybe<String[] | String>;
+  adress2_not_in?: Maybe<String[] | String>;
+  adress2_lt?: Maybe<String>;
+  adress2_lte?: Maybe<String>;
+  adress2_gt?: Maybe<String>;
+  adress2_gte?: Maybe<String>;
+  adress2_contains?: Maybe<String>;
+  adress2_not_contains?: Maybe<String>;
+  adress2_starts_with?: Maybe<String>;
+  adress2_not_starts_with?: Maybe<String>;
+  adress2_ends_with?: Maybe<String>;
+  adress2_not_ends_with?: Maybe<String>;
+  adress3?: Maybe<String>;
+  adress3_not?: Maybe<String>;
+  adress3_in?: Maybe<String[] | String>;
+  adress3_not_in?: Maybe<String[] | String>;
+  adress3_lt?: Maybe<String>;
+  adress3_lte?: Maybe<String>;
+  adress3_gt?: Maybe<String>;
+  adress3_gte?: Maybe<String>;
+  adress3_contains?: Maybe<String>;
+  adress3_not_contains?: Maybe<String>;
+  adress3_starts_with?: Maybe<String>;
+  adress3_not_starts_with?: Maybe<String>;
+  adress3_ends_with?: Maybe<String>;
+  adress3_not_ends_with?: Maybe<String>;
   plates_every?: Maybe<UsersOnPlatesWhereInput>;
   plates_some?: Maybe<UsersOnPlatesWhereInput>;
   plates_none?: Maybe<UsersOnPlatesWhereInput>;
@@ -1419,6 +1467,9 @@ export interface UserCreateWithoutPlatesInput {
   email?: Maybe<String>;
   password: String;
   role: String;
+  adress1: String;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
   steeds?: Maybe<SteedCreateManyWithoutUserInput>;
@@ -1559,6 +1610,9 @@ export interface UserUpdateWithoutPlatesDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  adress1?: Maybe<String>;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
   steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
@@ -2133,6 +2187,9 @@ export interface UserCreateWithoutSteedsInput {
   email?: Maybe<String>;
   password: String;
   role: String;
+  adress1: String;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
   houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
@@ -2193,6 +2250,9 @@ export interface UserUpdateWithoutSteedsDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  adress1?: Maybe<String>;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
   houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
@@ -2289,6 +2349,9 @@ export interface UserCreateInput {
   email?: Maybe<String>;
   password: String;
   role: String;
+  adress1: String;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
   houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
@@ -2301,6 +2364,9 @@ export interface UserUpdateInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  adress1?: Maybe<String>;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
   houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
@@ -2313,6 +2379,9 @@ export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  adress1?: Maybe<String>;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
 }
 
 export interface UsersOnHousesCreateInput {
@@ -2335,6 +2404,9 @@ export interface UserCreateWithoutHousesInput {
   email?: Maybe<String>;
   password: String;
   role: String;
+  adress1: String;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsCreateManyWithoutUserInput>;
   steeds?: Maybe<SteedCreateManyWithoutUserInput>;
@@ -2360,6 +2432,9 @@ export interface UserUpdateWithoutHousesDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  adress1?: Maybe<String>;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
   products?: Maybe<UsersOnProductsUpdateManyWithoutUserInput>;
   steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
@@ -2423,6 +2498,9 @@ export interface UserCreateWithoutProductsInput {
   email?: Maybe<String>;
   password: String;
   role: String;
+  adress1: String;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesCreateManyWithoutUserInput>;
   houses?: Maybe<UsersOnHousesCreateManyWithoutUserInput>;
   steeds?: Maybe<SteedCreateManyWithoutUserInput>;
@@ -2450,6 +2528,9 @@ export interface UserUpdateWithoutProductsDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   role?: Maybe<String>;
+  adress1?: Maybe<String>;
+  adress2?: Maybe<String>;
+  adress3?: Maybe<String>;
   plates?: Maybe<UsersOnPlatesUpdateManyWithoutUserInput>;
   houses?: Maybe<UsersOnHousesUpdateManyWithoutUserInput>;
   steeds?: Maybe<SteedUpdateManyWithoutUserInput>;
@@ -2943,6 +3024,9 @@ export interface User {
   password: String;
   role: String;
   date?: DateTimeOutput;
+  adress1: String;
+  adress2?: String;
+  adress3?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -2953,6 +3037,9 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   password: () => Promise<String>;
   role: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
+  adress1: () => Promise<String>;
+  adress2: () => Promise<String>;
+  adress3: () => Promise<String>;
   plates: <T = FragmentableArray<UsersOnPlates>>(args?: {
     where?: UsersOnPlatesWhereInput;
     orderBy?: UsersOnPlatesOrderByInput;
@@ -3001,6 +3088,9 @@ export interface UserSubscription
   password: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  adress1: () => Promise<AsyncIterator<String>>;
+  adress2: () => Promise<AsyncIterator<String>>;
+  adress3: () => Promise<AsyncIterator<String>>;
   plates: <T = Promise<AsyncIterator<UsersOnPlatesSubscription>>>(args?: {
     where?: UsersOnPlatesWhereInput;
     orderBy?: UsersOnPlatesOrderByInput;
@@ -3049,6 +3139,9 @@ export interface UserNullablePromise
   password: () => Promise<String>;
   role: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
+  adress1: () => Promise<String>;
+  adress2: () => Promise<String>;
+  adress3: () => Promise<String>;
   plates: <T = FragmentableArray<UsersOnPlates>>(args?: {
     where?: UsersOnPlatesWhereInput;
     orderBy?: UsersOnPlatesOrderByInput;
@@ -3998,6 +4091,9 @@ export interface UserPreviousValues {
   password: String;
   role: String;
   date?: DateTimeOutput;
+  adress1: String;
+  adress2?: String;
+  adress3?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -4010,6 +4106,9 @@ export interface UserPreviousValuesPromise
   password: () => Promise<String>;
   role: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
+  adress1: () => Promise<String>;
+  adress2: () => Promise<String>;
+  adress3: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -4022,6 +4121,9 @@ export interface UserPreviousValuesSubscription
   password: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  adress1: () => Promise<AsyncIterator<String>>;
+  adress2: () => Promise<AsyncIterator<String>>;
+  adress3: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UsersOnHousesSubscriptionPayload {

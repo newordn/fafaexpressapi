@@ -1326,6 +1326,9 @@ type User {
   password: String!
   role: String!
   date: DateTime
+  adress1: String!
+  adress2: String
+  adress3: String
   plates(where: UsersOnPlatesWhereInput, orderBy: UsersOnPlatesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnPlates!]
   houses(where: UsersOnHousesWhereInput, orderBy: UsersOnHousesOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnHouses!]
   products(where: UsersOnProductsWhereInput, orderBy: UsersOnProductsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UsersOnProducts!]
@@ -1345,6 +1348,9 @@ input UserCreateInput {
   email: String
   password: String!
   role: String!
+  adress1: String!
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesCreateManyWithoutUserInput
   houses: UsersOnHousesCreateManyWithoutUserInput
   products: UsersOnProductsCreateManyWithoutUserInput
@@ -1378,6 +1384,9 @@ input UserCreateWithoutHousesInput {
   email: String
   password: String!
   role: String!
+  adress1: String!
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesCreateManyWithoutUserInput
   products: UsersOnProductsCreateManyWithoutUserInput
   steeds: SteedCreateManyWithoutUserInput
@@ -1390,6 +1399,9 @@ input UserCreateWithoutPlatesInput {
   email: String
   password: String!
   role: String!
+  adress1: String!
+  adress2: String
+  adress3: String
   houses: UsersOnHousesCreateManyWithoutUserInput
   products: UsersOnProductsCreateManyWithoutUserInput
   steeds: SteedCreateManyWithoutUserInput
@@ -1402,6 +1414,9 @@ input UserCreateWithoutProductsInput {
   email: String
   password: String!
   role: String!
+  adress1: String!
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesCreateManyWithoutUserInput
   houses: UsersOnHousesCreateManyWithoutUserInput
   steeds: SteedCreateManyWithoutUserInput
@@ -1414,6 +1429,9 @@ input UserCreateWithoutSteedsInput {
   email: String
   password: String!
   role: String!
+  adress1: String!
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesCreateManyWithoutUserInput
   houses: UsersOnHousesCreateManyWithoutUserInput
   products: UsersOnProductsCreateManyWithoutUserInput
@@ -1439,6 +1457,12 @@ enum UserOrderByInput {
   role_DESC
   date_ASC
   date_DESC
+  adress1_ASC
+  adress1_DESC
+  adress2_ASC
+  adress2_DESC
+  adress3_ASC
+  adress3_DESC
 }
 
 type UserPreviousValues {
@@ -1449,6 +1473,9 @@ type UserPreviousValues {
   password: String!
   role: String!
   date: DateTime
+  adress1: String!
+  adress2: String
+  adress3: String
 }
 
 type UsersOnHouses {
@@ -2311,6 +2338,9 @@ input UserUpdateInput {
   email: String
   password: String
   role: String
+  adress1: String
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
   houses: UsersOnHousesUpdateManyWithoutUserInput
   products: UsersOnProductsUpdateManyWithoutUserInput
@@ -2323,6 +2353,9 @@ input UserUpdateManyMutationInput {
   email: String
   password: String
   role: String
+  adress1: String
+  adress2: String
+  adress3: String
 }
 
 input UserUpdateOneRequiredWithoutHousesInput {
@@ -2359,6 +2392,9 @@ input UserUpdateWithoutHousesDataInput {
   email: String
   password: String
   role: String
+  adress1: String
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
   products: UsersOnProductsUpdateManyWithoutUserInput
   steeds: SteedUpdateManyWithoutUserInput
@@ -2370,6 +2406,9 @@ input UserUpdateWithoutPlatesDataInput {
   email: String
   password: String
   role: String
+  adress1: String
+  adress2: String
+  adress3: String
   houses: UsersOnHousesUpdateManyWithoutUserInput
   products: UsersOnProductsUpdateManyWithoutUserInput
   steeds: SteedUpdateManyWithoutUserInput
@@ -2381,6 +2420,9 @@ input UserUpdateWithoutProductsDataInput {
   email: String
   password: String
   role: String
+  adress1: String
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
   houses: UsersOnHousesUpdateManyWithoutUserInput
   steeds: SteedUpdateManyWithoutUserInput
@@ -2392,6 +2434,9 @@ input UserUpdateWithoutSteedsDataInput {
   email: String
   password: String
   role: String
+  adress1: String
+  adress2: String
+  adress3: String
   plates: UsersOnPlatesUpdateManyWithoutUserInput
   houses: UsersOnHousesUpdateManyWithoutUserInput
   products: UsersOnProductsUpdateManyWithoutUserInput
@@ -2510,6 +2555,48 @@ input UserWhereInput {
   date_lte: DateTime
   date_gt: DateTime
   date_gte: DateTime
+  adress1: String
+  adress1_not: String
+  adress1_in: [String!]
+  adress1_not_in: [String!]
+  adress1_lt: String
+  adress1_lte: String
+  adress1_gt: String
+  adress1_gte: String
+  adress1_contains: String
+  adress1_not_contains: String
+  adress1_starts_with: String
+  adress1_not_starts_with: String
+  adress1_ends_with: String
+  adress1_not_ends_with: String
+  adress2: String
+  adress2_not: String
+  adress2_in: [String!]
+  adress2_not_in: [String!]
+  adress2_lt: String
+  adress2_lte: String
+  adress2_gt: String
+  adress2_gte: String
+  adress2_contains: String
+  adress2_not_contains: String
+  adress2_starts_with: String
+  adress2_not_starts_with: String
+  adress2_ends_with: String
+  adress2_not_ends_with: String
+  adress3: String
+  adress3_not: String
+  adress3_in: [String!]
+  adress3_not_in: [String!]
+  adress3_lt: String
+  adress3_lte: String
+  adress3_gt: String
+  adress3_gte: String
+  adress3_contains: String
+  adress3_not_contains: String
+  adress3_starts_with: String
+  adress3_not_starts_with: String
+  adress3_ends_with: String
+  adress3_not_ends_with: String
   plates_every: UsersOnPlatesWhereInput
   plates_some: UsersOnPlatesWhereInput
   plates_none: UsersOnPlatesWhereInput
