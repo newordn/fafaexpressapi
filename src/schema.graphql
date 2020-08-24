@@ -21,7 +21,7 @@ type Query{
     notifications:[Notification!]!
 }
 type Mutation{
-    signUp(name:String!,phone:String!,email:String!,password:String!,role:String!):User!
+    signUp(name:String!,phone:String!,adress1:String!,adress2:String,adress3:String,email:String!,password:String!,role:String!):User!
     signIn(phone:String!,password:String!):User!
     plat(name:String!,illustration:Upload!,description:String!,price:Float!): Plat!
     house(illustration:Upload!,description:String!,localisation:String!,price:Float!): House!
@@ -47,6 +47,9 @@ type User{
     password: String!
     role : String!
     date : String!
+    adress1: String!
+    adress2: String
+    adress3: String
     plates : [UsersOnPlates!]
     houses : [UsersOnHouses!]
     steeds : [Steed!]

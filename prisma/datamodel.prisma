@@ -6,6 +6,9 @@ type User{
     password: String!
     role : String!
     date : DateTime @createdAt
+    adress1: String!
+    adress2: String
+    adress3: String
     plates : [UsersOnPlates!]
     houses : [UsersOnHouses!]
     products : [UsersOnProducts!]
