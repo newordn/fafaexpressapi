@@ -60,6 +60,7 @@ type House{
     price : Float!
     date : DateTime @createdAt
     archived: Boolean!
+    category: Category @relation(name: "HouseCategory")
 }
 type Steed{
     id : ID! @id
@@ -88,4 +89,9 @@ type Notification{
     message: String!
     subText: String!
     date: DateTime! @createdAt
+}
+type Category{
+    id: ID! @id
+    title: String! @unique
+    illustration: String!
 }

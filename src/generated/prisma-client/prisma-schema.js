@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateHouse {
+/* GraphQL */ `type AggregateCategory {
+  count: Int!
+}
+
+type AggregateHouse {
   count: Int!
 }
 
@@ -43,6 +47,149 @@ type BatchPayload {
   count: Long!
 }
 
+type Category {
+  id: ID!
+  title: String!
+  illustration: String!
+}
+
+type CategoryConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  id: ID
+  title: String!
+  illustration: String!
+}
+
+input CategoryCreateOneInput {
+  create: CategoryCreateInput
+  connect: CategoryWhereUniqueInput
+}
+
+type CategoryEdge {
+  node: Category!
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  illustration_ASC
+  illustration_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  title: String!
+  illustration: String!
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+  AND: [CategorySubscriptionWhereInput!]
+  OR: [CategorySubscriptionWhereInput!]
+  NOT: [CategorySubscriptionWhereInput!]
+}
+
+input CategoryUpdateDataInput {
+  title: String
+  illustration: String
+}
+
+input CategoryUpdateInput {
+  title: String
+  illustration: String
+}
+
+input CategoryUpdateManyMutationInput {
+  title: String
+  illustration: String
+}
+
+input CategoryUpdateOneInput {
+  create: CategoryCreateInput
+  update: CategoryUpdateDataInput
+  upsert: CategoryUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryUpsertNestedInput {
+  update: CategoryUpdateDataInput!
+  create: CategoryCreateInput!
+}
+
+input CategoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  illustration: String
+  illustration_not: String
+  illustration_in: [String!]
+  illustration_not_in: [String!]
+  illustration_lt: String
+  illustration_lte: String
+  illustration_gt: String
+  illustration_gte: String
+  illustration_contains: String
+  illustration_not_contains: String
+  illustration_starts_with: String
+  illustration_not_starts_with: String
+  illustration_ends_with: String
+  illustration_not_ends_with: String
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+  title: String
+}
+
 scalar DateTime
 
 type House {
@@ -53,6 +200,7 @@ type House {
   price: Float!
   date: DateTime
   archived: Boolean!
+  category: Category
 }
 
 type HouseConnection {
@@ -68,6 +216,7 @@ input HouseCreateInput {
   localisation: String!
   price: Float!
   archived: Boolean!
+  category: CategoryCreateOneInput
 }
 
 input HouseCreateOneInput {
@@ -131,6 +280,7 @@ input HouseUpdateDataInput {
   localisation: String
   price: Float
   archived: Boolean
+  category: CategoryUpdateOneInput
 }
 
 input HouseUpdateInput {
@@ -139,6 +289,7 @@ input HouseUpdateInput {
   localisation: String
   price: Float
   archived: Boolean
+  category: CategoryUpdateOneInput
 }
 
 input HouseUpdateManyMutationInput {
@@ -236,6 +387,7 @@ input HouseWhereInput {
   date_gte: DateTime
   archived: Boolean
   archived_not: Boolean
+  category: CategoryWhereInput
   AND: [HouseWhereInput!]
   OR: [HouseWhereInput!]
   NOT: [HouseWhereInput!]
@@ -248,6 +400,12 @@ input HouseWhereUniqueInput {
 scalar Long
 
 type Mutation {
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
   createHouse(data: HouseCreateInput!): House!
   updateHouse(data: HouseUpdateInput!, where: HouseWhereUniqueInput!): House
   updateManyHouses(data: HouseUpdateManyMutationInput!, where: HouseWhereInput): BatchPayload!
@@ -909,6 +1067,9 @@ input ProductWhereUniqueInput {
 }
 
 type Query {
+  category(where: CategoryWhereUniqueInput!): Category
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
   house(where: HouseWhereUniqueInput!): House
   houses(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [House]!
   housesConnection(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseConnection!
@@ -1307,6 +1468,7 @@ input SteedWhereUniqueInput {
 }
 
 type Subscription {
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
   house(where: HouseSubscriptionWhereInput): HouseSubscriptionPayload
   notification(where: NotificationSubscriptionWhereInput): NotificationSubscriptionPayload
   plat(where: PlatSubscriptionWhereInput): PlatSubscriptionPayload
